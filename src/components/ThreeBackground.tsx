@@ -5,24 +5,24 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
+function generateParticles(count: number) {
+  const temp = [];
+  for (let i = 0; i < count; i++) {
+    const time = Math.random() * 100;
+    const speed = Math.random() * 0.01 + 0.001;
+    const x = Math.random() * 100 - 50;
+    const y = Math.random() * 100 - 50;
+    const z = Math.random() * 100 - 50;
+
+    temp.push({ time, speed, x, y, z });
+  }
+  return temp;
+}
+
 function Particles({ count = 100 }) {
   const mesh = useRef<THREE.InstancedMesh>(null);
-  const light = useRef<THREE.PointLight>(null);
 
-  const particles = useMemo(() => {
-    const temp = [];
-    for (let i = 0; i < count; i++) {
-      const time = Math.random() * 100;
-      const factor = Math.random() * 100 + 20;
-      const speed = Math.random() * 0.01 + 0.001;
-      const x = Math.random() * 100 - 50;
-      const y = Math.random() * 100 - 50;
-      const z = Math.random() * 100 - 50;
-
-      temp.push({ time, factor, speed, x, y, z });
-    }
-    return temp;
-  }, [count]);
+  const particles = useMemo(() => generateParticles(count), [count]);
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
@@ -30,7 +30,7 @@ function Particles({ count = 100 }) {
     if (!mesh.current) return;
 
     particles.forEach((particle, i) => {
-      let { time, factor, speed, x, y, z } = particle;
+      const { time, x, y, z } = particle;
 
       // Update time
       // particle.time += speed; // Mutating derived data directly isn't persistent in this scope usually,
