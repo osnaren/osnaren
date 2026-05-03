@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 'use client';
 
 import { Environment, Float, Stars } from '@react-three/drei';
@@ -25,24 +26,26 @@ function Particles({ count = 100 }) {
   const particles = useMemo(() => generateParticles(count), [count]);
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  const elapsedTime = useRef(0);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!mesh.current) return;
 
+    elapsedTime.current += delta;
     particles.forEach((particle, i) => {
-      const { time, x, y, z } = particle;
+      const { time, x, y, z, speed } = particle;
 
       // Update time
       // particle.time += speed; // Mutating derived data directly isn't persistent in this scope usually,
-      // but for simplicity in this frame loop we calculate dynamic position based on state.clock
+      // but for simplicity in this frame loop we calculate dynamic position based on state.timer/clock/delta
 
-      const t = state.clock.getElapsedTime() * 0.2 + time;
+      const t = elapsedTime.current * 0.2 + time;
 
       // Floating motion
       dummy.position.set(
-        x + Math.cos((t * particle.speed * 10) / 10) * 2 + Math.sin(t * 1) * 2,
-        y + Math.sin((t * particle.speed * 10) / 10) * 2 + Math.cos(t * 2) * 2,
-        z + Math.cos((t * particle.speed * 10) / 10) * 2 + Math.sin(t * 3) * 2
+        x + Math.cos((t * speed * 10) / 10) * 2 + Math.sin(t * 1) * 2,
+        y + Math.sin((t * speed * 10) / 10) * 2 + Math.cos(t * 2) * 2,
+        z + Math.cos((t * speed * 10) / 10) * 2 + Math.sin(t * 3) * 2
       );
 
       // Rotate particles slightly
