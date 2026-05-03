@@ -1,14 +1,14 @@
 {
-  "name": "temp",
+  "name": "osnaren",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install",
+    "prepare": "husky",
     "tailwind": "tailwindcss -o output.css",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
@@ -30,9 +30,11 @@
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "tailwind-merge": "^3.5.0",
-    "three": "^0.184.0"
+    "three": "^0.181.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.4",
     "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^25",
     "@types/react": "^19",
