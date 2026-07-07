@@ -66,7 +66,7 @@ const eslintConfig = [
   },
   ...compat.extends('prettier'),
   {
-    ignores: ['node_modules', '.next', 'out', 'public', 'components/ui', 'components/magicui'],
+    ignores: ['node_modules', '.next', 'out', 'public', 'components/ui', 'components/magicui', 'types/**/*.d.ts'],
   },
 ];
 
