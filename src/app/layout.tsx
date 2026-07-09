@@ -85,12 +85,14 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        {/* main stays opaque and above the footer so the "subsurface lab" reveal reads as the page lifting away */}
-        <main id="content" className="bg-paper relative z-10 pb-16 shadow-[0_28px_44px_-20px_rgb(0_0_0/0.35)]">
+        {/* main is opaque, raised, and at least full-screen so the footer always
+            starts below the fold and the reveal reads as the page lifting away */}
+        <main
+          id="content"
+          className="bg-paper relative z-10 min-h-screen pb-20 shadow-[0_28px_44px_-20px_rgb(0_0_0/0.35)]"
+        >
           {children}
         </main>
-        {/* zero-height sentinel: the footer reads its reveal progress from this point in the flow */}
-        <div id="footer-reveal-sentinel" aria-hidden="true" className="h-px w-full" />
         <Footer />
       </body>
     </html>

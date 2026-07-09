@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import Link from 'next/link';
 
 import {
   motion,
+  useInView,
   useMotionTemplate,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -38,52 +38,35 @@ const channels = [
 const LAST_UPDATED = 'July 2026';
 
 /**
- * The Subsurface Lab: main content (z-10, opaque) lifts away to reveal the
- * footer pinned beneath it. Sticky pinning is only enabled when the whole
- * footer fits in the viewport — otherwise it degrades to normal flow and the
- * layered parallax still plays as it scrolls in. The reveal progress is read
- * from a zero-height sentinel that sits at the end of the page flow in
- * layout.tsx (the footer itself is a useless scroll target once pinned).
+ * The Subsurface Lab. Every page's <main> is at least full-screen (see
+ * layout.tsx), so this footer always starts below the fold and only appears
+ * once the reader reaches the end of the content. As the footer scrolls into
+ * view its layers rise and fade in and the grid drifts, so it reads as the
+ * hidden lab surfacing from underneath the page — the effect is identical on
+ * every route and every viewport, with no height-dependent pinning to fail.
  */
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
-  const sentinelRef = useRef<HTMLElement | null>(null);
-  const [canStick, setCanStick] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  useLayoutEffect(() => {
-    sentinelRef.current = document.getElementById('footer-reveal-sentinel');
-  }, []);
-
-  useEffect(() => {
-    const footer = footerRef.current;
-    if (!footer) return;
-    const check = () => setCanStick(window.innerWidth >= 1024 && footer.offsetHeight <= window.innerHeight);
-    check();
-    const observer = new ResizeObserver(check);
-    observer.observe(footer);
-    window.addEventListener('resize', check);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', check);
-    };
-  }, []);
-
-  const { scrollYProgress } = useScroll({ target: sentinelRef, offset: ['start end', 'start 0.3'] });
+  // 0 when the footer's top edge touches the bottom of the viewport, 1 when
+  // its bottom edge does — i.e. at the absolute end of the page. Anchoring to
+  // 'end end' means the reveal always completes at the scroll bottom no matter
+  // how tall or short the footer is on a given screen (a fixed viewport-based
+  // target would stall for footers shorter than the gap it asks you to scroll).
+  const { scrollYProgress } = useScroll({ target: footerRef, offset: ['start end', 'end end'] });
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 26, restDelta: 0.001 });
 
-  // drives the particle loop: a sticky-pinned footer always "intersects" the
-  // viewport, so exposure has to come from the reveal progress instead of IO
-  const [revealed, setRevealed] = useState(false);
-  useMotionValueEvent(scrollYProgress, 'change', (value) => setRevealed(value > 0.002));
+  // particle loop runs only while the footer is genuinely on screen
+  const inView = useInView(footerRef, { amount: 0.12 });
 
-  const wordY = useTransform(progress, [0, 1], [64, 0]);
-  const wordOpacity = useTransform(progress, [0, 0.55], [0.15, 1]);
-  const midY = useTransform(progress, [0.12, 1], [88, 0]);
-  const midOpacity = useTransform(progress, [0.12, 0.85], [0, 1]);
-  const railY = useTransform(progress, [0.4, 1], [40, 0]);
+  const wordY = useTransform(progress, [0, 1], [72, 0]);
+  const wordOpacity = useTransform(progress, [0, 0.6], [0, 1]);
+  const midY = useTransform(progress, [0.12, 1], [96, 0]);
+  const midOpacity = useTransform(progress, [0.12, 0.9], [0, 1]);
+  const railY = useTransform(progress, [0.4, 1], [44, 0]);
   const railOpacity = useTransform(progress, [0.4, 1], [0, 1]);
-  const gridShift = useTransform(progress, [0, 1], [48, 0]);
+  const gridShift = useTransform(progress, [0, 1], [56, 0]);
   const backgroundPosition = useMotionTemplate`0px ${gridShift}px`;
 
   const layer = (y: typeof wordY, opacity: typeof wordOpacity) => (reduceMotion ? undefined : { y, opacity });
@@ -92,7 +75,7 @@ export function Footer() {
     <footer
       ref={footerRef}
       aria-labelledby="footer-heading"
-      className={`border-line bg-well relative overflow-hidden border-t ${canStick ? 'sticky bottom-0 z-0' : ''}`}
+      className="border-line bg-well relative overflow-hidden border-t"
     >
       {/* subsurface grid, drifting slightly slower than the content */}
       <motion.div
@@ -115,7 +98,7 @@ export function Footer() {
 
         {/* layer 1 — particle wordmark + tagline */}
         <motion.div style={layer(wordY, wordOpacity)}>
-          <ParticleWordmark active={revealed} />
+          <ParticleWordmark active={inView} />
           <p className="text-muted mt-2 text-center text-[13.5px] tracking-[0.01em]">
             Frontend systems, useful tools, research artifacts, and tiny experiments.
           </p>
