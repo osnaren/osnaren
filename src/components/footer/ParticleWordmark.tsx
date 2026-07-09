@@ -20,9 +20,9 @@ interface Particle {
 
 const SPRING = 0.02;
 const DAMPING = 0.86;
-const REPEL_RADIUS = 72;
-const REPEL_FORCE = 2.6;
-const IDLE_AMP = 0.7;
+const REPEL_RADIUS = 84;
+const REPEL_FORCE = 2.8;
+const IDLE_AMP = 1.05;
 const MAX_PARTICLES = 3000;
 
 function readTokens(): [string, string, string] {
@@ -160,9 +160,10 @@ export function ParticleWordmark({ text = 'OSNAREN', active = true }: { text?: s
     const tick = (t: number) => {
       if (!engine.running) return;
       for (const p of engine.particles) {
-        // idle drift: the letters breathe very slightly
-        const tx = p.hx + Math.sin(t * 0.0006 + p.ph) * IDLE_AMP;
-        const ty = p.hy + Math.cos(t * 0.0007 + p.ph) * IDLE_AMP;
+        // idle drift: the letters breathe, each dot on its own frequency
+        const freq = 0.00045 + p.ph * 0.00006;
+        const tx = p.hx + Math.sin(t * freq + p.ph) * IDLE_AMP;
+        const ty = p.hy + Math.cos(t * (freq * 1.18) + p.ph * 1.7) * IDLE_AMP;
         let ax = (tx - p.x) * SPRING;
         let ay = (ty - p.y) * SPRING;
         const dx = p.x - engine.pointerX;
