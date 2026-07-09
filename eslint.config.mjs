@@ -60,14 +60,30 @@ const eslintConfig = tseslint.config(
         'warn',
         {
           allowConstantExport: true,
-          allowExportNames: ['metadata', 'generateMetadata', 'generateStaticParams', 'viewport', 'dynamic', 'revalidate', 'fetchCache', 'runtime', 'preferredRegion', 'alt', 'size', 'contentType'],
+          allowExportNames: [
+            'metadata',
+            'generateMetadata',
+            'generateStaticParams',
+            'viewport',
+            'dynamic',
+            'revalidate',
+            'fetchCache',
+            'runtime',
+            'preferredRegion',
+            'alt',
+            'size',
+            'contentType',
+          ],
         },
       ],
 
       // --- TypeScript ---
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/consistent-type-imports': ['warn', { prefer: 'type-imports', fixStyle: 'separate-type-imports' }],
+      '@typescript-eslint/consistent-type-imports': [
+        'warn',
+        { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
+      ],
       '@typescript-eslint/no-import-type-side-effects': 'warn',
       '@typescript-eslint/no-require-imports': 'warn',
       'no-undef': 'off',
@@ -77,14 +93,7 @@ const eslintConfig = tseslint.config(
       'import-x/order': [
         'warn',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling'],
-            'index',
-            'type',
-          ],
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling'], 'index', 'type'],
           pathGroups: [
             { pattern: 'react', group: 'external', position: 'before' },
             { pattern: 'react/**', group: 'external', position: 'before' },
@@ -107,7 +116,7 @@ const eslintConfig = tseslint.config(
       'prefer-template': 'warn',
       'no-useless-rename': 'warn',
       'no-throw-literal': 'warn',
-      'eqeqeq': ['warn', 'always', { null: 'ignore' }],
+      eqeqeq: ['warn', 'always', { null: 'ignore' }],
 
       // Disable strict hook checks that flag hydration pattern
       'react-hooks/set-state-in-effect': 'off',
@@ -121,7 +130,7 @@ const eslintConfig = tseslint.config(
   ...compat.extends('prettier'),
   {
     ignores: ['node_modules', '.next', 'out', 'public', '**/components/ui/**', '**/components/magicui/**', 'types'],
-  },
+  }
 );
 
 export default eslintConfig;
