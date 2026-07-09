@@ -1,43 +1,97 @@
-'use client';
+import Link from 'next/link';
 
-import ThreeBackground from '@/components/ThreeBackground';
-import { motion } from 'framer-motion';
+import { CommandStrip } from '@/components/home/CommandStrip';
+import { Workbench } from '@/components/home/Workbench';
+import { Reveal } from '@/components/motion/Reveal';
 
-export default function Home() {
+const trails = [
+  {
+    href: '/projects/shadyside',
+    label: 'OSN-001 · CASE STUDY',
+    title: 'How ShadySide picks the cooler seat',
+    copy: 'Route geometry, sun position, and product decisions behind the live app.',
+  },
+  {
+    href: '/projects',
+    label: 'RESEARCH · 3 PAPERS, 3 DATASETS',
+    title: 'Published work, public datasets',
+    copy: 'IEEE Access, Fire Ecology, ICCCI, and datasets that researchers continue to build on.',
+  },
+  {
+    href: '/story',
+    label: 'OSN-012 · FIELD NOTES',
+    title: 'The story, curated',
+    copy: 'From a Salem schoolyard to ecommerce scale — one artifact per milestone.',
+  },
+];
+
+export default function HomePage() {
   return (
-    <main className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden text-center">
-      <ThreeBackground />
+    <div className="bg-grid">
+      <section className="mx-auto grid max-w-6xl gap-10 px-5 pt-14 pb-10 sm:px-8 lg:grid-cols-[420px_1fr] lg:gap-12 lg:pt-20">
+        {/* left column — the pitch */}
+        <div className="flex flex-col gap-6">
+          <p className="text-ok flex items-center gap-2.5 font-mono text-[11px] font-medium tracking-[0.12em] uppercase">
+            <span
+              className="bg-ok size-1.5 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--ok)_15%,transparent)]"
+              aria-hidden="true"
+            />
+            Frontend engineer · React, TypeScript, UX
+          </p>
+          <h1 className="text-4xl font-semibold tracking-[-0.02em] text-balance sm:text-[46px] sm:leading-[1.08]">
+            I build useful frontend products from everyday problems.
+          </h1>
+          <p className="text-muted text-[15.5px] leading-relaxed">
+            I work on customer-facing commerce experiences by day and useful product experiments after hours, with a
+            focus on accessibility, performance, and clear user outcomes.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="bg-accent hover:bg-accent-press rounded-md px-5 py-3 font-mono text-[13px] font-medium tracking-[0.04em] text-white uppercase shadow-[0_2px_0_var(--accent-press)] transition-colors"
+            >
+              Explore work →
+            </Link>
+            <Link
+              href="/resume"
+              className="border-ink hover:bg-ink hover:text-paper rounded-md border px-5 py-3 font-mono text-[13px] font-medium tracking-[0.04em] uppercase transition-colors"
+            >
+              Resume
+            </Link>
+          </div>
+          <p className="text-faint font-mono text-[11px] leading-relaxed">
+            NOW / <span className="text-ink">VICTORIA&rsquo;S SECRET &amp; CO.</span> · PREV /{' '}
+            <span className="text-ink">SOLITON</span> · B.E. CSE, KONGU
+          </p>
+        </div>
 
-      <div className="z-10 mx-auto flex max-w-4xl flex-col items-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mb-6"
-        >
-          <span className="bg-secondary/30 text-muted-foreground inline-block rounded-full border border-white/10 px-3 py-1 font-mono text-xs tracking-widest uppercase backdrop-blur-md">
-            Portfolio v1.0
-          </span>
-        </motion.div>
+        {/* right column — the bench */}
+        <div className="flex min-w-0 flex-col gap-5">
+          <Workbench />
+          <CommandStrip />
+        </div>
+      </section>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="font-geist-sans mb-8 bg-linear-to-b from-white to-white/40 bg-clip-text text-5xl font-bold tracking-tighter text-transparent md:text-8xl"
-        >
-          Coming Soon
-        </motion.h1>
-      </div>
-
-      <motion.footer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="text-muted-foreground absolute bottom-8 text-xs"
-      >
-        © {new Date().getFullYear()} OSNaren. All rights reserved.
-      </motion.footer>
-    </main>
+      {/* secondary trails for scrollers */}
+      <section aria-label="Featured trails" className="border-line border-t">
+        <div className="mx-auto grid max-w-6xl gap-4 px-5 py-10 sm:grid-cols-3 sm:px-8">
+          {trails.map((trail, i) => (
+            <Reveal key={trail.href} delay={i * 0.06}>
+              <Link
+                href={trail.href}
+                className="module-card group flex h-full flex-col gap-2 p-5 transition-shadow hover:shadow-[0_6px_0_var(--line)]"
+              >
+                <p className="label-mono text-accent">{trail.label}</p>
+                <h2 className="text-[17px] font-semibold tracking-[-0.01em]">{trail.title}</h2>
+                <p className="text-muted text-[13px] leading-relaxed">{trail.copy}</p>
+                <span className="text-accent mt-auto pt-2 font-mono text-[11px] font-medium tracking-[0.06em] uppercase opacity-70 transition-opacity group-hover:opacity-100">
+                  Open →
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 {
-  "name": "osnaren",
-  "short_name": "OS",
+  "name": "osnaren.lab — Obuli Sai Naren",
+  "short_name": "osnaren",
+  "description": "Frontend engineer building useful web products, ecommerce experiences, and product experiments.",
   "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",
@@ -15,7 +16,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#f7f6f2",
+  "background_color": "#f7f6f2",
   "display": "standalone"
 }
