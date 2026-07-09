@@ -13,13 +13,13 @@ export function Workbench() {
       {/* mobile: swipeable rail */}
       <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:hidden" role="list">
         {benchModules.map((module, i) => (
-          <div key={module.id} role="listitem" className="w-[240px] flex-none snap-start">
+          <div key={module.id} role="listitem" className="w-60 flex-none snap-start">
             <ModuleCard module={module} index={i} />
           </div>
         ))}
       </div>
       {/* desktop: workbench grid */}
-      <div className="hidden auto-rows-[minmax(150px,auto)] grid-cols-2 gap-4 sm:grid lg:grid-cols-3 lg:gap-[18px]">
+      <div className="hidden auto-rows-[minmax(150px,auto)] grid-cols-2 gap-4 sm:grid lg:grid-cols-3 lg:gap-4.5">
         {benchModules.map((module, i) => (
           <ModuleCard key={module.id} module={module} index={i} />
         ))}

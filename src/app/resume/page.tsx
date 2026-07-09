@@ -51,7 +51,7 @@ export default function ResumePage() {
         <div className="flex flex-col gap-4">
           {experience.map((block) => (
             <article key={block.id} className="module-card print-flat p-5">
-              <div className="text-faint flex flex-wrap items-center justify-between gap-2 font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+              <div className="text-faint flex flex-wrap items-center justify-between gap-2 font-mono text-[9.5px] font-medium tracking-widest uppercase">
                 <span>
                   {block.id} — {block.label}
                 </span>
@@ -82,7 +82,7 @@ export default function ResumePage() {
         <section aria-labelledby="education-heading" className="module-card print-flat p-5">
           <h2
             id="education-heading"
-            className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase"
+            className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase"
           >
             Block 03 — Education
           </h2>
@@ -98,7 +98,7 @@ export default function ResumePage() {
         </section>
 
         <section aria-labelledby="skills-heading" className="module-card print-flat p-5">
-          <h2 id="skills-heading" className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+          <h2 id="skills-heading" className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase">
             Block 04 — Skills
           </h2>
           {(
@@ -130,7 +130,7 @@ export default function ResumePage() {
         <section aria-labelledby="publications-heading" className="module-card print-flat p-5">
           <h2
             id="publications-heading"
-            className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase"
+            className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase"
           >
             Block 05 — Publications
           </h2>
@@ -153,10 +153,7 @@ export default function ResumePage() {
         </section>
 
         <section aria-labelledby="datasets-heading" className="module-card print-flat p-5">
-          <h2
-            id="datasets-heading"
-            className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase"
-          >
+          <h2 id="datasets-heading" className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase">
             Block 06 — Public datasets
           </h2>
           <ul className="mt-2.5 flex flex-col gap-3">
@@ -174,7 +171,7 @@ export default function ResumePage() {
         </section>
 
         <section aria-labelledby="also-heading" className="module-card print-flat p-5">
-          <h2 id="also-heading" className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+          <h2 id="also-heading" className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase">
             Block 07 — Certifications &amp; Languages
           </h2>
           <ul className="text-muted mt-2.5 flex list-disc flex-col gap-1 pl-5 text-[12.5px] leading-relaxed">

@@ -18,7 +18,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3.5" aria-label="Contact form">
-      <div className="text-faint flex items-center justify-between font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+      <div className="text-faint flex items-center justify-between font-mono text-[9.5px] font-medium tracking-widest uppercase">
         <span>Transmission form</span>
         <span className="text-ok">● Channel open</span>
       </div>

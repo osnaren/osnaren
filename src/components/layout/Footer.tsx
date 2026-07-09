@@ -49,7 +49,7 @@ export function Footer() {
               A workbench for useful frontend products, public datasets, and small experiments — built from everyday
               problems, in Salem, Tamil Nadu.
             </p>
-            <p className="text-ok mt-5 inline-flex items-center gap-2 rounded-full border border-current/25 bg-current/8 px-3 py-1.5 font-mono text-[10px] font-medium tracking-[0.1em] uppercase">
+            <p className="text-ok mt-5 inline-flex items-center gap-2 rounded-full border border-current/25 bg-current/8 px-3 py-1.5 font-mono text-[10px] font-medium tracking-widest uppercase">
               <span className="bg-ok size-1.5 rounded-full" aria-hidden="true" />
               Open channel — available for interesting work
             </p>

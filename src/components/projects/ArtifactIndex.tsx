@@ -88,7 +88,7 @@ function ArtifactRow({ artifact, open, onToggle }: { artifact: Artifact; open: b
           >
             <div className="grid gap-4 px-4 pb-3 sm:px-5 md:grid-cols-2">
               <div className="flex flex-col gap-3">
-                <p className="text-faint font-mono text-[10px] tracking-[0.1em] uppercase">
+                <p className="text-faint font-mono text-[10px] tracking-widest uppercase">
                   Problem — {artifact.problem}
                 </p>
                 <p className="text-muted text-[13px] leading-relaxed">{artifact.summary}</p>
@@ -106,7 +106,7 @@ function ArtifactRow({ artifact, open, onToggle }: { artifact: Artifact; open: b
                   <StatusBadge tone={artifact.statusTone}>{artifact.status}</StatusBadge>
                 </div>
               </div>
-              <div className="bg-surface-2 border-line min-h-[120px] rounded-lg border p-3">
+              <div className="bg-surface-2 border-line min-h-30 rounded-lg border p-3">
                 <ArtifactVisual visual={artifact.visual} />
               </div>
             </div>
@@ -211,7 +211,7 @@ export function ArtifactIndex() {
 
       {/* rows */}
       <LayoutGroup>
-        <div className="min-h-[300px]">
+        <div className="min-h-75">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((artifact) => (
               <ArtifactRow
@@ -229,7 +229,7 @@ export function ArtifactIndex() {
               animate={{ opacity: 1 }}
               className="border-line-strong text-faint mt-6 grid place-items-center gap-2 rounded-xl border-[1.5px] border-dashed px-6 py-16 text-center"
             >
-              <p className="font-mono text-[11px] tracking-[0.1em] uppercase">No artifacts match this bench query</p>
+              <p className="font-mono text-[11px] tracking-widest uppercase">No artifacts match this bench query</p>
               <p className="text-[13px]">
                 Nothing indexed under “{query}”.{' '}
                 <button

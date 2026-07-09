@@ -48,7 +48,7 @@ function NoteCard({
       aria-current={isActive ? 'true' : undefined}
       className={`module-card p-4 transition-shadow sm:p-5 ${isActive ? 'shadow-[0_6px_0_var(--line)]' : ''}`}
     >
-      <div className="text-faint flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+      <div className="text-faint flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-[9.5px] font-medium tracking-widest uppercase">
         <span>
           {note.id} · {note.date}
         </span>
@@ -56,7 +56,7 @@ function NoteCard({
       </div>
 
       <h3 className="mt-2.5 text-[17px] font-semibold tracking-[-0.01em]">{note.title}</h3>
-      <p className="text-faint mt-1 font-mono text-[9.5px] tracking-[0.1em] uppercase">Artifact: {note.artifact}</p>
+      <p className="text-faint mt-1 font-mono text-[9.5px] tracking-widest uppercase">Artifact: {note.artifact}</p>
       <p className="text-muted mt-2 text-[13.5px] leading-relaxed">{note.caption}</p>
 
       {/* mobile: the preview lives inline, since there is no side panel */}
@@ -65,7 +65,7 @@ function NoteCard({
       </div>
 
       <p className="mt-3 text-[12.5px]">
-        <span className="text-accent font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">Lesson — </span>
+        <span className="text-accent font-mono text-[9.5px] font-medium tracking-widest uppercase">Lesson — </span>
         <span className="text-ink">{note.lesson}</span>
       </p>
 
@@ -167,10 +167,10 @@ export function Timeline() {
 
         {/* the notes */}
         <div ref={railRef} className="relative pl-7 sm:pl-8">
-          <span aria-hidden="true" className="bg-line absolute top-2 bottom-2 left-[7px] w-0.5" />
+          <span aria-hidden="true" className="bg-line absolute top-2 bottom-2 left-1.75 w-0.5" />
           <motion.span
             aria-hidden="true"
-            className="bg-accent absolute top-2 bottom-2 left-[7px] w-0.5 origin-top"
+            className="bg-accent absolute top-2 bottom-2 left-1.75 w-0.5 origin-top"
             style={{ scaleY: reduceMotion ? 1 : fill }}
           />
 
@@ -189,7 +189,7 @@ export function Timeline() {
                   >
                     <span
                       aria-hidden="true"
-                      className={`border-paper absolute top-6 -left-[27px] size-3.5 rounded-full border-[3px] sm:-left-[31px] ${
+                      className={`border-paper absolute top-6 -left-6.75 size-3.5 rounded-full border-[3px] sm:-left-7.75 ${
                         activeNote.id === note.id ? 'bg-accent' : note.accent ? 'bg-accent/40' : 'bg-line-strong'
                       }`}
                     />
@@ -201,7 +201,7 @@ export function Timeline() {
           </LayoutGroup>
 
           {visible.length === 0 && (
-            <p className="border-line-strong text-faint rounded-xl border-[1.5px] border-dashed px-6 py-14 text-center font-mono text-[11px] tracking-[0.1em] uppercase">
+            <p className="border-line-strong text-faint rounded-xl border-[1.5px] border-dashed px-6 py-14 text-center font-mono text-[11px] tracking-widest uppercase">
               No field notes on this track
             </p>
           )}
@@ -226,11 +226,11 @@ export function Timeline() {
                 </AnimatePresence>
               </div>
               <div className="p-4">
-                <p className="text-faint font-mono text-[9.5px] font-medium tracking-[0.1em] uppercase">
+                <p className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase">
                   {activeNote.id} · {activeNote.date}
                 </p>
                 <p className="mt-1.5 text-[14px] font-semibold">{activeNote.title}</p>
-                <p className="text-faint mt-1 font-mono text-[9.5px] tracking-[0.1em] uppercase">
+                <p className="text-faint mt-1 font-mono text-[9.5px] tracking-widest uppercase">
                   Artifact: {activeNote.artifact}
                 </p>
               </div>
@@ -275,7 +275,7 @@ export function Timeline() {
               <h2 className="mt-1.5 text-[15px] font-semibold">{practice.title}</h2>
               <p className="text-muted mt-1.5 text-[12.5px] leading-relaxed">{practice.caption}</p>
               <p className="mt-2 text-[12px]">
-                <span className="text-accent font-mono text-[9.5px] tracking-[0.1em] uppercase">Lesson — </span>
+                <span className="text-accent font-mono text-[9.5px] tracking-widest uppercase">Lesson — </span>
                 {practice.lesson}
               </p>
               {practice.link && (

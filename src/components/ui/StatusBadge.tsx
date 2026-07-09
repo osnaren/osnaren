@@ -10,7 +10,7 @@ export type StatusTone = keyof typeof tones;
 export function StatusBadge({ tone = 'muted', children }: { tone?: StatusTone; children: React.ReactNode }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[10px] font-medium tracking-[0.1em] whitespace-nowrap uppercase ${tones[tone]}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[10px] font-medium tracking-widest whitespace-nowrap uppercase ${tones[tone]}`}
     >
       {children}
     </span>

@@ -81,7 +81,7 @@ export default function ShadySidePage() {
             href="https://shadyside.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-block rounded-md bg-[#e8834a] px-5 py-3 font-mono text-[12px] font-medium tracking-[0.05em] text-[#14151a] uppercase transition-colors hover:bg-[#f2a369]"
+            className="mt-7 inline-block rounded-md bg-[#e8834a] px-5 py-3 font-mono text-[12px] font-medium tracking-wider text-[#14151a] uppercase transition-colors hover:bg-[#f2a369]"
           >
             Open the live app ↗
           </a>

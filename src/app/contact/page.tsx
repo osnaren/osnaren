@@ -46,7 +46,7 @@ export default function ContactPage() {
                       rel={external ? 'noopener noreferrer' : undefined}
                       className="group flex items-center justify-between py-3.5"
                     >
-                      <span className="text-faint font-mono text-[10px] font-medium tracking-[0.1em] uppercase">
+                      <span className="text-faint font-mono text-[10px] font-medium tracking-widest uppercase">
                         {channel.label}
                       </span>
                       <span className="group-hover:text-accent font-mono text-[13px] transition-colors">

@@ -108,7 +108,7 @@ export function StoryPreview({ preview }: { preview: PreviewKey }) {
     case 'dataset':
       return (
         <div className="grid h-full place-items-center p-4" aria-hidden="true">
-          <div className="grid aspect-[3/2] h-full max-h-full w-auto grid-cols-6 gap-1.5">
+          <div className="grid aspect-3/2 h-full max-h-full w-auto grid-cols-6 gap-1.5">
             {Array.from({ length: 24 }).map((_, i) => {
               const tone = i % 7 === 0 ? 'accent' : i % 5 === 0 ? 'ok' : i % 11 === 0 ? 'sun' : 'well';
               return <span key={i} className="aspect-square rounded-sm" style={{ background: `var(--${tone})` }} />;

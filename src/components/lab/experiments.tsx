@@ -46,7 +46,7 @@ export function SunPathStudy() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2">
-      <svg viewBox="0 0 200 90" className="w-full max-w-[220px]" aria-hidden="true">
+      <svg viewBox="0 0 200 90" className="w-full max-w-55" aria-hidden="true">
         <path
           d="M20 78 Q100 -38 180 78"
           fill="none"
@@ -69,7 +69,7 @@ export function SunPathStudy() {
         step={1}
         value={hour}
         onChange={(e) => setHour(Number(e.target.value))}
-        className="accent-accent w-full max-w-[220px]"
+        className="accent-accent w-full max-w-55"
       />
     </div>
   );
@@ -115,7 +115,7 @@ export function RouteDraw() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2">
-      <svg viewBox="0 0 220 70" className="w-full max-w-[230px]" aria-hidden="true">
+      <svg viewBox="0 0 220 70" className="w-full max-w-57.5" aria-hidden="true">
         <motion.path
           key={run}
           d="M10 56 C60 50 90 16 140 22 S200 40 212 12"
@@ -166,7 +166,7 @@ export function ThemeTokens() {
 export function SchedulerSketch() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2">
-      <svg viewBox="0 0 200 70" className="w-full max-w-[210px]" aria-hidden="true">
+      <svg viewBox="0 0 200 70" className="w-full max-w-52.5" aria-hidden="true">
         {[0, 1, 2, 3].map((row) =>
           [0, 1, 2, 3, 4, 5].map((col) => (
             <rect

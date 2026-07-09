@@ -91,7 +91,7 @@ export default function LabPage() {
                 aria-label={`${exp.id} ${exp.name}`}
                 className="module-card flex h-full flex-col overflow-hidden"
               >
-                <div className="bg-surface-2 min-h-[150px] p-4">
+                <div className="bg-surface-2 min-h-37.5 p-4">
                   <Demo />
                 </div>
                 <div className="flex flex-1 flex-col gap-2 px-4 py-3.5">
@@ -102,14 +102,14 @@ export default function LabPage() {
                     <StatusBadge tone={exp.tone}>{exp.tag}</StatusBadge>
                   </div>
                   <p className="text-muted text-xs leading-relaxed">{exp.note}</p>
-                  <p className="text-faint mt-auto font-mono text-[9px] tracking-[0.1em]">{exp.tech}</p>
+                  <p className="text-faint mt-auto font-mono text-[9px] tracking-widest">{exp.tech}</p>
                 </div>
               </section>
             </Reveal>
           );
         })}
         <Reveal delay={0.1}>
-          <div className="border-line-strong text-faint grid h-full min-h-[220px] place-items-center rounded-xl border-[1.5px] border-dashed p-6 text-center font-mono text-[11px] tracking-[0.08em] uppercase">
+          <div className="border-line-strong text-faint grid h-full min-h-55 place-items-center rounded-xl border-[1.5px] border-dashed p-6 text-center font-mono text-[11px] tracking-[0.08em] uppercase">
             More studies will appear here after they ship
           </div>
         </Reveal>

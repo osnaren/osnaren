@@ -40,7 +40,7 @@ export default function TheFlamesPage() {
               href="https://theflames.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-accent hover:bg-accent-press rounded-md px-5 py-3 font-mono text-[12px] font-medium tracking-[0.05em] text-white uppercase shadow-[0_2px_0_var(--accent-press)] transition-colors"
+              className="bg-accent hover:bg-accent-press rounded-md px-5 py-3 font-mono text-[12px] font-medium tracking-wider text-white uppercase shadow-[0_2px_0_var(--accent-press)] transition-colors"
             >
               Play it live ↗
             </a>
@@ -48,7 +48,7 @@ export default function TheFlamesPage() {
               href="https://github.com/osnaren/the-flames"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-ink hover:bg-ink hover:text-paper rounded-md border px-5 py-3 font-mono text-[12px] font-medium tracking-[0.05em] uppercase transition-colors"
+              className="border-ink hover:bg-ink hover:text-paper rounded-md border px-5 py-3 font-mono text-[12px] font-medium tracking-wider uppercase transition-colors"
             >
               GitHub ↗
             </a>

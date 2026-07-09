@@ -16,7 +16,7 @@ export function ReadingProgress() {
   return (
     <motion.div
       aria-hidden="true"
-      className="bg-accent print-hidden fixed inset-x-0 top-[65px] z-30 h-0.5 origin-left"
+      className="bg-accent print-hidden fixed inset-x-0 top-16.25 z-30 h-0.5 origin-left"
       style={{ scaleX }}
     />
   );

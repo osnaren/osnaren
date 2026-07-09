@@ -57,14 +57,14 @@ export function ModuleCard({ module, index }: { module: BenchModule; index: numb
     >
       <Link
         href={module.href}
-        className={`group flex h-full min-h-[150px] flex-col gap-2.5 rounded-xl border p-4 transition-shadow ${
+        className={`group flex h-full min-h-37.5 flex-col gap-2.5 rounded-xl border p-4 transition-shadow ${
           module.inverted
             ? 'border-transparent bg-[#17191e] text-[#f0eee7] shadow-[0_3px_0_var(--accent-press)] hover:shadow-[0_6px_0_var(--accent-press)]'
             : 'border-line-strong bg-surface shadow-[0_3px_0_var(--line)] hover:shadow-[0_6px_0_var(--line)]'
         }`}
         aria-label={`${module.name} — ${module.copy}`}
       >
-        <div className="flex items-baseline justify-between gap-2 font-mono text-[10px] font-medium tracking-[0.1em] uppercase">
+        <div className="flex items-baseline justify-between gap-2 font-mono text-[10px] font-medium tracking-widest uppercase">
           <span className={module.inverted ? 'text-[#f2a369]' : 'text-accent'}>
             {module.id} · {module.name}
           </span>

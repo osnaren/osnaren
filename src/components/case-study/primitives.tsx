@@ -54,7 +54,7 @@ export function CaseHero({
               const secondaryClass = inverted
                 ? 'border border-[#f0eee7] hover:bg-[#f0eee7] hover:text-[#17191e]'
                 : 'border-ink hover:bg-ink hover:text-paper border';
-              const className = `rounded-md px-5 py-3 font-mono text-[12px] font-medium tracking-[0.05em] uppercase transition-colors ${
+              const className = `rounded-md px-5 py-3 font-mono text-[12px] font-medium tracking-wider uppercase transition-colors ${
                 link.primary ? primaryClass : secondaryClass
               }`;
               return link.external ? (
@@ -191,7 +191,7 @@ export function CitationBlock({ citation, doi }: { citation: string; doi?: strin
   return (
     <div className="bg-surface-2 border-line rounded-lg border p-4">
       <p className="label-mono text-faint">Cite this</p>
-      <p className="text-muted mt-2 font-mono text-[11.5px] leading-relaxed break-words">{citation}</p>
+      <p className="text-muted mt-2 font-mono text-[11.5px] leading-relaxed wrap-break-word">{citation}</p>
       {doi && (
         <a
           href={doi}
