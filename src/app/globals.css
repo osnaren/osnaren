@@ -166,23 +166,6 @@
   }
 }
 
-/* footer signal pulse — compositor-driven, pauses between runs */
-@keyframes signal-travel {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  6%,
-  80% {
-    opacity: 1;
-  }
-  90%,
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
-}
-
 @media print {
   header,
   footer,
