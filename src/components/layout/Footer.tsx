@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -8,6 +8,8 @@ import {
   motion,
   useInView,
   useMotionTemplate,
+  useMotionValue,
+  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -37,37 +39,75 @@ const channels = [
 /** Bump when the site's content meaningfully changes. */
 const LAST_UPDATED = 'July 2026';
 
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const update = () => setMatches(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, [query]);
+
+  return matches;
+}
+
 /**
  * The Subsurface Lab. Every page's <main> is at least full-screen (see
- * layout.tsx), so this footer always starts below the fold and only appears
- * once the reader reaches the end of the content. As the footer scrolls into
- * view its layers rise and fade in and the grid drifts, so it reads as the
- * hidden lab surfacing from underneath the page — the effect is identical on
- * every route and every viewport, with no height-dependent pinning to fail.
+ * layout.tsx), so this footer can sit sticky under the raised page surface.
+ * Near the bottom on larger screens, the page scroll exposes the pinned footer
+ * while its layers rise on separate tracks and the grid planes drift at
+ * different depths. On narrow screens the footer remains in normal flow so the
+ * full stackfield stays reachable.
  */
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
-  // 0 when the footer's top edge touches the bottom of the viewport, 1 when
-  // its bottom edge does — i.e. at the absolute end of the page. Anchoring to
-  // 'end end' means the reveal always completes at the scroll bottom no matter
-  // how tall or short the footer is on a given screen (a fixed viewport-based
-  // target would stall for footers shorter than the gap it asks you to scroll).
-  const { scrollYProgress } = useScroll({ target: footerRef, offset: ['start end', 'end end'] });
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 26, restDelta: 0.001 });
+  // Desktop uses the final document segment because the footer is already
+  // sticky behind the page. Mobile uses the footer's own arrival because it
+  // stays in normal flow so every part remains reachable.
+  const { scrollYProgress: pageScrollProgress } = useScroll();
+  const { scrollYProgress: footerScrollProgress } = useScroll({ target: footerRef, offset: ['start 92%', 'end end'] });
+  const desktopRevealProgress = useTransform(pageScrollProgress, [0.78, 1], [0, 1], { clamp: true });
+  const revealProgress = useMotionValue(0);
+
+  useMotionValueEvent(desktopRevealProgress, 'change', (latest) => {
+    if (isDesktop) revealProgress.set(latest);
+  });
+  useMotionValueEvent(footerScrollProgress, 'change', (latest) => {
+    if (!isDesktop) revealProgress.set(latest);
+  });
+  useEffect(() => {
+    revealProgress.set(isDesktop ? desktopRevealProgress.get() : footerScrollProgress.get());
+  }, [desktopRevealProgress, footerScrollProgress, isDesktop, revealProgress]);
+
+  const progress = useSpring(revealProgress, {
+    stiffness: 86,
+    damping: 24,
+    restDelta: 0.0005,
+  });
 
   // particle loop runs only while the footer is genuinely on screen
   const inView = useInView(footerRef, { amount: 0.12 });
 
-  const wordY = useTransform(progress, [0, 1], [72, 0]);
-  const wordOpacity = useTransform(progress, [0, 0.6], [0, 1]);
-  const midY = useTransform(progress, [0.12, 1], [96, 0]);
-  const midOpacity = useTransform(progress, [0.12, 0.9], [0, 1]);
-  const railY = useTransform(progress, [0.4, 1], [44, 0]);
-  const railOpacity = useTransform(progress, [0.4, 1], [0, 1]);
-  const gridShift = useTransform(progress, [0, 1], [56, 0]);
-  const backgroundPosition = useMotionTemplate`0px ${gridShift}px`;
+  const wordY = useTransform(progress, [0, 1], [110, -6]);
+  const wordOpacity = useTransform(progress, [0.04, 0.48], [0, 1]);
+  const midY = useTransform(progress, [0, 1], [132, 0]);
+  const midOpacity = useTransform(progress, [0.18, 0.72], [0, 1]);
+  const railY = useTransform(progress, [0, 1], [78, 0]);
+  const railOpacity = useTransform(progress, [0.52, 1], [0, 1]);
+
+  const farGridY = useTransform(progress, [0, 1], [104, 10]);
+  const farGridScale = useTransform(progress, [0, 1], [1.08, 1.01]);
+  const farGridOpacity = useTransform(progress, [0, 1], [0.26, 0.58]);
+  const nearGridY = useTransform(progress, [0, 1], [-36, -92]);
+  const nearGridScale = useTransform(progress, [0, 1], [0.99, 1.04]);
+  const nearGridOpacity = useTransform(progress, [0.28, 1], [0, 0.24]);
+  const farGridPosition = useMotionTemplate`0px ${farGridY}px`;
+  const nearGridPosition = useMotionTemplate`22px ${nearGridY}px`;
 
   const layer = (y: typeof wordY, opacity: typeof wordOpacity) => (reduceMotion ? undefined : { y, opacity });
 
@@ -75,13 +115,30 @@ export function Footer() {
     <footer
       ref={footerRef}
       aria-labelledby="footer-heading"
-      className="border-line bg-well relative overflow-hidden border-t"
+      className="border-line bg-well relative z-0 overflow-hidden border-t md:sticky md:bottom-0"
     >
-      {/* subsurface grid, drifting slightly slower than the content */}
+      {/* two grid planes drift in opposite directions for a subtle depth cue */}
       <motion.div
         aria-hidden="true"
-        className="bg-grid absolute inset-0"
-        style={reduceMotion ? undefined : { backgroundPosition }}
+        className="bg-grid absolute inset-[-12%]"
+        style={
+          reduceMotion
+            ? undefined
+            : { y: farGridY, scale: farGridScale, opacity: farGridOpacity, backgroundPosition: farGridPosition }
+        }
+      />
+      <motion.div
+        aria-hidden="true"
+        className="bg-grid absolute inset-[-8%] mix-blend-multiply dark:mix-blend-screen"
+        style={
+          reduceMotion
+            ? undefined
+            : { y: nearGridY, scale: nearGridScale, opacity: nearGridOpacity, backgroundPosition: nearGridPosition }
+        }
+      />
+      <div
+        aria-hidden="true"
+        className="from-paper/20 via-transparent to-well pointer-events-none absolute inset-0 bg-linear-to-b"
       />
 
       <div className="relative mx-auto max-w-6xl px-5 pt-10 pb-5 sm:px-8">

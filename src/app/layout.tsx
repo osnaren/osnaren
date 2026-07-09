@@ -76,7 +76,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${plexMono.variable} bg-paper text-ink min-h-screen font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${plexMono.variable} bg-well text-ink min-h-screen font-sans antialiased`}
       >
         <a
           href="#content"
@@ -85,11 +85,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        {/* main is opaque, raised, and at least full-screen so the footer always
-            starts below the fold and the reveal reads as the page lifting away */}
+        {/* main is opaque, raised, and at least full-screen so the sticky footer
+            reads as a subsurface layer revealed by the page lifting away */}
         <main
           id="content"
-          className="bg-paper relative z-10 min-h-screen pb-20 shadow-[0_28px_44px_-20px_rgb(0_0_0/0.35)]"
+          className="bg-paper relative z-10 min-h-screen pb-20 shadow-[0_30px_54px_-22px_rgb(0_0_0/0.42)]"
         >
           {children}
         </main>
