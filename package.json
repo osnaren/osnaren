@@ -11,7 +11,9 @@
     "prepare": "husky",
     "tailwind": "tailwindcss -o output.css",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "spellcheck": "cspell lint .",
+    "spellcheck:fix": "cspell lint . --words-only --unique --no-progress"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
@@ -43,6 +45,7 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.5.2",
     "babel-plugin-react-compiler": "1.0.0",
+    "cspell": "^10.0.1",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.10",
     "eslint-config-prettier": "^10.1.8",

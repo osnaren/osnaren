@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.cspell/project-words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["project-words"],
+  "ignorePaths": [
+    "node_modules",
+    ".next",
+    "out",
+    "pnpm-lock.yaml",
+    "*.svg",
+    "*.png",
+    "*.jpg",
+    "*.ico",
+    ".cspell/project-words.txt"
+  ],
+  "languageSettings": [
+    {
+      "languageId": "typescript,typescriptreact,javascript,javascriptreact",
+      "allowCompoundWords": true
+    }
+  ],
+  "patterns": [
+    {
+      "name": "hex-color",
+      "pattern": "/#[0-9a-fA-F]{3,8}/g"
+    },
+    {
+      "name": "css-unit",
+      "pattern": "/\\d+(\\.\\d+)?(px|rem|em|vh|vw|vmin|vmax|%)/g"
+    }
+  ],
+  "ignoreRegExpList": ["hex-color", "css-unit"]
+}
