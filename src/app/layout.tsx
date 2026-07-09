@@ -1,9 +1,10 @@
-import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { site } from '@/data/site';
+
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({

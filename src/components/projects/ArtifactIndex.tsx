@@ -1,8 +1,10 @@
 'use client';
 
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'framer-motion';
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
+
+import Link from 'next/link';
+
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'framer-motion';
 
 import { ArtifactVisual } from '@/components/projects/ArtifactVisual';
 import { StatusBadge } from '@/components/ui/StatusBadge';

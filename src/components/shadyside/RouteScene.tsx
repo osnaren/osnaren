@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 const ROUTE = 'M24 150 C120 132 200 60 320 72 S520 118 616 44';
 

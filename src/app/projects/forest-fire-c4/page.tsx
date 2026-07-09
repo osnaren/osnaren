@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 import {
   CaseBody,
   CaseFooterNav,
@@ -10,6 +8,8 @@ import {
   MetaStrip,
   RuledList,
 } from '@/components/case-study/primitives';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Forest Fire Image Classification Dataset — Dataset',

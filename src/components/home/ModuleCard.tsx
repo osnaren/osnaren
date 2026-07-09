@@ -1,10 +1,13 @@
 'use client';
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
-import Link from 'next/link';
 import { useRef } from 'react';
 
+import Link from 'next/link';
+
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
+
 import { ModuleVisualFor } from '@/components/home/ModuleVisuals';
+
 import type { BenchModule } from '@/data/modules';
 
 const statusColor = {

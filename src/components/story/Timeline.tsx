@@ -1,8 +1,10 @@
 'use client';
 
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
-import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
+
+import Link from 'next/link';
+
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 
 import { Reveal } from '@/components/motion/Reveal';
 import { StoryPreview } from '@/components/story/StoryPreview';

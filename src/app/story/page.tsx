@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
-
 import { Timeline } from '@/components/story/Timeline';
 import { PageHeader } from '@/components/ui/PageHeader';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Story',

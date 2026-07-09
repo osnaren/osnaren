@@ -1,8 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { ReadingProgress } from '@/components/case-study/ReadingProgress';
 import { Reveal } from '@/components/motion/Reveal';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'TheFlames — Project',

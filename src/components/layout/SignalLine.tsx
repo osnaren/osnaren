@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
+
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 const PATH = 'M0 22 C120 6 220 38 340 18 S560 4 700 26';
 

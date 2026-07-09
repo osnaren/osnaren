@@ -1,9 +1,11 @@
 'use client';
 
-import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+
+import { Menu, X } from 'lucide-react';
 
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { nav, site } from '@/data/site';

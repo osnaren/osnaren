@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
-
 import { ArtifactIndex } from '@/components/projects/ArtifactIndex';
 import { PageHeader } from '@/components/ui/PageHeader';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Artifacts',

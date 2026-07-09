@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import { useId, useRef, useState } from 'react';
+
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 
 /** EXP-01 — a toggle with squash-and-stretch, because switches deserve joy. */
 export function SquishToggle() {

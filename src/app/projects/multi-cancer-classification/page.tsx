@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 import {
   Callout,
   CaseBody,
@@ -11,6 +9,8 @@ import {
   MetaStrip,
   RuledList,
 } from '@/components/case-study/primitives';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Multi-Cancer Classification — Research',

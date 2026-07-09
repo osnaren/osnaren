@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
-
 import { PrintButton } from '@/components/resume/PrintButton';
 import { certifications, datasets, education, experience, languages, publications, skills } from '@/data/resume';
 import { site } from '@/data/site';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Resume',

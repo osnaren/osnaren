@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 import {
   MagneticCard,
   RouteDraw,
@@ -11,6 +9,8 @@ import {
 import { Reveal } from '@/components/motion/Reveal';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Lab',

@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { ReadingProgress } from '@/components/case-study/ReadingProgress';
 import { Reveal } from '@/components/motion/Reveal';
 import { RouteScene } from '@/components/shadyside/RouteScene';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ShadySide — Case Study',

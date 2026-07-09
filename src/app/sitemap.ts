@@ -1,7 +1,7 @@
-import type { MetadataRoute } from 'next';
-
 import { artifacts } from '@/data/artifacts';
 import { site } from '@/data/site';
+
+import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ['', '/projects', '/lab', '/story', '/resume', '/contact'];
