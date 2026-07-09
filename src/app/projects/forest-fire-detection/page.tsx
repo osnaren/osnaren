@@ -15,7 +15,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Forest Fire & Smoke Detection — Research',
   description:
-    'Peer-reviewed research in Fire Ecology (Springer) applying Learning without Forgetting to forest fire and smoke detection. Co-authored by Obuli Sai Naren.',
+    'Peer-reviewed Fire Ecology research on forest fire and smoke detection, later evolved into a public TensorFlow.js classifier demo by Obuli Sai Naren.',
 };
 
 export default function ForestFireResearchPage() {
@@ -25,7 +25,7 @@ export default function ForestFireResearchPage() {
         eyebrow="OSN-003 — Publication"
         status="◆ Peer-reviewed · Open access"
         title="Forest fire and smoke detection using deep learning-based learning without forgetting"
-        lede="A fire-detection model that learns a new dataset usually forgets the old one. This paper applies Learning without Forgetting so it keeps both."
+        lede="A sixth-semester college project became a dataset, a Fire Ecology paper, and eventually a public classifier demo. The research question: can a fire-detection model learn new data without forgetting the old data?"
         links={[
           {
             label: 'Read the paper (open access)',
@@ -33,6 +33,7 @@ export default function ForestFireResearchPage() {
             external: true,
             primary: true,
           },
+          { label: 'Live classifier', href: 'https://forestfire.osnaren.com/', external: true },
           { label: 'Code', href: 'https://github.com/osnaren/forest-fire', external: true },
           { label: 'The dataset', href: '/projects/forest-fire-c4' },
         ]}
@@ -48,7 +49,15 @@ export default function ForestFireResearchPage() {
       />
 
       <CaseBody>
-        <CaseSection index="01" title="The research problem">
+        <CaseSection index="01" title="Origin">
+          <p>
+            The first version began in 2020 as a sixth-semester college project: collect forest imagery, train a Python
+            model, and see whether computer vision could flag fire, smoke, both, or neither. The public v2 demo is a
+            cleaner rewrite of that idea, but this page focuses on the peer-reviewed research layer that came out of it.
+          </p>
+        </CaseSection>
+
+        <CaseSection index="02" title="The research problem">
           <p>
             Forests are slow to grow and fast to burn, so early detection matters. Deep learning can spot fire and smoke
             in imagery — but a model fine-tuned on a new fire dataset tends to lose its accuracy on the dataset it
@@ -57,7 +66,7 @@ export default function ForestFireResearchPage() {
           </p>
         </CaseSection>
 
-        <CaseSection index="02" title="Method">
+        <CaseSection index="03" title="Method">
           <p className="text-muted">
             In plain terms: start from models that already know how to see, teach them fire, and stop them from
             forgetting what they learned first.
@@ -71,7 +80,7 @@ export default function ForestFireResearchPage() {
           </p>
         </CaseSection>
 
-        <CaseSection index="03" title="Results, as published">
+        <CaseSection index="04" title="Results, as published">
           <p className="text-muted">
             These numbers are taken from the paper&rsquo;s abstract and kept in the same form for traceability.
           </p>
@@ -91,11 +100,12 @@ export default function ForestFireResearchPage() {
           </p>
         </CaseSection>
 
-        <CaseSection index="04" title="What it taught me">
+        <CaseSection index="05" title="What it taught me">
           <RuledList
             items={[
               'A model that forgets is a liability, not a curiosity — continual learning is an engineering requirement, not an academic footnote.',
               'The dataset is half the paper. Building the four-class fire/nofire/smoke/smokefire corpus forced precision about what “detection” even means.',
+              'The public demo matters because people believe what they can test, but the site still frames itself as a technical showcase, not a wildfire monitoring system.',
               'Writing research taught me to state limitations plainly. That habit followed me into product work, and into how ShadySide describes itself.',
             ]}
           />

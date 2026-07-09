@@ -14,7 +14,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Forest Fire Image Classification Dataset — Dataset',
   description:
-    'A 4,823-image Kaggle dataset of forest scenes across four classes — fire, no fire, smoke, and smokefire — published by Obuli Sai Naren.',
+    'The 4,823-image Forest Fire C4 dataset behind Obuli Sai Naren’s Fire Ecology paper and public TensorFlow.js classifier demo.',
 };
 
 export default function ForestFireC4Page() {
@@ -24,7 +24,7 @@ export default function ForestFireC4Page() {
         eyebrow="OSN-008 — Dataset"
         status="● Public · CC BY-NC-SA 4.0"
         title="Forest Fire Image Classification Dataset"
-        lede="Four classes, because a fire detector that cannot separate smoke, flame, and fire-like scenes creates false alarms when clarity matters most."
+        lede="The dataset that turned a sixth-semester prototype into research and, later, a public classifier demo: fire, no fire, smoke, and fire+smoke."
         links={[
           {
             label: 'Open on Kaggle',
@@ -33,6 +33,7 @@ export default function ForestFireC4Page() {
             primary: true,
           },
           { label: 'Dataset DOI', href: 'https://doi.org/10.34740/KAGGLE/DSV/3135325', external: true },
+          { label: 'Try the classifier', href: 'https://forestfire.osnaren.com/tool', external: true },
           { label: 'The paper', href: '/projects/forest-fire-detection' },
         ]}
       />
@@ -57,10 +58,10 @@ export default function ForestFireC4Page() {
 
         <CaseSection index="02" title="Why it exists">
           <p>
-            Most fire datasets are binary: fire, or not fire. Real detection is harder. Smoke appears before flame and
-            is the signal you actually want. Smoke without flame, flame without smoke, and both together are three
-            genuinely different situations for whoever is deciding whether to dispatch. Collapsing them into one label
-            throws away the distinction that matters operationally.
+            Most fire datasets are binary: fire, or not fire. The original college-project question was more specific:
+            could a simple image classifier tell fire, smoke, fire+smoke, and no-fire scenes apart? Smoke may appear
+            before flame. Flame without visible smoke is different from smoke without visible flame. Collapsing them
+            into one label throws away the distinction the model is supposed to learn.
           </p>
         </CaseSection>
 
@@ -104,7 +105,16 @@ export default function ForestFireC4Page() {
           </p>
         </CaseSection>
 
-        <CaseSection index="05" title="What I learned">
+        <CaseSection index="05" title="The v2 demo">
+          <p>
+            The current Forest Fire Classifier v2 is a Next.js and TensorFlow.js rewrite of the old project. It runs
+            server-side inference, treats uploaded images as in-memory inputs, and rate-limits the API so the demo stays
+            usable. The site is explicit about its scope: this is a serious technical showcase, not a replacement for
+            real wildfire monitoring systems.
+          </p>
+        </CaseSection>
+
+        <CaseSection index="06" title="What I learned">
           <RuledList
             items={[
               'Choosing the label taxonomy is the real modelling decision. Everything downstream inherits it.',

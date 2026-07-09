@@ -10,13 +10,13 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'ShadySide — Case Study',
   description:
-    'How ShadySide uses route geometry, time, and sun position to recommend the bus or train seat that stays out of the sun. A case study by Obuli Sai Naren.',
+    'How ShadySide grew from one sun-baked Tamil Nadu bus ride into a v1.5 travel utility that recommends the cooler side of a bus, train, or car.',
 };
 
 const meta = [
   { label: 'Role', value: 'Design + build, solo' },
   { label: 'Stack', value: 'React · TS · Geo + solar math' },
-  { label: 'Status', value: 'Live since 2025', ok: true },
+  { label: 'Status', value: 'v1.5 · out of beta', ok: true },
 ];
 
 const uxDecisions = [
@@ -31,6 +31,10 @@ const uxDecisions = [
   {
     title: 'An honest disclaimer',
     copy: 'Real shade changes with clouds, trees, buildings, flyovers, and detours. The app describes itself as a comfort guide, not a guarantee, so the recommendation stays useful without pretending to be perfect.',
+  },
+  {
+    title: 'Product loops after the answer',
+    copy: 'Version 1.5 added recent and favourite routes, shareable result cards, post-trip accuracy feedback, a public status page, and clearer route tips — the difference between a neat calculator and a usable travel tool.',
   },
   {
     title: 'Answer pages for real questions',
@@ -70,12 +74,12 @@ export default function ShadySidePage() {
         <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
           <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] font-medium tracking-[0.12em] uppercase">
             <span className="text-[#f2a369]">OSN-001 — Case study</span>
-            <span className="text-[#6fbf99]">● Shipped · Live since 2025</span>
+            <span className="text-[#6fbf99]">● Shipped · v1.5</span>
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">ShadySide</h1>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#b9bcc4]">
-            A travel utility that reads your route, the time, and the sun’s position — and tells you which side of the
-            bus, train, or car stays out of the sun.
+            A travel utility that reads your route, departure time, sun position, and weather context — then tells you
+            which side of the bus, train, or car is likely to stay cooler.
           </p>
           <a
             href="https://shadyside.app"
@@ -118,18 +122,18 @@ export default function ShadySidePage() {
         <Reveal as="section">
           <h2 className="label-mono text-accent">01 — The problem</h2>
           <p className="mt-3 text-[15px] leading-relaxed">
-            Long bus rides. Sun in your face. Everyone guesses which side to sit on; most people guess wrong — because
-            the answer changes with the route’s direction, the time of day, the season, and every turn along the way.
-            There is no permanent “shady side”.
+            Long bus rides. Sun on your face, phone, or laptop screen. Everyone guesses which side to sit on; most
+            people guess wrong because the answer changes with the route’s direction, the time of day, the season, and
+            every turn along the way. There is no permanent “shady side”.
           </p>
         </Reveal>
 
         <Reveal as="section">
           <h2 className="label-mono text-accent">02 — Why I built it</h2>
           <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            This started as my own commute problem on long rides through Tamil Nadu: three hours with a west-facing
-            window is a bad afternoon. The inputs — route, clock, sun — are all computable. So instead of guessing, I
-            built the tool I wanted to exist.
+            This started with a real 2020 trip: four hours from Jalakandapuram to Coimbatore, sitting on the wrong side
+            while the sun did exactly what the sun does. The inputs — route, clock, sun, and weather — are all
+            computable. So instead of guessing, I built the tool I wanted before boarding.
           </p>
         </Reveal>
 
@@ -139,8 +143,8 @@ export default function ShadySidePage() {
               03 — How it works
             </h2>
             <p className="text-muted mt-3 mb-6 text-[15px] leading-relaxed">
-              Use route geometry, time, location, and sun position to recommend the side that stays cooler. Scroll — the
-              sun runs the route below.
+              Use route geometry, departure time, location, sun position, and weather context to recommend the side that
+              stays cooler. Scroll — the sun runs the route below.
             </p>
           </Reveal>
           <RouteScene />
@@ -179,10 +183,10 @@ export default function ShadySidePage() {
         <Reveal as="section">
           <h2 className="label-mono text-accent">05 — Reception, honestly</h2>
           <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            ShadySide is live, indexed, and reached by people typing real questions into search — “bus sun side”, “sit
-            in shade train”, and “where to sit in a bus to avoid sunlight”. Those queries now shape the roadmap. That
-            loop — ship, learn what people actually ask, and answer it clearly — has been the most useful growth
-            channel.
+            The beta was small, but the feedback was specific enough to keep going: people understood the problem
+            immediately. After 1,000+ shade recommendations, ShadySide moved out of beta as v1.5. It is now live,
+            indexed, and reached by people typing real questions into search — “bus sun side”, “sit in shade train”, and
+            “where to sit in a bus to avoid sunlight”. Those queries now shape the roadmap.
           </p>
         </Reveal>
 
@@ -191,6 +195,9 @@ export default function ShadySidePage() {
           <ul className="text-muted mt-3 flex list-none flex-col gap-2.5 text-[15px] leading-relaxed">
             <li className="border-line border-l-2 pl-4">
               Ship the earliest useful version — strangers used it the same week.
+            </li>
+            <li className="border-line border-l-2 pl-4">
+              A niche idea can still be a real product if the problem is felt sharply enough.
             </li>
             <li className="border-line border-l-2 pl-4">
               A blunt answer beats a clever visualization when someone is boarding a bus.

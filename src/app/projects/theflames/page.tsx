@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'TheFlames — Project',
   description:
-    'TheFlames: the classic schoolyard FLAMES game rebuilt as a fast, free web toy by Obuli Sai Naren — automatic counting plus a manual mode for purists.',
+    'TheFlames: a long-unfinished hobby idea turned into a polished web version of the classic schoolyard FLAMES game, with auto and manual modes.',
 };
 
 const outcomes = [
@@ -33,7 +33,8 @@ export default function TheFlamesPage() {
           <h1 className="mt-5 text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">TheFlames</h1>
           <p className="text-muted mt-4 max-w-xl text-[15px] leading-relaxed">
             The paper-and-pencil FLAMES game every Indian schoolkid knows — two names in, shared letters crossed out,
-            and the leftover count cycles F-L-A-M-E-S until one destiny remains. Rebuilt as a small, fast, free web toy.
+            and the leftover count cycles F-L-A-M-E-S until one destiny remains. An old hobby idea, finally finished as
+            a small, fast, free web toy.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a
@@ -74,9 +75,34 @@ export default function TheFlamesPage() {
         <Reveal as="section">
           <h2 className="label-mono text-accent">Why it exists</h2>
           <p className="text-muted mt-3 text-[15px] leading-relaxed">
+            This was one of the first playful projects I wanted to build, but it sat unfinished for years. Shipping it
+            properly became the point: take a tiny memory-lane idea and give it the same care I would give a serious
+            product.
+          </p>
+        </Reveal>
+
+        <Reveal as="section">
+          <h2 className="label-mono text-accent">What shipped</h2>
+          <ul className="text-muted mt-4 flex list-none flex-col gap-2.5 text-[15px] leading-relaxed">
+            <li className="border-line border-l-2 pl-4">Auto mode with an animated reveal for the quick hit.</li>
+            <li className="border-line border-l-2 pl-4">
+              Manual mode for the paper-and-pencil ritual: cross out letters, then count it down yourself.
+            </li>
+            <li className="border-line border-l-2 pl-4">
+              Anonymous global charts, plus share and download options for results.
+            </li>
+            <li className="border-line border-l-2 pl-4">
+              No account wall; names are used for the result flow, not stored as personal profiles.
+            </li>
+          </ul>
+        </Reveal>
+
+        <Reveal as="section">
+          <h2 className="label-mono text-accent">Production-grade play</h2>
+          <p className="text-muted mt-3 text-[15px] leading-relaxed">
             Not every project needs to be serious to be built seriously. TheFlames is nostalgia with production-grade
-            care: TypeScript, proper SEO, no account required, and names are only used in the moment — the site keeps
-            nothing but anonymous stats for its trends chart.
+            care: TypeScript, proper SEO, responsive motion, and a result flow that feels playful without becoming
+            noisy.
           </p>
         </Reveal>
 

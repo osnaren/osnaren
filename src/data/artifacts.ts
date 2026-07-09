@@ -65,8 +65,8 @@ export const artifacts: Artifact[] = [
     year: '2025 →',
     problem: 'Sun vs. bus seat',
     summary:
-      'A shade-friendly travel planner. Enter start, destination, and departure time; ShadySide compares route direction with estimated sun position and recommends the side of the bus, train, or car that stays cooler.',
-    tags: ['React', 'TypeScript', 'Route geometry', 'Solar position', 'SEO'],
+      'Born from a sun-baked Jalakandapuram-to-Coimbatore bus ride, ShadySide compares route direction, departure time, sun position, and weather context to recommend the cooler side of a bus, train, or car.',
+    tags: ['React', 'TypeScript', 'Route geometry', 'Solar position', 'v1.5'],
     links: [
       { label: 'Case study', href: '/projects/shadyside', primary: true },
       { label: 'Live app', href: 'https://shadyside.app', external: true },
@@ -86,8 +86,8 @@ export const artifacts: Artifact[] = [
     year: '2025 →',
     problem: 'Nostalgia, computed',
     summary:
-      'The schoolyard FLAMES game — Friends, Love, Affection, Marriage, Enemies, Siblings — rebuilt as a fast, free web toy. Automatic mode does the counting; Manual Mode preserves the notebook ritual.',
-    tags: ['Next.js', 'TypeScript', 'Playful UX'],
+      'A long-unfinished hobby idea turned into a polished web toy: automatic FLAMES reveal, manual paper-and-pencil mode, anonymous global charts, and shareable results.',
+    tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Playful UX'],
     links: [
       { label: 'Project page', href: '/projects/theflames', primary: true },
       { label: 'Live app', href: 'https://theflames.app', external: true },
@@ -108,7 +108,7 @@ export const artifacts: Artifact[] = [
     year: '2023',
     problem: 'Catastrophic forgetting in fire detection',
     summary:
-      'Peer-reviewed research in Fire Ecology (Springer) applying Learning without Forgetting to transfer-learned CNNs, so a fire-detection model can learn a new dataset without losing the one it was trained on.',
+      'Peer-reviewed Fire Ecology research that grew from a sixth-semester forest-fire classifier project, applying Learning without Forgetting so a model can learn new fire imagery without losing the old dataset.',
     tags: ['Deep learning', 'LwF', 'Xception', 'Fire Ecology'],
     links: [
       { label: 'Case study', href: '/projects/forest-fire-detection', primary: true },
@@ -218,8 +218,8 @@ export const artifacts: Artifact[] = [
     year: '2022 →',
     problem: 'Smoke ≠ fire ≠ both',
     summary:
-      '4,823 standardised forest images across four classes — fire, no fire, smoke, and smokefire — because a detector that cannot separate smoke from flame creates costly false alarms.',
-    tags: ['Kaggle', '4.8k images', '4 classes', 'CC BY-NC-SA 4.0'],
+      '4,823 standardised forest images across four classes — fire, no fire, smoke, and smokefire — powering both the Fire Ecology research and the public TensorFlow.js classifier demo.',
+    tags: ['Kaggle', '4.8k images', '4 classes', 'TensorFlow.js demo'],
     links: [
       { label: 'Case study', href: '/projects/forest-fire-c4', primary: true },
       { label: 'Kaggle', href: 'https://www.kaggle.com/datasets/obulisainaren/forest-fire-c4', external: true },

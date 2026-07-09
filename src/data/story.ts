@@ -70,8 +70,8 @@ export const fieldNotes: FieldNote[] = [
     title: 'ShadySide goes live',
     artifact: 'shadyside.app',
     caption:
-      'A question from every long bus ride — “which side stays out of the sun?” — became a real tool that strangers now find by typing that exact question into a search engine.',
-    lesson: 'Ship the earliest useful version. Then read what people actually search for.',
+      'A 2020 Jalakandapuram-to-Coimbatore bus ride made the problem painfully obvious. The beta stayed small, but 1,000+ shade recommendations later it grew into ShadySide v1.5.',
+    lesson: 'A niche idea can still be real if the frustration is sharp enough.',
     preview: 'route',
     link: { label: 'Read the case study', href: '/projects/shadyside' },
     accent: true,
@@ -84,7 +84,7 @@ export const fieldNotes: FieldNote[] = [
     title: 'TheFlames, rebuilt',
     artifact: 'theflames.app',
     caption:
-      'The schoolyard FLAMES game rebuilt with modern tooling — automatic counting for speed, and a manual mode that preserves the notebook ritual.',
+      'One of the first hobby projects I wanted to build finally reached a polished public version: auto reveal, manual notebook mode, anonymous charts, and shareable results.',
     lesson: 'Playful software still deserves production-grade care.',
     preview: 'flames',
     link: { label: 'Project page', href: '/projects/theflames' },
@@ -123,8 +123,8 @@ export const fieldNotes: FieldNote[] = [
     title: 'Forest fire detection, Fire Ecology',
     artifact: 'Journal article',
     caption:
-      'Open-access research in Springer’s Fire Ecology: Xception reached 98.72% on the original dataset, and Learning without Forgetting kept 96.89% of it while learning an unseen one.',
-    lesson: 'Writing research properly is half the research.',
+      'A sixth-semester classifier project matured into open-access Fire Ecology research: Xception reached 98.72% on the original dataset, and Learning without Forgetting kept 96.89% of it while learning an unseen one.',
+    lesson: 'Research is stronger when the dataset, demo, and limitations are all visible.',
     preview: 'paper',
     link: { label: 'Read the case study', href: '/projects/forest-fire-detection' },
   },
