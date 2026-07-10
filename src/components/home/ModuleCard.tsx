@@ -1,10 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-
 import Link from 'next/link';
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 import { ModuleVisualFor } from '@/components/home/ModuleVisuals';
 
@@ -17,64 +15,77 @@ const statusColor = {
 } as const;
 
 /**
- * A workbench module: a clickable navigation card with subtle 3D tilt and
- * magnetic pull toward the cursor. Navigation never depends on the physics —
- * it is a plain link, keyboard reachable, and static under reduced motion.
+ * A workbench module stays a plain link. The surrounding instrument field owns
+ * the pointer depth so six cards do not each run a pointer loop.
  */
-export function ModuleCard({ module, index }: { module: BenchModule; index: number }) {
+export function ModuleCard({
+  module,
+  index,
+  active = true,
+  primary = false,
+  onActive,
+}: {
+  module: BenchModule;
+  index: number;
+  active?: boolean;
+  primary?: boolean;
+  onActive?: (id: string) => void;
+}) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-
-  const pointerX = useMotionValue(0.5);
-  const pointerY = useMotionValue(0.5);
-  const rotateX = useSpring(useTransform(pointerY, [0, 1], [4, -4]), { stiffness: 260, damping: 22 });
-  const rotateY = useSpring(useTransform(pointerX, [0, 1], [-5, 5]), { stiffness: 260, damping: 22 });
-
-  const handlePointerMove = (event: React.PointerEvent) => {
-    if (reduceMotion || event.pointerType !== 'mouse') return;
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    pointerX.set((event.clientX - rect.left) / rect.width);
-    pointerY.set((event.clientY - rect.top) / rect.height);
-  };
-
-  const resetPointer = () => {
-    pointerX.set(0.5);
-    pointerY.set(0.5);
-  };
 
   return (
     <motion.div
-      ref={ref}
-      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18, rotate: 0 }}
-      animate={{ opacity: 1, y: 0, rotate: reduceMotion ? 0 : module.tilt }}
-      transition={{ duration: 0.45, delay: 0.08 * index, ease: 'easeOut' }}
-      whileHover={reduceMotion ? undefined : { rotate: 0, y: -3, scale: 1.015 }}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={resetPointer}
-      style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 900 }}
-      className={module.wide ? 'sm:col-span-2' : undefined}
+      initial={reduceMotion ? false : { opacity: 0, y: primary ? 24 : 16, scale: 0.97 }}
+      animate={{
+        opacity: active ? 1 : 0.72,
+        y: 0,
+        scale: active ? 1 : 0.985,
+        rotate: reduceMotion ? 0 : active ? 0 : module.tilt,
+      }}
+      transition={{
+        opacity: { duration: 0.2 },
+        scale: { type: 'spring', stiffness: 280, damping: 25 },
+        y: { duration: 0.42, delay: reduceMotion ? 0 : 0.22 + index * 0.055, ease: 'easeOut' },
+      }}
+      whileHover={reduceMotion ? undefined : { y: -5, scale: 1.015 }}
+      onPointerEnter={() => onActive?.(module.id)}
+      onFocusCapture={() => onActive?.(module.id)}
+      className="h-full"
+      data-module-id={module.id}
+      data-active={active || undefined}
     >
       <Link
         href={module.href}
-        className={`group flex h-full min-h-37.5 flex-col gap-2.5 rounded-xl border p-4 transition-shadow ${
+        className={`group flex h-full flex-col gap-2.5 rounded-lg border transition-[box-shadow,border-color,background-color] ${
+          primary ? 'min-h-60 p-5' : 'min-h-35 p-3.5'
+        } ${
           module.inverted
             ? 'border-transparent bg-[#17191e] text-[#f0eee7] shadow-[0_3px_0_var(--accent-press)] hover:shadow-[0_6px_0_var(--accent-press)]'
-            : 'border-line-strong bg-surface shadow-[0_3px_0_var(--line)] hover:shadow-[0_6px_0_var(--line)]'
+            : `bg-surface shadow-[0_3px_0_var(--line)] hover:shadow-[0_6px_0_var(--line)] ${
+                active ? 'border-ink/60 dark:border-ink/45' : 'border-line-strong'
+              }`
         }`}
         aria-label={`${module.name} — ${module.copy}`}
       >
-        <div className="flex items-baseline justify-between gap-2 font-mono text-[10px] font-medium tracking-widest uppercase">
+        <div
+          className={`flex gap-1 font-mono font-medium tracking-widest uppercase ${
+            primary ? 'items-baseline justify-between text-[10px]' : 'flex-col items-start text-[9px]'
+          }`}
+        >
           <span className={module.inverted ? 'text-[#f2a369]' : 'text-accent'}>
             {module.id} · {module.name}
           </span>
           <span className={module.inverted ? 'text-[#6fbf99]' : statusColor[module.statusTone]}>{module.status}</span>
         </div>
-        <ModuleVisualFor visual={module.visual} />
-        <p className={`text-[11.5px] leading-snug ${module.inverted ? 'text-[#b9bcc4]' : 'text-muted'}`}>
+        <div className={`flex ${primary ? 'min-h-31 flex-1' : 'min-h-14 flex-1'}`}>
+          <ModuleVisualFor visual={module.visual} />
+        </div>
+        <p
+          className={`${primary ? 'text-[12.5px]' : 'text-[11px]'} leading-snug ${module.inverted ? 'text-[#b9bcc4]' : 'text-muted'}`}
+        >
           {module.copy}{' '}
           <span
-            className={`font-medium opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 ${
+            className={`font-medium transition-opacity ${active ? 'opacity-100' : 'opacity-0'} group-hover:opacity-100 group-focus-visible:opacity-100 ${
               module.inverted ? 'text-[#f2a369]' : 'text-accent'
             }`}
           >
