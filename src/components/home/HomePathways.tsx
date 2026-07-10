@@ -91,7 +91,7 @@ export function HomePathways() {
   return (
     <section aria-labelledby="home-pathways-heading" className="bg-paper relative overflow-hidden">
       <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0 opacity-45" />
-      <div className="relative mx-auto max-w-384 px-5 py-16 sm:px-8 lg:py-20 xl:px-12">
+      <div className="relative mx-auto max-w-384 px-5 py-16 sm:px-8 lg:pt-14 lg:pb-20 xl:px-12">
         <Reveal className="border-line flex flex-col gap-3 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-ok font-mono text-[10px] font-medium tracking-widest uppercase">Workbench routes</p>

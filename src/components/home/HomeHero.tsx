@@ -32,7 +32,7 @@ export function HomeHero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.45 }}
       />
-      <div className="relative mx-auto grid min-h-[calc(100svh-104px)] max-w-384 items-center gap-9 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(430px,0.86fr)_minmax(0,1.14fr)] lg:gap-7 lg:py-8 xl:grid-cols-[minmax(500px,0.86fr)_minmax(0,1.14fr)] xl:gap-10 xl:px-12">
+      <div className="relative mx-auto grid min-h-[calc(100svh-180px)] max-w-384 items-center gap-9 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(430px,0.86fr)_minmax(0,1.14fr)] lg:gap-7 lg:py-8 xl:grid-cols-[minmax(500px,0.86fr)_minmax(0,1.14fr)] xl:gap-10 xl:px-12">
         <div className="flex min-w-0 flex-col">
           <motion.p
             {...enter(0.08)}
