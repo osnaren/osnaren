@@ -1,7 +1,6 @@
-import Link from 'next/link';
-
-import { ReadingProgress } from '@/components/case-study/ReadingProgress';
-import { Reveal } from '@/components/motion/Reveal';
+import { CaseScaffold, type CaseChapter } from '@/components/case-study/CaseScaffold';
+import { CaseClosing, CaseHero, Chapter, MetaStrip, RuledList } from '@/components/case-study/primitives';
+import { FlamesStepper } from '@/components/theflames/FlamesStepper';
 
 import type { Metadata } from 'next';
 
@@ -10,6 +9,15 @@ export const metadata: Metadata = {
   description:
     'TheFlames: a long-unfinished hobby idea turned into a polished web version of the classic schoolyard FLAMES game, with auto and manual modes.',
 };
+
+const chapters: CaseChapter[] = [
+  { id: 'premise', label: 'Premise' },
+  { id: 'why', label: 'Why rebuild' },
+  { id: 'play', label: 'Play it' },
+  { id: 'modes', label: 'Auto & manual' },
+  { id: 'privacy', label: 'Privacy' },
+  { id: 'lessons', label: 'Lessons' },
+];
 
 const outcomes = [
   { letter: 'F', meaning: 'Friends' },
@@ -23,44 +31,41 @@ const outcomes = [
 export default function TheFlamesPage() {
   return (
     <article>
-      <ReadingProgress />
-      <header className="border-line border-b">
-        <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
-          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] font-medium tracking-[0.12em] uppercase">
-            <span className="text-accent">OSN-002 — Project</span>
-            <span className="text-ok">● Live · Experiment</span>
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">TheFlames</h1>
-          <p className="text-muted mt-4 max-w-xl text-[15px] leading-relaxed">
-            The paper-and-pencil FLAMES game every Indian schoolkid knows — two names in, shared letters crossed out,
-            and the leftover count cycles F-L-A-M-E-S until one destiny remains. An old hobby idea, finally finished as
-            a small, fast, free web toy.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href="https://theflames.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent hover:bg-accent-press rounded-md px-5 py-3 font-mono text-[12px] font-medium tracking-wider text-white uppercase shadow-[0_2px_0_var(--accent-press)] transition-colors"
-            >
-              Play it live ↗
-            </a>
-            <a
-              href="https://github.com/osnaren/the-flames"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-ink hover:bg-ink hover:text-paper rounded-md border px-5 py-3 font-mono text-[12px] font-medium tracking-wider uppercase transition-colors"
-            >
-              GitHub ↗
-            </a>
-          </div>
-        </div>
-      </header>
+      <CaseHero
+        tone="paper"
+        eyebrow="OSN-002 — Product experiment"
+        status="● Live · Playful"
+        artifactId="002"
+        title="TheFlames"
+        lede="The paper-and-pencil FLAMES game every Indian schoolkid knows — two names in, shared letters crossed out, and the leftover count cycles F-L-A-M-E-S until one destiny remains. An old hobby idea, finally finished as a small, fast, free web toy."
+        links={[
+          { label: 'Play it live', href: 'https://theflames.app', external: true, primary: true },
+          { label: 'GitHub', href: 'https://github.com/osnaren/the-flames', external: true },
+        ]}
+      />
 
-      <div className="mx-auto flex max-w-3xl flex-col gap-12 px-5 py-14 sm:px-8">
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">The six destinies</h2>
-          <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <MetaStrip
+        items={[
+          { label: 'Role', value: 'Design + build, solo' },
+          { label: 'Stack', value: 'Next.js · TS · Framer Motion' },
+          { label: 'Status', value: 'Live · free · no account', tone: 'ok' },
+          { label: 'Scope', value: 'Small toy, production care' },
+        ]}
+      />
+
+      <CaseScaffold
+        chapters={chapters}
+        artifactId="OSN-002"
+        prev={{ label: 'Prev: OSN-001 ShadySide', href: '/projects/shadyside' }}
+        next={{ label: 'Next: OSN-003 Forest Fire', href: '/projects/forest-fire-detection' }}
+      >
+        <Chapter id="premise" index="01" title="Premise" wide>
+          <p className="max-w-170">
+            FLAMES compares two names to reveal one of six playful outcomes. It is nostalgia, computed: the classic
+            notebook game rebuilt so it runs instantly, works on a phone, and shares cleanly — without losing the
+            hand-counted ritual that made it fun.
+          </p>
+          <ul className="mt-1 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {outcomes.map((outcome) => (
               <li key={outcome.letter} className="module-card flex items-center gap-3 p-3">
                 <span className="bg-ink text-paper grid size-9 shrink-0 place-items-center rounded-md font-mono text-sm font-semibold">
@@ -70,61 +75,59 @@ export default function TheFlamesPage() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </Chapter>
 
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">Why it exists</h2>
-          <p className="text-muted mt-3 text-[15px] leading-relaxed">
+        <Chapter id="why" index="02" title="Why rebuild it">
+          <p className="text-muted">
             This was one of the first playful projects I wanted to build, but it sat unfinished for years. Shipping it
             properly became the point: take a tiny memory-lane idea and give it the same care I would give a serious
-            product.
-          </p>
-        </Reveal>
-
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">What shipped</h2>
-          <ul className="text-muted mt-4 flex list-none flex-col gap-2.5 text-[15px] leading-relaxed">
-            <li className="border-line border-l-2 pl-4">Auto mode with an animated reveal for the quick hit.</li>
-            <li className="border-line border-l-2 pl-4">
-              Manual mode for the paper-and-pencil ritual: cross out letters, then count it down yourself.
-            </li>
-            <li className="border-line border-l-2 pl-4">
-              Anonymous global charts, plus share and download options for results.
-            </li>
-            <li className="border-line border-l-2 pl-4">
-              No account wall; names are used for the result flow, not stored as personal profiles.
-            </li>
-          </ul>
-        </Reveal>
-
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">Production-grade play</h2>
-          <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            Not every project needs to be serious to be built seriously. TheFlames is nostalgia with production-grade
-            care: TypeScript, proper SEO, responsive motion, and a result flow that feels playful without becoming
+            product — TypeScript, proper SEO, responsive motion, and a result flow that feels playful without becoming
             noisy.
           </p>
-        </Reveal>
+        </Chapter>
 
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">The one UX decision that matters</h2>
-          <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            Automatic mode does the counting instantly — but there is a{' '}
-            <strong className="text-ink">Manual Mode</strong> that lets you cross out the shared letters yourself and
-            walk the F-L-A-M-E-S count step by step, the way it worked in the back of a notebook. The point of the app
-            is the ritual, not just the result.
+        <Chapter id="play" index="03" title="Play it" wide>
+          <p className="max-w-170">
+            Step through the elimination the way it worked in the back of a notebook: cross the shared letters, count
+            what remains, then run the F-L-A-M-E-S countdown. Everything below happens on your device.
           </p>
-        </Reveal>
+          <FlamesStepper />
+        </Chapter>
 
-        <nav className="border-line text-faint flex items-center justify-between border-t pt-6 font-mono text-[11px] font-medium tracking-[0.08em] uppercase">
-          <Link href="/projects/shadyside" className="hover:text-accent transition-colors">
-            ← Prev: OSN-001 ShadySide
-          </Link>
-          <Link href="/projects" className="text-ink hover:text-accent transition-colors">
-            Back to index →
-          </Link>
-        </nav>
-      </div>
+        <Chapter id="modes" index="04" title="Auto and manual">
+          <p className="text-muted">
+            Automatic mode does the counting instantly with an animated reveal — the quick hit. But there is a{' '}
+            <strong className="text-ink">Manual Mode</strong> that lets you cross out the shared letters yourself and
+            walk the count step by step. The point of the app is the ritual, not just the result.
+          </p>
+          <RuledList
+            items={[
+              'Auto mode — instant animated reveal for the quick answer.',
+              'Manual mode — cross out letters yourself and count it down, notebook-style.',
+              'Anonymous global charts, plus share and download options for results.',
+            ]}
+          />
+        </Chapter>
+
+        <Chapter id="privacy" index="05" title="Privacy">
+          <p className="text-muted">
+            There is no account wall. Names are used to calculate the result in the moment; the site keeps only
+            anonymous statistics for its charts and trends, not personal profiles. The interactive explainer on this
+            page goes further — it runs entirely in your browser and sends nothing at all.
+          </p>
+        </Chapter>
+
+        <CaseClosing
+          lessons={[
+            'Playful software still deserves production-grade care.',
+            'The ritual is the product — the manual mode matters more than the instant answer.',
+            'Privacy is a feature you can state plainly: “names stay on your device”.',
+          ]}
+          links={[{ label: 'Play it live', href: 'https://theflames.app', external: true, primary: true }]}
+          prev={{ label: 'Prev: OSN-001 ShadySide', href: '/projects/shadyside' }}
+          next={{ label: 'Next: OSN-003 Forest Fire', href: '/projects/forest-fire-detection' }}
+        />
+      </CaseScaffold>
     </article>
   );
 }

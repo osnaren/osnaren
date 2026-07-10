@@ -1,8 +1,17 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
-import { ReadingProgress } from '@/components/case-study/ReadingProgress';
-import { Reveal } from '@/components/motion/Reveal';
+import { CaseScaffold, type CaseChapter } from '@/components/case-study/CaseScaffold';
+import {
+  CaseClosing,
+  CaseHero,
+  Chapter,
+  ChapterMoment,
+  DecisionGrid,
+  MetaStrip,
+  ProcessStrip,
+  PullQuote,
+} from '@/components/case-study/primitives';
+import { RouteExplorer } from '@/components/shadyside/RouteExplorer';
 import { RouteScene } from '@/components/shadyside/RouteScene';
 
 import type { Metadata } from 'next';
@@ -13,97 +22,74 @@ export const metadata: Metadata = {
     'How ShadySide grew from one sun-baked Tamil Nadu bus ride into a v1.5 travel utility that recommends the cooler side of a bus, train, or car.',
 };
 
-const meta = [
-  { label: 'Role', value: 'Design + build, solo' },
-  { label: 'Stack', value: 'React · TS · Geo + solar math' },
-  { label: 'Status', value: 'v1.5 · out of beta', ok: true },
+const chapters: CaseChapter[] = [
+  { id: 'premise', label: 'Premise' },
+  { id: 'problem', label: 'Problem' },
+  { id: 'insight', label: 'Insight' },
+  { id: 'system', label: 'How it works' },
+  { id: 'decisions', label: 'Decisions' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'reception', label: 'Reception' },
+  { id: 'lessons', label: 'Lessons' },
 ];
 
-const uxDecisions = [
+const process = [
+  {
+    label: 'Read the route',
+    caption: 'Start, destination, and departure time become a sequence of directed segments.',
+  },
+  { label: 'Place the sun', caption: 'The sun’s position is estimated per segment from the clock and coordinates.' },
+  {
+    label: 'Score each side',
+    caption: 'Segment direction vs. sun gives each side an exposure estimate; weather tempers it.',
+  },
+  {
+    label: 'Say it plainly',
+    caption: 'The side with less expected sun wins — recalculate if boarding slips or the bus detours.',
+  },
+];
+
+const decisions = [
   {
     title: 'One blunt answer',
-    copy: 'The output is not a heatmap or a score table — it is “sit left” or “sit right”. Everything else (per-segment detail, sun times) is secondary evidence you can expand.',
+    copy: 'The output is “sit left” or “sit right”, not a heatmap. Per-segment detail and sun times are secondary evidence you can expand.',
   },
   {
     title: 'Time chips, not date pickers',
-    copy: '“Now · +5 · +10 · +15 min” covers how people actually board buses. A full scheduler exists, but the fast path is one tap.',
+    copy: '“Now · +5 · +10 · +15 min” matches how people actually board buses. A full scheduler exists, but the fast path is one tap.',
   },
   {
     title: 'An honest disclaimer',
-    copy: 'Real shade changes with clouds, trees, buildings, flyovers, and detours. The app describes itself as a comfort guide, not a guarantee, so the recommendation stays useful without pretending to be perfect.',
+    copy: 'Real shade shifts with clouds, trees, buildings, flyovers, and detours. The app calls itself a comfort guide, not a guarantee.',
   },
   {
     title: 'Product loops after the answer',
-    copy: 'Version 1.5 added recent and favourite routes, shareable result cards, post-trip accuracy feedback, a public status page, and clearer route tips — the difference between a neat calculator and a usable travel tool.',
+    copy: 'v1.5 added recent and favourite routes, shareable result cards, a public status page, and clearer route tips.',
   },
   {
     title: 'Answer pages for real questions',
-    copy: 'People find the app by searching “bus sun side” and “where to sit in a train to avoid sunlight”. Those exact questions became public answer pages (bus-shade, train-shade) that route back into the planner.',
-  },
-];
-
-const howItWorks = [
-  {
-    step: '01',
-    title: 'Read the route',
-    copy: 'Start, destination, and departure time in; the route geometry comes back as a sequence of directed segments.',
+    copy: 'Search queries like “bus sun side” became public answer pages (bus-shade, train-shade) that route back into the planner.',
   },
   {
-    step: '02',
-    title: 'Place the sun',
-    copy: 'For each segment’s time window, the sun’s position is estimated from the clock and coordinates — morning east, evening west, and everything in between.',
-  },
-  {
-    step: '03',
-    title: 'Score each side',
-    copy: 'Segment direction vs. sun position gives each side of the vehicle an exposure estimate; weather context tempers the result on overcast days.',
-  },
-  {
-    step: '04',
-    title: 'Say it plainly',
-    copy: 'The side with less expected sun wins. Recalculate if boarding time slips or the bus takes a detour.',
+    title: 'Mobile-first flow',
+    copy: 'The whole planner is built for a phone held one-handed at a bus stop — the moment the question actually gets asked.',
   },
 ];
 
 export default function ShadySidePage() {
   return (
     <article>
-      <ReadingProgress />
-      {/* hero — dark evidence-board header */}
-      <header className="bg-[#17191e] text-[#f0eee7]">
-        <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
-          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] font-medium tracking-[0.12em] uppercase">
-            <span className="text-[#f2a369]">OSN-001 — Case study</span>
-            <span className="text-[#6fbf99]">● Shipped · v1.5</span>
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">ShadySide</h1>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#b9bcc4]">
-            A travel utility that reads your route, departure time, sun position, and weather context — then tells you
-            which side of the bus, train, or car is likely to stay cooler.
-          </p>
-          <a
-            href="https://shadyside.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-block rounded-md bg-[#e8834a] px-5 py-3 font-mono text-[12px] font-medium tracking-wider text-[#14151a] uppercase transition-colors hover:bg-[#f2a369]"
-          >
-            Open the live app ↗
-          </a>
-        </div>
-      </header>
-
-      {/* meta strip */}
-      <div className="border-line grid grid-cols-1 border-b sm:grid-cols-3">
-        {meta.map((item, i) => (
-          <div key={item.label} className={`px-5 py-4 sm:px-8 ${i < meta.length - 1 ? 'border-line sm:border-r' : ''}`}>
-            <p className="label-mono text-faint">{item.label}</p>
-            <p className={`mt-1 text-sm font-medium ${item.ok ? 'text-ok' : ''}`}>{item.value}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mx-auto flex max-w-3xl flex-col gap-14 px-5 py-14 sm:px-8">
-        <Reveal>
+      <CaseHero
+        eyebrow="OSN-001 — Product case study"
+        status="● Shipped · v1.5 · Live"
+        artifactId="001"
+        title="ShadySide"
+        lede="A travel utility that reads your route, departure time, sun position, and weather context — then tells you which side of the bus, train, or car is likely to stay cooler."
+        links={[
+          { label: 'Open the live app', href: 'https://shadyside.app', external: true, primary: true },
+          { label: 'Bus shade guide', href: 'https://shadyside.app/bus-shade', external: true },
+        ]}
+        aside={
           <figure className="module-card overflow-hidden">
             <Image
               src="/images/shadyside-premise.webp"
@@ -113,110 +99,134 @@ export default function ShadySidePage() {
               priority
               className="w-full"
             />
-            <figcaption className="label-mono text-faint border-line border-t px-4 py-2.5">
-              FIG 0.1 — The premise: route, sun path, shaded side
+            <figcaption className="label-mono text-faint border-line bg-surface border-t px-4 py-2.5">
+              FIG 0.1 — Premise: route, sun path, shaded side
             </figcaption>
           </figure>
-        </Reveal>
+        }
+      />
 
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">01 — The problem</h2>
-          <p className="mt-3 text-[15px] leading-relaxed">
-            Long bus rides. Sun on your face, phone, or laptop screen. Everyone guesses which side to sit on; most
-            people guess wrong because the answer changes with the route’s direction, the time of day, the season, and
-            every turn along the way. There is no permanent “shady side”.
+      <MetaStrip
+        items={[
+          { label: 'Role', value: 'Design + build, solo' },
+          { label: 'Stack', value: 'React · TS · Geo + solar math' },
+          { label: 'Status', value: 'v1.5 · out of beta', tone: 'ok' },
+          { label: 'Type', value: 'Travel utility · live' },
+        ]}
+      />
+
+      <CaseScaffold
+        chapters={chapters}
+        artifactId="OSN-001"
+        next={{ label: 'Next: OSN-002 TheFlames', href: '/projects/theflames' }}
+      >
+        <Chapter id="premise" index="01" title="Premise">
+          <p>
+            ShadySide is a shade-friendly travel planner: enter a start, a destination, and a departure time, and it
+            compares the route direction with the estimated sun position and weather context to recommend the side of
+            the vehicle more likely to stay cool. It is live, out of beta at v1.5, and reachable by anyone typing a real
+            question into search.
           </p>
-        </Reveal>
+        </Chapter>
 
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">02 — Why I built it</h2>
-          <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            This started with a real 2020 trip: four hours from Jalakandapuram to Coimbatore, sitting on the wrong side
-            while the sun did exactly what the sun does. The inputs — route, clock, sun, and weather — are all
-            computable. So instead of guessing, I built the tool I wanted before boarding.
-          </p>
-        </Reveal>
-
-        <section aria-labelledby="how-heading">
-          <Reveal>
-            <h2 id="how-heading" className="label-mono text-accent">
-              03 — How it works
-            </h2>
-            <p className="text-muted mt-3 mb-6 text-[15px] leading-relaxed">
-              Use route geometry, departure time, location, sun position, and weather context to recommend the side that
-              stays cooler. Scroll — the sun runs the route below.
-            </p>
-          </Reveal>
+        <ChapterMoment label="FIG 01">
           <RouteScene />
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {howItWorks.map((item, i) => (
-              <Reveal key={item.step} delay={i * 0.05}>
-                <div className="module-card h-full p-4">
-                  <p className="label-mono text-faint">
-                    STEP {item.step} — {item.title}
-                  </p>
-                  <p className="text-muted mt-2 text-[13px] leading-relaxed">{item.copy}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        </ChapterMoment>
 
-        <section aria-labelledby="ux-heading">
-          <Reveal>
-            <h2 id="ux-heading" className="label-mono text-accent">
-              04 — UX decisions
-            </h2>
-          </Reveal>
-          <div className="mt-5 flex flex-col gap-5">
-            {uxDecisions.map((decision, i) => (
-              <Reveal key={decision.title} delay={i * 0.04}>
-                <div className="border-line border-l-2 pl-4">
-                  <h3 className="text-[15px] font-semibold">{decision.title}</h3>
-                  <p className="text-muted mt-1 text-[13.5px] leading-relaxed">{decision.copy}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">05 — Reception, honestly</h2>
-          <p className="text-muted mt-3 text-[15px] leading-relaxed">
-            The beta was small, but the feedback was specific enough to keep going: people understood the problem
-            immediately. After 1,000+ shade recommendations, ShadySide moved out of beta as v1.5. It is now live,
-            indexed, and reached by people typing real questions into search — “bus sun side”, “sit in shade train”, and
-            “where to sit in a bus to avoid sunlight”. Those queries now shape the roadmap.
+        <Chapter id="problem" index="02" title="The problem">
+          <p>
+            Long bus rides. Sun on your face, phone, or laptop screen. Everyone guesses which side to sit on, and most
+            guess wrong — because the answer changes with the route’s direction, the time of day, the season, and every
+            turn along the way. There is no permanent “shady side”.
           </p>
-        </Reveal>
+          <p className="text-muted">
+            This started with a real 2020 trip: four hours from Jalakandapuram to Coimbatore, on the wrong side, while
+            the sun did exactly what the sun does. The inputs — route, clock, sun, weather — are all computable, so
+            instead of guessing I built the tool I wanted before boarding.
+          </p>
+        </Chapter>
 
-        <Reveal as="section">
-          <h2 className="label-mono text-accent">06 — What I learned</h2>
-          <ul className="text-muted mt-3 flex list-none flex-col gap-2.5 text-[15px] leading-relaxed">
-            <li className="border-line border-l-2 pl-4">
-              Ship the earliest useful version — strangers used it the same week.
-            </li>
-            <li className="border-line border-l-2 pl-4">
-              A niche idea can still be a real product if the problem is felt sharply enough.
-            </li>
-            <li className="border-line border-l-2 pl-4">
-              A blunt answer beats a clever visualization when someone is boarding a bus.
-            </li>
-            <li className="border-line border-l-2 pl-4">
-              Honesty is a feature: saying “comfort guide, not a guarantee” costs nothing and buys trust.
-            </li>
-          </ul>
-        </Reveal>
+        <Chapter id="insight" index="03" title="The insight">
+          <PullQuote cite="The core realisation behind ShadySide">
+            The shaded side is not east versus west. It is route geometry, time, date, and sun position — resolved
+            across every segment of the trip.
+          </PullQuote>
+          <p className="text-muted">
+            A route moving east in the morning, west in the evening, or turning through several directions exposes
+            different windows at different times. The recommendation has to reflect the whole journey, not one road.
+          </p>
+        </Chapter>
 
-        <nav className="border-line text-faint flex items-center justify-between border-t pt-6 font-mono text-[11px] font-medium tracking-[0.08em] uppercase">
-          <Link href="/projects" className="hover:text-accent transition-colors">
-            ← Back to index
-          </Link>
-          <Link href="/projects/theflames" className="text-ink hover:text-accent transition-colors">
-            Next: OSN-002 TheFlames →
-          </Link>
-        </nav>
-      </div>
+        <Chapter id="system" index="04" title="How it works" wide>
+          <p className="max-w-170">
+            Route geometry, departure time, location, sun position, and weather context resolve into a single
+            recommendation. The pipeline is four honest steps.
+          </p>
+          <ProcessStrip steps={process} />
+          <p className="text-muted max-w-170">
+            Scrub the departure time below to watch the sun cross the route and the recommendation flip. This is a
+            simplified educational model, not the production algorithm.
+          </p>
+          <RouteExplorer />
+        </Chapter>
+
+        <Chapter id="decisions" index="05" title="Product decisions" wide>
+          <p className="max-w-170">
+            The difference between a neat calculator and a usable travel tool is a handful of product decisions.
+          </p>
+          <DecisionGrid items={decisions} />
+        </Chapter>
+
+        <Chapter id="experience" index="06" title="The experience" wide>
+          <p className="max-w-170">
+            The live surface stays deliberately small: a planner, a blunt result, and the loops around it that make it a
+            product rather than a demo.
+          </p>
+          <ProcessStrip
+            steps={[
+              {
+                label: 'Plan the journey',
+                caption: 'Start, destination, transit mode (bus, train, car), and a departure time.',
+              },
+              {
+                label: 'Get the answer',
+                caption: 'A blunt “sit left / sit right” with the shaded share of the route.',
+              },
+              {
+                label: 'Loop back',
+                caption: 'Recent and favourite routes, shareable result cards, and a public status page.',
+              },
+              {
+                label: 'Answer pages',
+                caption: 'Bus-shade and train-shade guides that answer the exact search queries people use.',
+              },
+            ]}
+          />
+        </Chapter>
+
+        <Chapter id="reception" index="07" title="Reception, honestly">
+          <p className="text-muted">
+            The beta was small, but the feedback was specific enough to keep going — people understood the problem
+            immediately. After 1,000+ shade recommendations, ShadySide moved out of beta as v1.5. It is now live,
+            indexed, listed on Product Hunt, and reached by people typing real questions into search: “bus sun side”,
+            “sit in shade train”, and “where to sit in a bus to avoid sunlight”. Those queries now shape the roadmap.
+          </p>
+        </Chapter>
+
+        <CaseClosing
+          lessons={[
+            'Ship the earliest useful version — strangers used it the same week.',
+            'A niche idea can still be a real product if the problem is felt sharply enough.',
+            'A blunt answer beats a clever visualization when someone is boarding a bus.',
+            'Honesty is a feature: saying “comfort guide, not a guarantee” costs nothing and buys trust.',
+          ]}
+          links={[
+            { label: 'Open the live app', href: 'https://shadyside.app', external: true, primary: true },
+            { label: 'Train shade guide', href: 'https://shadyside.app/train-shade', external: true },
+          ]}
+          next={{ label: 'Next: OSN-002 TheFlames', href: '/projects/theflames' }}
+        />
+      </CaseScaffold>
     </article>
   );
 }
