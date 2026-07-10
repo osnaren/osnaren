@@ -166,6 +166,39 @@
   }
 }
 
+/* artifact-scanner preview assembly cues (motion-safe, play on preview mount) */
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: 440;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flames-strike {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scan-sweep {
+  0% {
+    transform: translateY(-12%);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}
+
 @media print {
   header,
   footer,

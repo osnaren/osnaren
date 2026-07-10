@@ -6,6 +6,7 @@ export function ArtifactVisual({ visual }: { visual: VisualKey }) {
     case 'route':
       return (
         <svg viewBox="0 0 300 110" className="h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          {/* shaded side band */}
           <path
             d="M14 88 C90 78 130 36 190 42 S276 66 290 28"
             fill="none"
@@ -13,28 +14,47 @@ export function ArtifactVisual({ visual }: { visual: VisualKey }) {
             strokeWidth="8"
             opacity="0.3"
           />
-          <path d="M12 84 C88 74 128 32 188 38 S274 62 288 24" fill="none" stroke="var(--ink)" strokeWidth="2.5" />
+          {/* the route, drawing in on mount */}
+          <path
+            d="M12 84 C88 74 128 32 188 38 S274 62 288 24"
+            fill="none"
+            stroke="var(--ink)"
+            strokeWidth="2.5"
+            strokeDasharray="440"
+            className="motion-safe:animate-[route-draw_1.15s_ease-out_forwards]"
+          />
           <circle cx="12" cy="84" r="5" fill="var(--ink)" />
           <circle cx="288" cy="24" r="5" fill="var(--accent)" />
           <circle cx="240" cy="16" r="9" fill="var(--sun)" />
+          <circle cx="240" cy="16" r="9" fill="var(--sun)" opacity="0.35" className="motion-safe:animate-ping" />
         </svg>
       );
 
-    case 'flames':
+    case 'flames': {
+      // FLAMES eliminates letters until one survives — here 'L' (Lovers)
+      const letters = ['F', 'L', 'A', 'M', 'E', 'S'];
+      const survivor = 1;
       return (
         <div className="flex h-full items-center justify-center gap-2" aria-hidden="true">
-          {['F', 'L', 'A', 'M', 'E', 'S'].map((letter, i) => (
+          {letters.map((letter, i) => (
             <span
               key={letter}
-              className={`grid size-9 place-items-center rounded-md border font-mono text-sm font-medium ${
-                i === 1 ? 'border-accent bg-accent text-white' : 'border-line-strong bg-surface text-muted'
+              className={`relative grid size-9 place-items-center rounded-md border font-mono text-sm font-medium ${
+                i === survivor ? 'border-accent bg-accent text-white' : 'border-line-strong bg-surface text-faint'
               }`}
             >
               {letter}
+              {i !== survivor && (
+                <span
+                  className="bg-accent/80 absolute top-1/2 left-1 h-0.5 w-7 origin-left -translate-y-1/2 rounded-full motion-safe:animate-[flames-strike_0.5s_ease-out_forwards]"
+                  style={{ animationDelay: `${0.15 + i * 0.09}s` }}
+                />
+              )}
             </span>
           ))}
         </div>
       );
+    }
 
     case 'fire':
       // four class swatches: fire / nofire / smoke / smokefire
