@@ -1,10 +1,25 @@
+import Image from 'next/image';
+
 import type { FieldNote } from '@/data/story';
+import type { NoteMedia } from '@/data/story-chapters';
 
 type PreviewKey = FieldNote['preview'];
 
-/** Schematic artifacts — no fake personal photographs, ever. */
-export function StoryPreview({ preview }: { preview: PreviewKey }) {
+/**
+ * Artifact previews. Real, public-safe media is used where it exists (only the
+ * ShadySide premise illustration in this repo); everything else is a designed
+ * schematic — never a fabricated photograph, certificate, or workplace screen.
+ */
+export function StoryPreview({ preview, media }: { preview: PreviewKey; media?: NoteMedia }) {
   const common = 'h-full w-full';
+
+  if (media) {
+    return (
+      <div className="relative h-full w-full">
+        <Image src={media.src} alt={media.alt} fill sizes="(max-width: 1024px) 100vw, 320px" className="object-cover" />
+      </div>
+    );
+  }
 
   switch (preview) {
     case 'route':
