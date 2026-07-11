@@ -11,7 +11,23 @@ export interface FieldNote {
   caption: string;
   lesson: string;
   /** schematic rendered in the sticky preview panel */
-  preview: 'route' | 'flames' | 'commerce' | 'toolchain' | 'paper' | 'dataset' | 'camera' | 'garden' | 'school' | 'lab';
+  preview:
+    | 'route'
+    | 'flames'
+    | 'commerce'
+    | 'toolchain'
+    | 'paper'
+    | 'dataset'
+    | 'camera'
+    | 'garden'
+    | 'school'
+    | 'lab'
+    | 'language'
+    | 'sapling'
+    | 'mentorship'
+    | 'coordination'
+    | 'network'
+    | 'service';
   link?: { label: string; href: string; external?: boolean };
   accent?: boolean;
 }
@@ -155,6 +171,19 @@ export const fieldNotes: FieldNote[] = [
     preview: 'school',
   },
   {
+    id: 'FN-ALT',
+    year: '2021',
+    date: 'NOV 2021 – JUN 2022',
+    track: 'life',
+    title: 'CSE Altruists: seniors helping juniors',
+    artifact: 'Peer mentorship programme',
+    caption:
+      'Founded and coordinated a Computer Science mentorship programme that paired junior teams with senior mentors for projects, placements, and the parts of college that are easier to navigate with someone beside you.',
+    lesson: 'Useful systems can be social systems too. Make the path easier for the next person.',
+    preview: 'mentorship',
+    accent: true,
+  },
+  {
     id: 'FN-005',
     year: '2022',
     date: 'JAN 2022',
@@ -194,6 +223,30 @@ export const fieldNotes: FieldNote[] = [
     link: { label: 'Dataset case study', href: '/projects/retinal-oct-c8' },
   },
   {
+    id: 'FN-PLC',
+    year: '2020',
+    date: 'JUN 2020 – JUN 2022',
+    track: 'life',
+    title: 'Placement coordinator and CSEA organiser',
+    artifact: 'Campus coordination',
+    caption:
+      'Coordinated placement activity with students, faculty, and visiting companies while also helping the Computer Science Engineering Association run departmental events, workshops, and technical programmes.',
+    lesson: 'Good coordination removes uncertainty before it becomes friction.',
+    preview: 'coordination',
+  },
+  {
+    id: 'FN-CLS',
+    year: '2018',
+    date: 'JUN 2018 – JUN 2022',
+    track: 'life',
+    title: 'Four years as class representative',
+    artifact: 'Student–faculty link',
+    caption:
+      'Represented the class throughout college: carrying concerns to faculty, bringing decisions back clearly, and learning how much patient communication sits behind a functional group.',
+    lesson: 'Representation starts with listening, then closing the loop.',
+    preview: 'network',
+  },
+  {
     id: 'FN-002',
     year: '2018',
     date: '2018',
@@ -201,21 +254,47 @@ export const fieldNotes: FieldNote[] = [
     title: 'Hello, Kongu',
     artifact: 'Admission letter',
     caption:
-      'Started B.E. Computer Science at Kongu Engineering College. The syllabus taught theory; the hostel LAN and the side projects taught shipping.',
+      'Started B.E. Computer Science at Kongu Engineering College. Coursework built the fundamentals; side projects made them practical.',
     lesson: 'The coursework and the side projects are not in competition.',
     preview: 'school',
+  },
+  {
+    id: 'FN-ROT',
+    year: '2017',
+    date: 'MAR 2017 – MAR 2018',
+    track: 'life',
+    title: 'A year of service with Rotaract',
+    artifact: 'Club director role',
+    caption:
+      'Served as a director in Rotaract during school. It was an early lesson in showing up for shared work, organising with peers, and treating community service as a practice rather than a badge.',
+    lesson: 'Responsibility becomes real when other people are counting on you.',
+    preview: 'service',
   },
   {
     id: 'FN-001',
     year: '2016',
     date: '2016 – 18',
     track: 'life',
-    title: 'Sri Vidya Mandir, Salem',
-    artifact: 'Certificates',
+    title: 'The school work I loved most',
+    artifact: 'Vice President, National Green Corps',
     caption:
-      'School years — SSLC and HSC in the Maths–Biology stream, and a “Best Student in Academic Activities” award in a folder at home somewhere.',
-    lesson: 'Demos beat descriptions. Still true.',
-    preview: 'school',
+      'At Sri Vidya Mandir, our National Green Corps team grew an organic vegetable garden, donated more than 1,000 saplings to the Isha Foundation, and organised a district-level environmental awareness event. Seeing the first harvest change scepticism into participation made the work unforgettable.',
+    lesson: 'Visible progress turns a good cause into shared ownership.',
+    preview: 'sapling',
+    accent: true,
+  },
+  {
+    id: 'FN-HIN',
+    year: '2015',
+    date: '2015 – 17',
+    track: 'life',
+    title: 'Prathamic to Praveen, eight stages',
+    artifact: 'Dakshina Bharat Hindi Prachar Sabha examinations',
+    caption:
+      'Started with Prathamic in 2015 and completed the full eight-examination progression through Praveen Uttarardh, earning First Class at every level.',
+    lesson: 'Long progress is easier to trust when every stage has a finish line.',
+    preview: 'language',
+    link: { label: 'Official examination ladder', href: 'https://www.dbhpscentral.org/books.html', external: true },
   },
 ];
 

@@ -1,5 +1,14 @@
 import { PrintButton } from '@/components/resume/PrintButton';
-import { certifications, datasets, education, experience, languages, publications, skills } from '@/data/resume';
+import {
+  certifications,
+  datasets,
+  education,
+  experience,
+  languages,
+  leadership,
+  publications,
+  skills,
+} from '@/data/resume';
 import { site } from '@/data/site';
 
 import type { Metadata } from 'next';
@@ -182,6 +191,26 @@ export default function ResumePage() {
           <p className="text-faint mt-3 font-mono text-[10px] tracking-[0.06em] uppercase">
             Languages: {languages.join(' · ')}
           </p>
+        </section>
+
+        <section aria-labelledby="leadership-heading" className="module-card print-flat p-5 sm:col-span-2">
+          <h2
+            id="leadership-heading"
+            className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase"
+          >
+            Block 08 — Leadership &amp; service
+          </h2>
+          <div className="mt-3 grid gap-x-6 gap-y-4 sm:grid-cols-2">
+            {leadership.map((entry) => (
+              <div key={entry.role}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+                  <p className="text-[12.5px] leading-snug font-medium">{entry.role}</p>
+                  <p className="text-faint font-mono text-[9.5px] uppercase">{entry.period}</p>
+                </div>
+                <p className="text-muted mt-1 text-[12px] leading-relaxed">{entry.detail}</p>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
 

@@ -132,7 +132,31 @@ export const certifications = [
   'Kaizen IoT Workshop',
   'Fundamentals of Information Security',
   'Build a Face Recognition Application using Python',
-  'Rashtrabhasha Praveen',
+  'Dakshina Bharat Hindi Prachar Sabha — 8 examinations from Prathamic through Praveen Uttarardh, First Class',
 ] as const;
 
 export const languages = ['Tamil', 'English', 'Kannada', 'Hindi'] as const;
+
+export const leadership = [
+  {
+    role: 'Vice President · National Green Corps',
+    period: '2016 — 2018',
+    detail:
+      'School garden, 1,000+ saplings donated to the Isha Foundation, and a district environmental-awareness event.',
+  },
+  {
+    role: 'Class Representative · Placement Coordinator',
+    period: '2018 — 2022',
+    detail: 'Student–faculty communication and campus placement coordination at Kongu Engineering College.',
+  },
+  {
+    role: 'Founder · CSE Altruists; Executive Member · CSEA',
+    period: '2020 — 2022',
+    detail: 'Peer mentorship for junior students and delivery of departmental technical programmes.',
+  },
+  {
+    role: 'Director · Rotaract',
+    period: '2017 — 2018',
+    detail: 'Peer-led community service and club coordination.',
+  },
+] as const;

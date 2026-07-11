@@ -25,8 +25,8 @@ export const storyChapters: StoryChapter[] = [
     key: 'origins',
     index: '01',
     label: 'Origins',
-    years: '2016',
-    blurb: 'School in Salem, and the habit of pulling things apart to see how they worked.',
+    years: '2015 – 2018',
+    blurb: 'School in Salem — language study, environmental work, and early community leadership.',
     motif: 'grid',
   },
   {
@@ -34,7 +34,7 @@ export const storyChapters: StoryChapter[] = [
     index: '02',
     label: 'College',
     years: '2018 – 2022',
-    blurb: 'Computer Science at Kongu — coursework by day, side projects on the hostel LAN by night.',
+    blurb: 'Computer Science at Kongu — coursework, research, peer mentorship, and student coordination.',
     motif: 'margin',
   },
   {
@@ -81,8 +81,13 @@ export const storyChapters: StoryChapter[] = [
 
 /** Map each verified field-note ID to the chapter it belongs to. */
 export const noteChapter: Record<string, StoryChapterKey> = {
+  'FN-HIN': 'origins',
   'FN-001': 'origins',
+  'FN-ROT': 'origins',
   'FN-002': 'college',
+  'FN-CLS': 'college',
+  'FN-PLC': 'college',
+  'FN-ALT': 'college',
   'FN-006': 'college',
   'FN-003': 'research',
   'FN-005': 'research',
