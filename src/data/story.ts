@@ -27,7 +27,12 @@ export interface FieldNote {
     | 'mentorship'
     | 'coordination'
     | 'network'
-    | 'service';
+    | 'service'
+    | 'badge'
+    | 'fire'
+    | 'oct'
+    | 'corpus'
+    | 'campus';
   link?: { label: string; href: string; external?: boolean };
   accent?: boolean;
 }
@@ -115,7 +120,7 @@ export const fieldNotes: FieldNote[] = [
     caption:
       'From services to product. React product-page experiences for a global ecommerce customer base — accessibility, performance, and experimentation-driven delivery.',
     lesson: 'At scale, small frontend details are big business.',
-    preview: 'commerce',
+    preview: 'badge',
   },
   {
     id: 'FN-009',
@@ -141,7 +146,7 @@ export const fieldNotes: FieldNote[] = [
     caption:
       'A sixth-semester classifier project matured into open-access Fire Ecology research: Xception reached 98.72% on the original dataset, and Learning without Forgetting kept 96.89% of it while learning an unseen one.',
     lesson: 'Research is stronger when the dataset, demo, and limitations are all visible.',
-    preview: 'paper',
+    preview: 'fire',
     link: { label: 'Read the case study', href: '/projects/forest-fire-detection' },
   },
   {
@@ -193,7 +198,7 @@ export const fieldNotes: FieldNote[] = [
     caption:
       'Retinal disorders develop slowly and without obvious signs. This paper — and the 24,000-image OCT-C8 dataset behind it — tried to make them visible earlier.',
     lesson: 'Infrastructure outlives results. The dataset travelled further than the paper.',
-    preview: 'paper',
+    preview: 'oct',
     link: { label: 'Read the case study', href: '/projects/retinal-oct-classification' },
   },
   {
@@ -219,7 +224,7 @@ export const fieldNotes: FieldNote[] = [
     caption:
       'My first artifact that left my hands and kept going without me — 24,000 balanced OCT scans, now indexed in the openmedlab Awesome-Medical-Dataset collection.',
     lesson: 'A benchmark’s value is its fairness, not its size.',
-    preview: 'dataset',
+    preview: 'corpus',
     link: { label: 'Dataset case study', href: '/projects/retinal-oct-c8' },
   },
   {
@@ -256,7 +261,7 @@ export const fieldNotes: FieldNote[] = [
     caption:
       'Started B.E. Computer Science at Kongu Engineering College. Coursework built the fundamentals; side projects made them practical.',
     lesson: 'The coursework and the side projects are not in competition.',
-    preview: 'school',
+    preview: 'campus',
   },
   {
     id: 'FN-ROT',

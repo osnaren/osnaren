@@ -124,7 +124,7 @@ export function ArtifactPreview({
           <span
             key={`scan-${artifact.id}`}
             aria-hidden="true"
-            className="via-accent/50 pointer-events-none absolute inset-x-0 top-0 h-8 bg-linear-to-b from-transparent to-transparent animate-[scan-sweep_0.9s_ease-out]"
+            className="opacity-0 via-accent/50 pointer-events-none absolute inset-x-0 top-0 h-8 bg-linear-to-b from-transparent to-transparent animate-[scan-sweep_0.9s_ease-out]"
           />
         )}
       </div>

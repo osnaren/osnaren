@@ -80,11 +80,6 @@ function NoteCard({
       <p className="text-faint mt-1 font-mono text-[9.5px] tracking-widest uppercase">Artifact: {note.artifact}</p>
       <p className="text-muted mt-2 text-[13.5px] leading-relaxed">{note.caption}</p>
 
-      {/* mobile: the preview lives inline, since the side stage is hidden */}
-      <div className="bg-surface-2 border-line relative mt-3 h-36 overflow-hidden rounded-lg border lg:hidden">
-        <StoryPreview preview={note.preview} media={noteMedia[note.id]} />
-      </div>
-
       <p className="mt-3 text-[12.5px]">
         <span className="text-accent font-mono text-[9.5px] font-medium tracking-widest uppercase">Lesson — </span>
         <span className="text-ink">{note.lesson}</span>
@@ -128,14 +123,7 @@ function ChapterHeading({
       className="relative scroll-mt-28 pt-10 pb-2 first:pt-2"
       data-chapter={chapter.key}
     >
-      {/* large chapter index, subtly behind */}
-      <span
-        aria-hidden="true"
-        className="text-line-strong/50 pointer-events-none absolute -top-1 right-0 font-mono text-6xl font-semibold tracking-tighter select-none sm:text-7xl"
-      >
-        {chapter.index}
-      </span>
-      <div className="relative flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-accent font-mono text-[10px] font-medium tracking-widest uppercase">
             Chapter {chapter.index} · {chapter.years}
@@ -143,7 +131,7 @@ function ChapterHeading({
           <h2 className="mt-1.5 text-2xl font-semibold tracking-[-0.02em] sm:text-[28px]">{chapter.label}</h2>
           <p className="text-muted mt-2 max-w-md text-[13px] leading-relaxed">{chapter.blurb}</p>
         </div>
-        <ChapterMotif motif={chapter.motif} />
+        <ChapterMotif motif={chapter.motif} index={chapter.index} />
       </div>
     </header>
   );
@@ -330,19 +318,42 @@ export function Timeline() {
         </div>
       </div>
 
-      {/* mobile: compact sticky chapter progress control */}
-      <div className="bg-paper/92 border-line sticky top-16 z-30 -mx-5 border-b px-5 py-2.5 backdrop-blur-sm sm:-mx-8 sm:px-8 lg:hidden">
-        <div className="flex items-center justify-between gap-3">
-          <p className="font-mono text-[10.5px] font-medium tracking-widest uppercase">
-            <span className="text-accent">CH {activeChapter.index}</span> · {activeChapter.label}
-          </p>
-          <p className="text-faint font-mono text-[10px] tracking-widest uppercase">{active.date}</p>
+      {/* mobile: sticky chapter progress + single scroll-driven preview */}
+      <div className="bg-paper/92 border-line sticky top-16 z-30 -mx-5 backdrop-blur-sm sm:-mx-8 lg:hidden">
+        <div className="border-b px-5 py-2.5 sm:px-8">
+          <div className="flex items-center justify-between gap-3">
+            <p className="font-mono text-[10.5px] font-medium tracking-widest uppercase">
+              <span className="text-accent">CH {activeChapter.index}</span> · {activeChapter.label}
+            </p>
+            <p className="text-faint font-mono text-[10px] tracking-widest uppercase">{active.date}</p>
+          </div>
+          <div className="bg-line mt-2 h-0.5 overflow-hidden rounded-full">
+            <motion.div
+              className="bg-accent h-full origin-left rounded-full"
+              style={{ scaleX: reduceMotion ? 1 : fill }}
+            />
+          </div>
         </div>
-        <div className="bg-line mt-2 h-0.5 overflow-hidden rounded-full">
-          <motion.div
-            className="bg-accent h-full origin-left rounded-full"
-            style={{ scaleX: reduceMotion ? 1 : fill }}
-          />
+        <div className="bg-surface-2 border-line border-t">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: reduceMotion ? 1 : 1.02 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+              className="h-44"
+            >
+              <StoryPreview preview={active.preview} media={active.media} />
+            </motion.div>
+          </AnimatePresence>
+          <div className="border-t px-5 py-2 sm:px-8">
+            <p className="text-faint font-mono text-[9.5px] font-medium tracking-widest uppercase">
+              {active.id} · {active.date}
+            </p>
+            <p className="mt-0.5 text-[13px] font-semibold">{active.title}</p>
+            <p className="text-faint font-mono text-[9px] tracking-widest uppercase">Artifact: {active.artifact}</p>
+          </div>
         </div>
       </div>
 
