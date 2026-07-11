@@ -16,7 +16,14 @@ export function StoryPreview({ preview, media }: { preview: PreviewKey; media?: 
   if (media) {
     return (
       <div className="relative h-full w-full">
-        <Image src={media.src} alt={media.alt} fill sizes="(max-width: 1024px) 100vw, 320px" className="object-cover" />
+        <Image
+          src={media.src}
+          alt={media.alt}
+          fill
+          loading="eager"
+          sizes="(max-width: 1024px) 100vw, 320px"
+          className="object-cover"
+        />
       </div>
     );
   }
