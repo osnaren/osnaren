@@ -11,23 +11,23 @@ import { benchModules } from '@/data/modules';
 /** Desktop instrument-field placement. The primary artifact (OSN-001) dominates
  *  the centre; the five service modules orbit it at varying depth and overlap. */
 const positions: Record<string, string> = {
-  'OSN-001': 'left-[26%] top-[15%] z-30 h-[53%] w-[46%]',
-  'OSN-002': 'left-[1%] top-[4%] z-10 h-[27%] w-[30%]',
-  'OSN-009': 'left-[0%] top-[58%] z-10 h-[27%] w-[30%]',
-  'OSN-011': 'right-[1%] top-[4%] z-10 h-[28%] w-[29%]',
-  'OSN-012': 'right-[0%] top-[57%] z-10 h-[28%] w-[30%]',
-  'OSN-013': 'left-[37%] top-[69%] z-20 h-[23%] w-[28%]',
+  'OSN-001': 'left-[30%] top-[19%] z-30 h-[45%] w-[40%]',
+  'OSN-002': 'left-[2%] top-[6%] z-10 h-[29%] w-[28%]',
+  'OSN-009': 'left-[2%] top-[57%] z-10 h-[28%] w-[28%]',
+  'OSN-011': 'right-[2%] top-[6%] z-10 h-[29%] w-[28%]',
+  'OSN-012': 'right-[2%] top-[57%] z-10 h-[28%] w-[28%]',
+  'OSN-013': 'left-[38%] top-[64%] z-20 h-[27%] w-[24%]',
 };
 
-const signalPaths = [
-  { id: 'OSN-002', d: 'M225 120 C295 120 265 210 340 210' },
-  { id: 'OSN-009', d: 'M218 415 C300 415 262 340 340 340' },
-  { id: 'OSN-011', d: 'M728 132 C650 132 692 210 630 210' },
-  { id: 'OSN-012', d: 'M730 408 C652 408 692 336 630 336' },
-  { id: 'OSN-013', d: 'M486 536 C486 476 486 452 486 412' },
-] as const;
-
-export function Workbench({ activeId, onActive }: { activeId: string; onActive: (id: string) => void }) {
+export function Workbench({
+  activeId,
+  onActive,
+  onEngagementChange,
+}: {
+  activeId: string;
+  onActive: (id: string) => void;
+  onEngagementChange?: (engaged: boolean) => void;
+}) {
   const benchRef = useRef<HTMLElement>(null);
   const mobileRailRef = useRef<HTMLDivElement>(null);
   const mobileFrameRef = useRef<number | null>(null);
@@ -55,6 +55,19 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
   const resetPointer = () => {
     pointerX.set(0.5);
     pointerY.set(0.5);
+  };
+
+  const handlePointerEnter = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType === 'mouse') onEngagementChange?.(true);
+  };
+
+  const handlePointerLeave = () => {
+    resetPointer();
+    onEngagementChange?.(false);
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) onEngagementChange?.(false);
   };
 
   useEffect(
@@ -94,14 +107,17 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
       ref={benchRef}
       aria-label="Living workbench modules"
       className="min-w-0"
+      onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
-      onPointerLeave={resetPointer}
+      onPointerLeave={handlePointerLeave}
+      onFocusCapture={() => onEngagementChange?.(true)}
+      onBlurCapture={handleBlur}
     >
       {/* ── mobile: swipeable snap rail with partial next-card preview ── */}
       <div
         ref={mobileRailRef}
         onScroll={handleMobileScroll}
-        className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 scrollbar-none [&::-webkit-scrollbar]:hidden lg:hidden"
+        className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 scrollbar-none [&::-webkit-scrollbar]:hidden min-[1360px]:hidden"
         role="list"
       >
         {benchModules.map((module, i) => (
@@ -122,7 +138,7 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
         ))}
       </div>
 
-      <div className="mt-2 flex items-center justify-center gap-2 lg:hidden" aria-label="Active module">
+      <div className="mt-2 flex items-center justify-center gap-2 min-[1360px]:hidden" aria-label="Active module">
         {benchModules.map((module) => (
           <button
             key={module.id}
@@ -142,7 +158,7 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
 
       {/* ── desktop: the instrument field ─────────────────────────────── */}
       <div
-        className="workbench-field border-line-strong bg-paper/62 relative hidden h-[min(68svh,690px)] min-h-152.5 overflow-hidden rounded-lg border shadow-[0_8px_0_var(--line)] lg:block xl:h-[min(72svh,750px)] xl:min-h-165"
+        className="workbench-field border-line-strong bg-paper/62 relative hidden h-[min(72svh,750px)] min-h-165 overflow-hidden rounded-lg border shadow-[0_8px_0_var(--line)] min-[1360px]:block"
         style={{ perspective: reduceMotion ? undefined : '1400px' }}
       >
         {/* column ruler */}
@@ -163,28 +179,6 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
             <span key={letter}>{letter}</span>
           ))}
         </div>
-
-        {/* signal paths connecting the orbit modules to the primary artifact */}
-        <svg viewBox="0 0 960 560" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-          {signalPaths.map((path) => {
-            const selected = activeId === path.id;
-            return (
-              <g key={path.id}>
-                <path d={path.d} fill="none" stroke="var(--line-strong)" strokeWidth="1.2" strokeDasharray="5 5" />
-                <motion.path
-                  d={path.d}
-                  fill="none"
-                  stroke={selected ? 'var(--accent)' : 'var(--ok)'}
-                  strokeWidth={selected ? 2.2 : 1.25}
-                  strokeLinecap="round"
-                  initial={false}
-                  animate={{ pathLength: selected ? 1 : 0.16, opacity: selected ? 1 : 0.22 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.4, ease: 'easeOut' }}
-                />
-              </g>
-            );
-          })}
-        </svg>
 
         <motion.div
           style={reduceMotion ? undefined : { x: layerX, y: layerY, rotateX, rotateY }}

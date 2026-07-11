@@ -140,10 +140,18 @@ main:has(> .home-launcher) {
   padding-bottom: 0 !important;
 }
 
-@media (min-width: 1024px) and (max-height: 800px) {
-  .workbench-field {
-    height: 540px !important;
-    min-height: 540px !important;
+@media (min-width: 1360px) {
+  .home-hero-grid {
+    transition:
+      grid-template-columns 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      padding-inline 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      column-gap 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-hero-grid[data-engaged='true'] {
+    grid-template-columns: minmax(340px, 0.62fr) minmax(0, 1.18fr);
+    padding-inline: 1.25rem;
+    column-gap: 1.25rem;
   }
 }
 
@@ -167,16 +175,6 @@ main:has(> .home-launcher) {
   border: 1px solid var(--line-strong);
   border-radius: 12px;
   box-shadow: 0 3px 0 var(--line);
-}
-
-/* travelling sun dot on the ShadySide module preview */
-@keyframes sun-travel {
-  from {
-    offset-distance: 0%;
-  }
-  to {
-    offset-distance: 100%;
-  }
 }
 
 /* artifact-scanner preview assembly cues (motion-safe, play on preview mount) */

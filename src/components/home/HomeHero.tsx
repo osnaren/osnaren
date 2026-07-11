@@ -34,6 +34,7 @@ const credibilityItems = [
 
 export function HomeHero() {
   const [activeId, setActiveId] = useState(DEFAULT_MODULE_ID);
+  const [benchEngaged, setBenchEngaged] = useState(false);
   const reduceMotion = useReducedMotion();
   const activeModule = benchModules.find((module) => module.id === activeId) ?? benchModules[0];
 
@@ -61,7 +62,10 @@ export function HomeHero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_82%_8%,color-mix(in_srgb,var(--accent)_9%,transparent),transparent_60%)]"
       />
 
-      <div className="relative mx-auto grid w-full max-w-[118rem] flex-1 items-center gap-7 px-5 py-7 sm:px-8 sm:py-9 lg:grid-cols-[minmax(380px,0.75fr)_minmax(0,1fr)] lg:gap-9 lg:py-7 xl:grid-cols-[minmax(440px,0.75fr)_minmax(0,1fr)] xl:gap-12 xl:px-12 2xl:px-16">
+      <div
+        className="home-hero-grid relative mx-auto grid w-full max-w-[118rem] flex-1 items-center gap-7 px-5 py-7 sm:px-8 sm:py-9 lg:grid-cols-[minmax(380px,0.75fr)_minmax(0,1fr)] lg:gap-9 lg:py-7 xl:grid-cols-[minmax(440px,0.75fr)_minmax(0,1fr)] xl:gap-12 xl:px-12 2xl:px-16"
+        data-engaged={benchEngaged || undefined}
+      >
         {/* ── identity column ─────────────────────────────────────────── */}
         <div className="flex min-w-0 flex-col">
           <motion.p
@@ -136,11 +140,11 @@ export function HomeHero() {
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.28, ease: 'easeOut' }}
           className="min-w-0"
         >
-          <div className="mb-3 lg:hidden">
+          <div className="mb-3 min-[1360px]:hidden">
             <ActiveReadout activeModule={activeModule} reduceMotion={Boolean(reduceMotion)} />
           </div>
-          <Workbench activeId={activeId} onActive={setActiveId} />
-          <div className="mt-3 hidden lg:block">
+          <Workbench activeId={activeId} onActive={setActiveId} onEngagementChange={setBenchEngaged} />
+          <div className="mt-3 hidden min-[1360px]:block">
             <ActiveReadout activeModule={activeModule} reduceMotion={Boolean(reduceMotion)} />
           </div>
         </motion.div>
