@@ -10,8 +10,11 @@ import { buildMailto, buildPlainText, isValidEmail, type ContactDraft } from '@/
 
 const REASONS = ['Role opportunity', 'Collaboration', 'Product conversation', 'Research', 'Something else'] as const;
 
+/** Pre-filled mailto for the direct channel link — subject + greeting. */
+const QUICK_MAILTO = `mailto:${site.email}?subject=${encodeURIComponent('Hello from your portfolio — ')}&body=${encodeURIComponent('Hi Naren,\r\n\r\n')}`;
+
 const CHANNELS: { label: string; value: string; href: string; copyable?: boolean }[] = [
-  { label: 'Email', value: site.email, href: `mailto:${site.email}`, copyable: true },
+  { label: 'Email', value: site.email, href: QUICK_MAILTO, copyable: true },
   { label: 'GitHub', value: 'github.com/osnaren', href: site.links.github },
   { label: 'LinkedIn', value: 'linkedin.com/in/osnaren', href: site.links.linkedin },
   { label: 'Kaggle', value: 'kaggle.com/obulisainaren', href: site.links.kaggle },
@@ -146,7 +149,14 @@ export function SignalComposer() {
     flashStatus('OPENING MAIL CHANNEL');
     setComposedOnce(true);
     setLive('Opening your mail app with the message prepared.');
-    window.location.href = buildMailto(draft);
+    // Use a temporary anchor element — window.location.href is blocked by some browsers for mailto:
+    const mailtoUrl = buildMailto(draft);
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const displayStatus = transientStatus ?? signal.status;
