@@ -12,12 +12,8 @@ export interface BenchModule {
   /** copy for the fixed-size inspector readout in the Home hero */
   contextTitle: string;
   contextDetail: string;
-  /** grid span on desktop */
-  wide?: boolean;
   /** dark inverted card */
   inverted?: boolean;
-  /** resting rotation in degrees, straightens on hover */
-  tilt: number;
 }
 
 export const benchModules: BenchModule[] = [
@@ -32,8 +28,6 @@ export const benchModules: BenchModule[] = [
     visual: 'route',
     contextTitle: 'SHADYSIDE · LIVE PRODUCT',
     contextDetail: 'ROUTE INTELLIGENCE / SUN-AWARE TRAVEL',
-    wide: true,
-    tilt: -0.6,
   },
   {
     id: 'OSN-002',
@@ -46,7 +40,6 @@ export const benchModules: BenchModule[] = [
     visual: 'flames',
     contextTitle: 'THEFLAMES · PLAYFUL EXPERIMENT',
     contextDetail: 'NOSTALGIA / SHIPPED WITH CARE',
-    tilt: 0.8,
   },
   {
     // ids match the artifact index (OSN-009 = Commerce Frontend Systems)
@@ -60,7 +53,6 @@ export const benchModules: BenchModule[] = [
     visual: 'commerce',
     contextTitle: 'WORK · FRONTEND COMMERCE SYSTEMS',
     contextDetail: 'ACCESSIBILITY / PERFORMANCE / PRODUCT UX',
-    tilt: -0.7,
   },
   {
     id: 'OSN-011',
@@ -73,7 +65,6 @@ export const benchModules: BenchModule[] = [
     visual: 'lab',
     contextTitle: 'LAB · INTERACTION STUDIES',
     contextDetail: 'MOTION / PROTOTYPES / SMALL TESTS',
-    tilt: 0.5,
   },
   {
     // 012/013 are reserved for site modules — the artifact index tops out at 011
@@ -87,7 +78,6 @@ export const benchModules: BenchModule[] = [
     visual: 'story',
     contextTitle: 'STORY · FIELD NOTES',
     contextDetail: 'WORK / PRODUCTS / RESEARCH / LIFE',
-    tilt: -0.4,
   },
   {
     id: 'OSN-013',
@@ -101,6 +91,5 @@ export const benchModules: BenchModule[] = [
     contextTitle: 'RESUME · RECRUITER FAST PATH',
     contextDetail: 'EXPERIENCE / PUBLICATIONS / SKILLS',
     inverted: true,
-    tilt: 0.6,
   },
 ];

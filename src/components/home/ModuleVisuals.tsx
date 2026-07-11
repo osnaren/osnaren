@@ -1,29 +1,30 @@
 import type { ModuleVisual } from '@/data/modules';
 
-const ROUTE_PATH = 'M10 58 C80 50 120 22 180 26 S270 44 292 18';
+const ROUTE_PATH = 'M10 96 C80 86 120 38 180 44 S270 72 292 28';
 
 /** ShadySide — route line, travelling sun, shade band, blunt answer. */
 function RouteVisual() {
   return (
-    <div className="bg-surface-2 relative flex-1 overflow-hidden rounded-lg">
-      <svg viewBox="0 0 300 72" className="h-full w-full" aria-hidden="true" preserveAspectRatio="none">
+    <div className="bg-surface-2 relative aspect-5/2 w-full self-center overflow-hidden rounded-lg">
+      <svg viewBox="0 0 300 120" className="h-full w-full" aria-hidden="true">
         <path
-          d="M10 62 C80 54 120 26 180 30 S270 48 292 22"
+          d="M10 102 C80 92 120 44 180 50 S270 78 292 34"
           fill="none"
           stroke="var(--ok)"
           strokeWidth="5"
           opacity="0.35"
         />
         <path d={ROUTE_PATH} fill="none" stroke="var(--ink)" strokeWidth="2" />
-        <circle cx="10" cy="58" r="4" fill="var(--ink)" />
-        <circle cx="292" cy="18" r="4" fill="var(--accent)" />
+        <circle cx="10" cy="96" r="4" fill="var(--ink)" />
+        <circle cx="292" cy="28" r="4" fill="var(--accent)" />
+        <circle
+          cx="246"
+          cy="58"
+          r="7"
+          fill="var(--sun)"
+          className="transition-transform duration-500 ease-out group-hover:translate-x-1.5 group-focus-visible:translate-x-1.5 motion-reduce:transition-none"
+        />
       </svg>
-      {/* sun dot rides the route on hover (motion-safe only) */}
-      <span
-        aria-hidden="true"
-        className="absolute top-0 left-0 size-3.5 rounded-full motion-safe:group-hover:animate-[sun-travel_1.6s_ease-in-out_forwards] motion-safe:group-focus-visible:animate-[sun-travel_1.6s_ease-in-out_forwards]"
-        style={{ background: 'var(--sun)', offsetPath: `path('${ROUTE_PATH}')`, offsetDistance: '82%' }}
-      />
       <span className="bg-ink text-paper absolute bottom-2 left-2.5 rounded px-2 py-1 font-mono text-[9px] font-medium tracking-[0.08em]">
         SIT LEFT · SHADE 82% OF ROUTE
       </span>
@@ -35,11 +36,14 @@ function RouteVisual() {
 function FlamesVisual() {
   const letters = ['F', 'L', 'A', 'M', 'E', 'S'];
   return (
-    <div className="flex min-w-0 flex-1 items-center justify-center gap-1 lg:justify-start" aria-hidden="true">
+    <div
+      className="flex min-w-0 flex-1 items-center justify-center gap-1 min-[1360px]:justify-start"
+      aria-hidden="true"
+    >
       {letters.map((letter, i) => (
         <span
           key={letter}
-          className={`grid size-7 shrink-0 place-items-center rounded-md border font-mono text-[11px] font-medium transition-transform group-hover:-translate-y-0.5 lg:size-6 lg:text-[10px] ${
+          className={`grid size-7 shrink-0 place-items-center rounded-md border font-mono text-[11px] font-medium transition-transform group-hover:-translate-y-0.5 min-[1360px]:size-6 min-[1360px]:text-[10px] ${
             i === 0 ? 'border-accent bg-accent text-white' : 'border-line-strong bg-surface-2 text-muted'
           }`}
           style={{ transitionDelay: `${i * 40}ms` }}
@@ -71,7 +75,7 @@ function CommerceVisual() {
 function LabVisual() {
   const tiles = ['well', 'accent', 'well', 'ink', 'ok', 'well', 'sun', 'well'] as const;
   return (
-    <div className="grid flex-1 grid-cols-4 content-center gap-1.5" aria-hidden="true">
+    <div className="mx-auto grid w-full max-w-44 flex-1 grid-cols-4 content-center gap-1.5" aria-hidden="true">
       {tiles.map((tone, i) => (
         <span
           key={i}
