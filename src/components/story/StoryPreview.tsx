@@ -162,6 +162,162 @@ export function StoryPreview({ preview, media }: { preview: PreviewKey; media?: 
         </svg>
       );
 
+    case 'language':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <path d="M34 118 H206" stroke="var(--line-strong)" strokeWidth="1.5" />
+          {Array.from({ length: 8 }).map((_, i) => (
+            <g key={i}>
+              <rect
+                x={36 + i * 21}
+                y={106 - i * 9}
+                width="15"
+                height={12 + i * 9}
+                rx="2"
+                fill={i === 7 ? 'var(--accent)' : i > 4 ? 'var(--ok)' : 'var(--well)'}
+              />
+              <text
+                x={43.5 + i * 21}
+                y="132"
+                textAnchor="middle"
+                fill="var(--faint)"
+                fontSize="7"
+                fontFamily="monospace"
+              >
+                {i + 1}
+              </text>
+            </g>
+          ))}
+          <circle cx="199" cy="32" r="10" fill="none" stroke="var(--accent)" strokeWidth="2" />
+          <path d="M194 32 L198 36 L205 27" fill="none" stroke="var(--accent)" strokeWidth="2" />
+        </svg>
+      );
+
+    case 'sapling':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <path d="M28 122 H212" stroke="var(--line-strong)" strokeWidth="2" />
+          {[62, 120, 178].map((x, i) => (
+            <g key={x}>
+              <line x1={x} y1="122" x2={x} y2={72 - i * 8} stroke="var(--ok)" strokeWidth="2.5" />
+              <path
+                d={`M${x} ${96 - i * 8} C${x - 20} ${92 - i * 8} ${x - 24} ${76 - i * 8} ${x - 22} ${68 - i * 8} C${x - 5} ${70 - i * 8} ${x} ${82 - i * 8} ${x} ${96 - i * 8} Z`}
+                fill="var(--ok)"
+                opacity="0.52"
+              />
+              <path
+                d={`M${x} ${86 - i * 8} C${x + 18} ${82 - i * 8} ${x + 24} ${66 - i * 8} ${x + 21} ${58 - i * 8} C${x + 6} ${61 - i * 8} ${x} ${72 - i * 8} ${x} ${86 - i * 8} Z`}
+                fill="var(--ok)"
+                opacity="0.78"
+              />
+            </g>
+          ))}
+          <rect x="82" y="20" width="76" height="24" rx="4" fill="var(--surface)" stroke="var(--line-strong)" />
+          <text x="120" y="35" textAnchor="middle" fill="var(--accent)" fontSize="10" fontFamily="monospace">
+            1,000+ SAPLINGS
+          </text>
+        </svg>
+      );
+
+    case 'mentorship':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <g stroke="var(--line-strong)" strokeWidth="1.5">
+            {[48, 96, 144, 192].map((x, i) => (
+              <path key={x} d={`M${i < 2 ? 88 : 152} 48 C${i < 2 ? 88 : 152} 76 ${x} 72 ${x} 106`} fill="none" />
+            ))}
+          </g>
+          {[88, 152].map((x) => (
+            <circle key={x} cx={x} cy="42" r="13" fill="var(--accent)" opacity="0.82" />
+          ))}
+          {[48, 96, 144, 192].map((x) => (
+            <circle key={x} cx={x} cy="110" r="10" fill="var(--ok)" opacity="0.68" />
+          ))}
+          <path d="M101 42 H139" stroke="var(--ink)" strokeWidth="2" strokeDasharray="4 4" />
+        </svg>
+      );
+
+    case 'coordination':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <rect x="94" y="55" width="52" height="40" rx="5" fill="var(--accent)" opacity="0.82" />
+          {[
+            { x: 24, y: 26 },
+            { x: 24, y: 100 },
+            { x: 172, y: 26 },
+            { x: 172, y: 100 },
+          ].map((node) => (
+            <g key={`${node.x}-${node.y}`}>
+              <path
+                d={`M${node.x < 100 ? node.x + 44 : node.x} ${node.y + 12} L${node.x < 100 ? 94 : 146} 75`}
+                stroke="var(--line-strong)"
+                strokeWidth="1.5"
+              />
+              <rect x={node.x} y={node.y} width="44" height="24" rx="4" fill="var(--well)" />
+            </g>
+          ))}
+          <circle cx="120" cy="75" r="5" fill="var(--surface)" />
+        </svg>
+      );
+
+    case 'network':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <circle cx="120" cy="75" r="22" fill="var(--accent)" opacity="0.82" />
+          {[
+            { x: 182, y: 96 },
+            { x: 138, y: 123 },
+            { x: 81, y: 116 },
+            { x: 52, y: 79 },
+            { x: 72, y: 40 },
+            { x: 126, y: 25 },
+          ].map((node) => (
+            <g key={`${node.x}-${node.y}`}>
+              <line x1="120" y1="75" x2={node.x} y2={node.y} stroke="var(--line-strong)" strokeWidth="1.5" />
+              <circle cx={node.x} cy={node.y} r="9" fill="var(--ok)" opacity="0.7" />
+            </g>
+          ))}
+          <circle cx="120" cy="75" r="6" fill="var(--surface)" />
+        </svg>
+      );
+
+    case 'service':
+      return (
+        <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
+          <circle
+            cx="120"
+            cy="75"
+            r="48"
+            fill="none"
+            stroke="var(--line-strong)"
+            strokeWidth="1.5"
+            strokeDasharray="5 5"
+          />
+          {[
+            { x: 168, y: 75 },
+            { x: 144, y: 117 },
+            { x: 96, y: 117 },
+            { x: 72, y: 75 },
+            { x: 96, y: 33 },
+            { x: 144, y: 33 },
+          ].map((node, i) => (
+            <circle
+              key={`${node.x}-${node.y}`}
+              cx={node.x}
+              cy={node.y}
+              r="8"
+              fill={i % 2 ? 'var(--ok)' : 'var(--accent)'}
+              opacity="0.75"
+            />
+          ))}
+          <path
+            d="M96 76 C106 62 114 64 120 72 C126 64 134 62 144 76 C136 92 124 101 120 104 C116 101 104 92 96 76 Z"
+            fill="var(--sun)"
+            opacity="0.72"
+          />
+        </svg>
+      );
+
     case 'school':
       return (
         <svg viewBox="0 0 240 150" className={common} aria-hidden="true">
