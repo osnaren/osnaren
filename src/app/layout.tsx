@@ -52,6 +52,13 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon/web-app-manifest-192x192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/favicon/web-app-manifest-192x192.png',
+  },
 };
 
 export const viewport: Viewport = {
