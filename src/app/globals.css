@@ -134,6 +134,19 @@
   }
 }
 
+/* Home is the launcher itself, so it hands directly into the subsurface footer. */
+main:has(> .home-launcher) {
+  min-height: calc(100svh - 65px);
+  padding-bottom: 0 !important;
+}
+
+@media (min-width: 1024px) and (max-height: 800px) {
+  .workbench-field {
+    height: 540px !important;
+    min-height: 540px !important;
+  }
+}
+
 @utility bg-grid {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),

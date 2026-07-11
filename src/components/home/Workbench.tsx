@@ -16,7 +16,7 @@ const positions: Record<string, string> = {
   'OSN-009': 'left-[0%] top-[58%] z-10 h-[27%] w-[30%]',
   'OSN-011': 'right-[1%] top-[4%] z-10 h-[28%] w-[29%]',
   'OSN-012': 'right-[0%] top-[57%] z-10 h-[28%] w-[30%]',
-  'OSN-013': 'left-[37%] top-[74%] z-20 h-[23%] w-[28%]',
+  'OSN-013': 'left-[37%] top-[69%] z-20 h-[23%] w-[28%]',
 };
 
 const signalPaths = [
@@ -142,7 +142,7 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
 
       {/* ── desktop: the instrument field ─────────────────────────────── */}
       <div
-        className="border-line-strong bg-paper/62 relative hidden h-152 overflow-hidden rounded-lg border shadow-[0_8px_0_var(--line)] lg:block xl:h-168"
+        className="workbench-field border-line-strong bg-paper/62 relative hidden h-[min(68svh,690px)] min-h-152.5 overflow-hidden rounded-lg border shadow-[0_8px_0_var(--line)] lg:block xl:h-[min(72svh,750px)] xl:min-h-165"
         style={{ perspective: reduceMotion ? undefined : '1400px' }}
       >
         {/* column ruler */}
@@ -198,7 +198,6 @@ export function Workbench({ activeId, onActive }: { activeId: string; onActive: 
                 active={activeId === module.id}
                 primary={module.id === 'OSN-001'}
                 dimmed={activeId !== module.id}
-                draggable
                 onActive={onActive}
               />
             </div>
