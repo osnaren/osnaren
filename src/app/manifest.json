@@ -1,27 +1,21 @@
 {
-  "name": "osnaren.lab — Obuli Sai Naren",
-  "short_name": "osnaren",
-  "description": "Frontend engineer building useful web products, ecommerce experiences, and product experiments.",
+  "name": "osnaren",
+  "short_name": "osn",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
-    {
-      "src": "/favicon/web-app-manifest-192x192.png",
+      "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/favicon/web-app-manifest-512x512.png",
+      "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#f7f6f2",
-  "background_color": "#f7f6f2",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone"
 }
