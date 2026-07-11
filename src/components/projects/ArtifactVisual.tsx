@@ -179,6 +179,170 @@ export function ArtifactVisual({ visual }: { visual: VisualKey }) {
         </svg>
       );
 
+    case 'chat':
+      return (
+        <svg viewBox="0 0 300 110" className="h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <path
+            d="M36 27 H150 Q160 27 160 37 V57 Q160 67 150 67 H76 L56 82 V67 H36 Q26 67 26 57 V37 Q26 27 36 27Z"
+            fill="var(--well)"
+          />
+          <path
+            d="M150 47 H264 Q274 47 274 57 V77 Q274 87 264 87 H244 V100 L226 87 H150 Q140 87 140 77 V57 Q140 47 150 47Z"
+            fill="var(--ink)"
+          />
+          {[48, 70, 92].map((x, index) => (
+            <circle key={x} cx={x} cy="47" r="4" fill={index === 1 ? 'var(--accent)' : 'var(--faint)'} opacity="0.9" />
+          ))}
+          <line
+            x1="162"
+            y1="64"
+            x2="246"
+            y2="64"
+            stroke="var(--paper)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            opacity="0.8"
+          />
+          <line
+            x1="162"
+            y1="75"
+            x2="220"
+            y2="75"
+            stroke="var(--paper)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            opacity="0.45"
+          />
+          <circle cx="260" cy="24" r="5" fill="var(--ok)" />
+          <circle
+            cx="260"
+            cy="24"
+            r="9"
+            fill="none"
+            stroke="var(--ok)"
+            opacity="0.35"
+            className="motion-safe:animate-ping"
+          />
+        </svg>
+      );
+
+    case 'weather':
+      return (
+        <svg viewBox="0 0 300 110" className="h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <circle cx="72" cy="44" r="22" fill="var(--sun)" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+            const radians = (angle * Math.PI) / 180;
+            return (
+              <line
+                key={angle}
+                x1={72 + Math.cos(radians) * 29}
+                y1={44 + Math.sin(radians) * 29}
+                x2={72 + Math.cos(radians) * 36}
+                y2={44 + Math.sin(radians) * 36}
+                stroke="var(--sun)"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            );
+          })}
+          <path
+            d="M62 86 H148 C160 86 168 78 168 68 C168 57 159 49 148 49 C144 34 131 24 115 24 C96 24 81 38 80 57 C68 58 58 66 58 76 C58 80 59 83 62 86Z"
+            fill="var(--surface)"
+            stroke="var(--line-strong)"
+            strokeWidth="1.5"
+          />
+          <text x="194" y="47" fontFamily="var(--font-mono)" fontSize="25" fontWeight="600" fill="var(--ink)">
+            27°
+          </text>
+          <text x="194" y="66" fontFamily="var(--font-mono)" fontSize="8" fill="var(--faint)">
+            KOLKATA / 14:20
+          </text>
+          <line x1="194" y1="79" x2="272" y2="79" stroke="var(--ok)" strokeWidth="4" strokeLinecap="round" />
+          <line x1="194" y1="90" x2="244" y2="90" stroke="var(--well)" strokeWidth="4" strokeLinecap="round" />
+        </svg>
+      );
+
+    case 'numerology': {
+      const values = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      return (
+        <svg viewBox="0 0 300 110" className="h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          {values.map((value, index) => {
+            const col = index % 3;
+            const row = Math.floor(index / 3);
+            const active = value === '5';
+            return (
+              <g key={value}>
+                <rect
+                  x={22 + col * 34}
+                  y={10 + row * 30}
+                  width="26"
+                  height="24"
+                  rx="4"
+                  fill={active ? 'var(--accent)' : 'var(--well)'}
+                />
+                <text
+                  x={35 + col * 34}
+                  y={26 + row * 30}
+                  textAnchor="middle"
+                  fontFamily="var(--font-mono)"
+                  fontSize="10"
+                  fill={active ? 'var(--paper)' : 'var(--faint)'}
+                >
+                  {value}
+                </text>
+              </g>
+            );
+          })}
+          <path d="M132 55 H164" stroke="var(--line-strong)" strokeWidth="1.5" strokeDasharray="3 3" />
+          <path d="M157 49 L164 55 L157 61" fill="none" stroke="var(--line-strong)" strokeWidth="1.5" />
+          <circle cx="210" cy="55" r="34" fill="var(--surface)" stroke="var(--line-strong)" strokeWidth="1.5" />
+          <circle cx="210" cy="55" r="24" fill="none" stroke="var(--sun)" strokeWidth="2" strokeDasharray="2 4" />
+          <text
+            x="210"
+            y="64"
+            textAnchor="middle"
+            fontFamily="var(--font-mono)"
+            fontSize="29"
+            fontWeight="600"
+            fill="var(--ink)"
+          >
+            5
+          </text>
+          <text x="210" y="103" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--faint)">
+            MERCURY
+          </text>
+        </svg>
+      );
+    }
+
+    case 'timer':
+      return (
+        <svg viewBox="0 0 300 110" className="h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <circle cx="70" cy="55" r="39" fill="none" stroke="var(--well)" strokeWidth="8" />
+          <circle
+            cx="70"
+            cy="55"
+            r="39"
+            fill="none"
+            stroke="var(--accent)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray="168 245"
+            transform="rotate(-90 70 55)"
+          />
+          <line x1="70" y1="55" x2="70" y2="31" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="70" y1="55" x2="87" y2="64" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="70" cy="55" r="4" fill="var(--ink)" />
+          <text x="135" y="27" fontFamily="var(--font-mono)" fontSize="8" fill="var(--faint)">
+            CURRENT TASK
+          </text>
+          <rect x="135" y="36" width="130" height="13" rx="4" fill="var(--ink)" />
+          <rect x="135" y="59" width="94" height="8" rx="4" fill="var(--well)" />
+          <rect x="135" y="76" width="116" height="8" rx="4" fill="var(--well)" />
+          <rect x="135" y="93" width="72" height="8" rx="4" fill="var(--ok)" opacity="0.8" />
+        </svg>
+      );
+
     case 'lab':
     default: {
       const tones = ['well', 'accent', 'well', 'ink', 'ok', 'well', 'sun', 'well'] as const;
