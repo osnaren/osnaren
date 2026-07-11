@@ -89,7 +89,7 @@ export function ArtifactPreview({
       </div>
 
       {/* stage: framed visual with coordinate ticks + scan sweep */}
-      <div className="bg-surface-2 relative h-52 overflow-hidden">
+      <div className="bg-surface-2 relative h-56 overflow-hidden">
         <div
           className="text-faint pointer-events-none absolute inset-x-3 top-2 flex justify-between font-mono text-[7px]"
           aria-hidden="true"
@@ -130,10 +130,10 @@ export function ArtifactPreview({
       </div>
 
       {/* metadata + CTA */}
-      <div className="p-4">
+      <div className="p-4 pt-3.5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h2 className="text-[16px] font-semibold tracking-[-0.01em]">{artifact.name}</h2>
+            <h2 className="text-[16px] font-semibold tracking-[-0.01em] leading-snug">{artifact.name}</h2>
             <p className="text-faint mt-1 font-mono text-[9.5px] tracking-widest uppercase">
               {artifact.typeLabel} · {artifact.year}
             </p>
@@ -141,10 +141,10 @@ export function ArtifactPreview({
           <StatusBadge tone={artifact.statusTone}>{artifact.status}</StatusBadge>
         </div>
 
-        <p className="text-muted mt-3 text-[12.5px] leading-relaxed">{artifact.problem}.</p>
+        <p className="text-muted mt-2.5 text-[12.5px] leading-relaxed">{artifact.problem}.</p>
 
-        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags">
-          {artifact.tags.slice(0, 3).map((tag) => (
+        <ul className="mt-2.5 flex flex-wrap gap-1.5" aria-label="Tags">
+          {artifact.tags.slice(0, 4).map((tag) => (
             <li
               key={tag}
               className="border-line text-faint rounded-full border px-2 py-0.5 font-mono text-[9px] font-medium tracking-[0.06em] uppercase"
@@ -154,7 +154,7 @@ export function ArtifactPreview({
           ))}
         </ul>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2.5">
+        <div className="mt-3.5 flex flex-wrap items-center gap-2">
           {primary &&
             (primary.external ? (
               <a

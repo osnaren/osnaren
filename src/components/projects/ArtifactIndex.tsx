@@ -188,6 +188,7 @@ export function ArtifactIndex() {
   }, []);
 
   const rowRefs = useRef<Record<string, HTMLElement | null>>({});
+  const listRef = useRef<HTMLOListElement>(null);
   const registerRef = useCallback((slug: string, el: HTMLElement | null) => {
     rowRefs.current[slug] = el;
   }, []);
@@ -238,6 +239,11 @@ export function ArtifactIndex() {
       setActiveSlug(visible[0].slug);
     }
   }, [visible, activeSlug]);
+
+  // scroll to top of list when filter or query changes
+  useEffect(() => {
+    listRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }, [filter, query, reduceMotion]);
 
   // live refs so the keyboard navigator never reads stale state
   const navRef = useRef({ visible, activeSlug });
@@ -299,7 +305,7 @@ export function ArtifactIndex() {
       {/* control rail — sticky beneath the site header */}
       <div className="bg-paper/95 border-line sticky top-16 z-30 -mx-5 border-b px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="-mx-5 overflow-x-auto px-5 lg:mx-0 lg:overflow-visible lg:px-0">
+          <div className="-mx-5 overflow-x-auto p-5 pt-0 lg:mx-0 lg:overflow-visible lg:px-0">
             <div role="group" aria-label="Filter artifacts by type" className="flex w-max gap-2 lg:w-auto lg:flex-wrap">
               {artifactFilters.map((f) => {
                 const isActive = filter === f.key;
@@ -377,7 +383,7 @@ export function ArtifactIndex() {
       <div className="grid gap-8 pt-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10">
         <div className="min-h-75">
           <LayoutGroup>
-            <ol className="border-line list-none border-t">
+            <ol ref={listRef} className="border-line list-none border-t">
               <AnimatePresence mode="popLayout" initial={false}>
                 {visible.map((artifact) => (
                   <ArtifactRow
@@ -404,6 +410,25 @@ export function ArtifactIndex() {
               animate={{ opacity: 1 }}
               className="border-line-strong text-faint mt-6 grid place-items-center gap-3 rounded-xl border-[1.5px] border-dashed px-6 py-16 text-center"
             >
+              {' '}
+              {/* scanner empty state icon */}
+              <svg viewBox="0 0 80 80" className="mb-1 h-16 w-16 opacity-30" aria-hidden="true">
+                <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <circle
+                  cx="40"
+                  cy="40"
+                  r="24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeDasharray="3 3"
+                />
+                <circle cx="40" cy="40" r="4" fill="currentColor" />
+                <line x1="40" y1="4" x2="40" y2="16" stroke="currentColor" strokeWidth="1" />
+                <line x1="40" y1="64" x2="40" y2="76" stroke="currentColor" strokeWidth="1" />
+                <line x1="4" y1="40" x2="16" y2="40" stroke="currentColor" strokeWidth="1" />
+                <line x1="64" y1="40" x2="76" y2="40" stroke="currentColor" strokeWidth="1" />
+              </svg>{' '}
               <p className="font-mono text-[11px] tracking-widest uppercase">No artifacts match this scan.</p>
               {query.trim() && <p className="text-[13px]">Nothing indexed under “{query.trim()}”.</p>}
               <button
@@ -420,7 +445,7 @@ export function ArtifactIndex() {
         {/* right: living preview stage */}
         {activeArtifact && (
           <aside className="hidden lg:block" aria-label="Artifact preview">
-            <div className="sticky top-32">
+            <div className="sticky top-60">
               <ArtifactPreview
                 artifact={activeArtifact}
                 position={activeIndex + 1}
@@ -431,7 +456,7 @@ export function ArtifactIndex() {
                 canNext={activeIndex < visible.length - 1}
               />
               <p className="text-faint mt-3 px-1 font-mono text-[9px] leading-4 tracking-[0.08em] uppercase">
-                Previews are designed schematics unless a real, public-safe artifact exists. Use ← / → to scan.
+                Previews are designed schematics. Use ← / → to scan.
               </p>
             </div>
           </aside>

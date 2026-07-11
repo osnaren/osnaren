@@ -483,7 +483,7 @@ export function Timeline() {
             </div>
 
             <p className="text-faint mt-4 px-1 font-mono text-[9px] leading-4 tracking-[0.08em] uppercase">
-              Previews are designed schematics unless a real, public-safe artifact exists.
+              Previews are designed schematics.
             </p>
           </div>
         </aside>
