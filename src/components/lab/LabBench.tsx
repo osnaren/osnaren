@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
@@ -191,7 +192,7 @@ function OpenBench({
         </aside>
       </div>
 
-      {/* navigator */}
+      {/* navigator — filtered to current view */}
       <div className="border-line relative border-t px-4 py-3 sm:px-5">
         <p className="text-faint mb-2 font-mono text-[9px] tracking-widest uppercase">Other modules</p>
         <div className="flex flex-wrap gap-1.5">
@@ -220,13 +221,19 @@ function OpenBench({
 
 export function LabBench() {
   const reduceMotion = useReducedMotion();
-  const [filter, setFilter] = useState<FilterKey>('all');
-  const [openId, setOpenId] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // sync state with URL search params
+  const [filter, setFilter] = useState<FilterKey>((searchParams.get('filter') as FilterKey) || 'all');
+  const [openId, setOpenId] = useState<string | null>(searchParams.get('exp') || null);
   const [inspectId, setInspectId] = useState<string | null>(null);
   const [event, setEvent] = useState<string | null>(null);
 
   const eventTimer = useRef<number | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const benchRef = useRef<HTMLDivElement>(null);
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const categories = useMemo(() => availableCategories(), []);
@@ -237,10 +244,95 @@ export function LabBench() {
 
   const open = openId ? (labExperiments.find((e) => e.id === openId) ?? null) : null;
 
+  // --- URL sync helpers ---
+  const pushExpToUrl = useCallback(
+    (id: string | null) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (id) {
+        params.set('exp', id);
+      } else {
+        params.delete('exp');
+      }
+      const qs = params.toString();
+      router.replace(`${pathname}${qs ? `?${qs}` : ''}`, { scroll: false });
+    },
+    [pathname, router, searchParams]
+  );
+
+  const pushFilterToUrl = useCallback(
+    (key: FilterKey) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (key === 'all') {
+        params.delete('filter');
+      } else {
+        params.set('filter', key);
+      }
+      const qs = params.toString();
+      router.replace(`${pathname}${qs ? `?${qs}` : ''}`, { scroll: false });
+    },
+    [pathname, router, searchParams]
+  );
+
+  // --- open / close with URL sync + history ---
+  const handleOpen = useCallback(
+    (id: string) => {
+      setOpenId(id);
+      pushExpToUrl(id);
+    },
+    [pushExpToUrl]
+  );
+
+  const handleClose = useCallback(() => {
+    const id = openId;
+    setOpenId(null);
+    pushExpToUrl(null);
+    if (id) window.requestAnimationFrame(() => triggerRefs.current[id]?.focus());
+  }, [openId, pushExpToUrl]);
+
+  // handle back/forward browser navigation
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const exp = params.get('exp');
+      const filt = (params.get('filter') as FilterKey) || 'all';
+      setOpenId(exp);
+      setFilter(filt);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  // scroll bench panel into view after React renders it
+  useEffect(() => {
+    if (open) {
+      // two rAFs: first lets React commit, second lets layout settle
+      // requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        benchRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        // });
+      });
+    }
+  }, [open, reduceMotion]);
+
+  // Escape key closes the bench
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && openId) {
+        event.preventDefault();
+        handleClose();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [openId, handleClose]);
+
   // if a filter change hides the open experiment, return to the index
   useEffect(() => {
-    if (openId && !visible.some((e) => e.id === openId)) setOpenId(null);
-  }, [visible, openId]);
+    if (openId && !visible.some((e) => e.id === openId)) {
+      setOpenId(null);
+      pushExpToUrl(null);
+    }
+  }, [visible, openId, pushExpToUrl]);
 
   // move focus into the bench on open; restore to the trigger on close
   useEffect(() => {
@@ -260,10 +352,9 @@ export function LabBench() {
     eventTimer.current = window.setTimeout(() => setEvent(null), 1500);
   };
 
-  const handleClose = () => {
-    const id = openId;
-    setOpenId(null);
-    if (id) window.requestAnimationFrame(() => triggerRefs.current[id]?.focus());
+  const handleFilterChange = (key: FilterKey) => {
+    setFilter(key);
+    pushFilterToUrl(key);
   };
 
   const statusText = open
@@ -277,9 +368,9 @@ export function LabBench() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
-      {/* control rail: filters + lab status */}
-      <div className="border-line -mx-5 flex flex-col gap-3 border-b px-5 pb-4 sm:mx-0 sm:flex-row sm:items-center sm:justify-between sm:px-0">
-        <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0">
+      {/* control rail: filters + lab status — sticky beneath site header */}
+      <div className="bg-paper/95 border-line sticky top-16 z-30 -mx-5 border-b px-5 py-3 backdrop-blur-sm sm:mx-0 sm:border-b sm:px-0">
+        <div className="-mx-5 overflow-x-auto p-5 pt-0 sm:mx-0 sm:overflow-visible sm:px-0">
           <div
             role="group"
             aria-label="Filter experiments by category"
@@ -292,7 +383,7 @@ export function LabBench() {
                   key={category.key}
                   type="button"
                   aria-pressed={active}
-                  onClick={() => setFilter(category.key)}
+                  onClick={() => handleFilterChange(category.key)}
                   className={`relative rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
                     active ? 'border-ink text-paper' : 'border-line text-muted hover:border-line-strong hover:text-ink'
                   }`}
@@ -316,7 +407,7 @@ export function LabBench() {
       </div>
 
       {/* index ↔ open bench */}
-      <div className="pt-8">
+      <div ref={benchRef} className="pt-8">
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
             <motion.div key="bench">
@@ -324,7 +415,10 @@ export function LabBench() {
                 experiment={open}
                 siblings={visible}
                 onClose={handleClose}
-                onSelect={(id) => setOpenId(id)}
+                onSelect={(id) => {
+                  setOpenId(id);
+                  pushExpToUrl(id);
+                }}
                 onEvent={pushEvent}
                 headingRef={headingRef}
               />
@@ -342,7 +436,7 @@ export function LabBench() {
                 <ExperimentCard
                   experiment={featured}
                   featured
-                  onOpen={setOpenId}
+                  onOpen={handleOpen}
                   onInspect={setInspectId}
                   registerTrigger={(id, el) => (triggerRefs.current[id] = el)}
                 />
@@ -353,7 +447,7 @@ export function LabBench() {
                     <ExperimentCard
                       key={experiment.id}
                       experiment={experiment}
-                      onOpen={setOpenId}
+                      onOpen={handleOpen}
                       onInspect={setInspectId}
                       registerTrigger={(id, el) => (triggerRefs.current[id] = el)}
                     />
