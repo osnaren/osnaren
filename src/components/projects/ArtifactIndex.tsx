@@ -182,6 +182,11 @@ export function ArtifactIndex() {
   const [openSlug, setOpenSlug] = useState<string | null>('shadyside');
   const [activeSlug, setActiveSlug] = useState('shadyside');
 
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('filter');
+    if (artifactFilters.some((item) => item.key === requested)) setFilter(requested as ArtifactFilterKey);
+  }, []);
+
   const rowRefs = useRef<Record<string, HTMLElement | null>>({});
   const registerRef = useCallback((slug: string, el: HTMLElement | null) => {
     rowRefs.current[slug] = el;
