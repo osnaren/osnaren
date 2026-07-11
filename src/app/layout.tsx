@@ -1,7 +1,8 @@
-import { IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
+import { Coda, IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { OrbitalPreloader } from '@/components/layout/OrbitalPreloader';
 import { site } from '@/data/site';
 
 import type { Metadata, Viewport } from 'next';
@@ -16,6 +17,12 @@ const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
   subsets: ['latin'],
   weight: ['400', '500'],
+});
+
+const coda = Coda({
+  variable: '--font-coda',
+  subsets: ['latin'],
+  weight: ['400', '800'],
 });
 
 export const metadata: Metadata = {
@@ -80,11 +87,14 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <meta name="apple-mobile-web-app-title" content="OS" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${plexMono.variable} bg-well text-ink min-h-screen font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${plexMono.variable} ${coda.variable} bg-well text-ink min-h-screen font-sans antialiased`}
       >
+        <OrbitalPreloader />
         <a
           href="#content"
           className="bg-ink text-paper focus:outline-accent sr-only z-50 rounded-md px-4 py-2 font-mono text-xs focus:not-sr-only focus:fixed focus:top-3 focus:left-3"

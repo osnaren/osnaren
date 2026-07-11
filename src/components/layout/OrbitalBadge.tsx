@@ -3,9 +3,9 @@
 import { useReducedMotion } from 'framer-motion';
 
 /**
- * OrbitalBadge — the animated "OS" orbital logo.
+ * OrbitalBadge — the animated "osn" orbital logo.
  *
- * Two concentric orbits with travelling dots, "OS" at the centre,
+ * Three concentric orbits with signal nodes, "os" at the centre,
  * and a small orange superscript "n". Pure SVG — no layout shift,
  * scales cleanly from 24px (favicon) to any size.
  *
@@ -20,53 +20,65 @@ export function OrbitalBadge({ size = 32, className = '' }: { size?: number; cla
       <style>{`
         @keyframes os-orbit { to { transform: rotate(360deg); } }
         @keyframes os-counter { to { transform: rotate(-360deg); } }
-        @keyframes os-pulse { 0%,100% { r: 6; opacity: 0.85; } 50% { r: 8; opacity: 1; } }
-        .os-orbit { transform-origin: 100px 100px; animation: os-orbit 20s linear infinite; }
-        .os-orbit-reverse { transform-origin: 100px 100px; animation: os-counter 28s linear infinite; }
+        @keyframes os-pulse { 0%,100% { opacity: 0.8; } 50% { opacity: 1; } }
+        .os-orbit { transform-origin: 100px 100px; animation: os-orbit 22s linear infinite; }
+        .os-orbit-reverse { transform-origin: 100px 100px; animation: os-counter 30s linear infinite; }
         .os-pulse { animation: os-pulse 3s ease-in-out infinite; }
       `}</style>
 
-      {/* ─── orbits ─── */}
-      <circle cx="100" cy="100" r="72" fill="none" stroke="var(--line-strong)" strokeWidth="1" opacity="0.5" />
-      <circle cx="100" cy="100" r="52" fill="none" stroke="var(--line-strong)" strokeWidth="0.8" opacity="0.35" />
+      {/* ─── three orbits (scaled from 512-viewbox reference) ─── */}
+      <circle cx="100" cy="100" r="69" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.88" />
+      <circle cx="100" cy="100" r="52" fill="none" stroke="currentColor" strokeWidth="1.2" opacity="0.92" />
+      <circle
+        cx="100"
+        cy="100"
+        r="32"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeDasharray="2 4"
+        opacity="0.62"
+      />
 
-      {/* ─── orbiting dots ─── */}
+      {/* ─── neutral orbit nodes ─── */}
       <g className={r ? '' : 'os-orbit'}>
-        <circle cx="172" cy="100" r="6" className="os-pulse" style={{ fill: 'var(--accent)' }} />
+        <circle cx="37" cy="73" r="4" fill="var(--logo-bg, #17191e)" stroke="currentColor" strokeWidth="1.2" />
       </g>
       <g className={r ? '' : 'os-orbit-reverse'}>
-        <circle cx="48" cy="100" r="5.5" style={{ fill: 'var(--ok)', opacity: 0.75 }} />
+        <circle cx="82" cy="52" r="4" fill="var(--logo-bg, #17191e)" stroke="currentColor" strokeWidth="1.2" />
       </g>
       <g className={r ? '' : 'os-orbit'}>
-        <circle cx="100" cy="28" r="2.5" style={{ fill: 'var(--line-strong)', opacity: 0.5 }} />
-      </g>
-      <g className={r ? '' : 'os-orbit-reverse'}>
-        <circle cx="100" cy="172" r="2.5" style={{ fill: 'var(--line-strong)', opacity: 0.5 }} />
-      </g>
-      <g className={r ? '' : 'os-orbit'}>
-        <circle cx="155" cy="145" r="2" style={{ fill: 'var(--line-strong)', opacity: 0.4 }} />
+        <circle cx="164" cy="122" r="4" fill="var(--logo-bg, #17191e)" stroke="currentColor" strokeWidth="1.2" />
       </g>
 
-      {/* ─── centre: OS ─── */}
+      {/* ─── brand signal nodes ─── */}
+      <g className={r ? '' : 'os-orbit-reverse'}>
+        <circle cx="144" cy="35" r="8" className="os-pulse" fill="#E86B2A" />
+      </g>
+      <g className={r ? '' : 'os-orbit'}>
+        <circle cx="69" cy="152" r="7" fill="#8BCB88" opacity="0.85" />
+      </g>
+
+      {/* ─── centre monogram ─── */}
       <text
-        x="93"
-        y="112"
+        x="98"
+        y="113"
         textAnchor="middle"
-        fontFamily="var(--font-space-grotesk), var(--font-plex-mono), monospace"
-        fontSize="52"
-        fontWeight="700"
-        fill="var(--ink)"
-        letterSpacing="-2"
+        fontFamily="var(--font-coda), Space Grotesk, Inter, system-ui, sans-serif"
+        fontSize="49"
+        fontWeight="400"
+        fill="currentColor"
+        letterSpacing="-5"
       >
-        OS
+        os
       </text>
       <text
-        x="126"
-        y="88"
-        fontFamily="var(--font-plex-mono), monospace"
-        fontSize="22"
-        fontWeight="500"
-        fill="var(--accent)"
+        x="129"
+        y="84"
+        fontFamily="var(--font-coda), IBM Plex Mono, monospace"
+        fontSize="18"
+        fontWeight="600"
+        fill="#E86B2A"
       >
         n
       </text>

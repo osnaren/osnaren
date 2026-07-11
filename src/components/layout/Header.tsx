@@ -9,7 +9,7 @@ import { Menu, X } from 'lucide-react';
 
 import { OrbitalBadge } from '@/components/layout/OrbitalBadge';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import { nav, site } from '@/data/site';
+import { nav } from '@/data/site';
 
 export function Header() {
   const pathname = usePathname();
@@ -26,13 +26,13 @@ export function Header() {
     <header className="border-line bg-paper/90 sticky top-0 z-40 border-b backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="osnaren.lab — home">
-          <OrbitalBadge size={32} className="shrink-0" />
+          <OrbitalBadge size={48} className="shrink-0" />
           <span className="font-mono text-[13px] font-semibold tracking-[0.08em]">
-            OSNAREN<span className="text-accent">.LAB</span>
+            OSN<span className="text-accent">aren</span>
           </span>
-          <span className="border-line text-faint hidden rounded-full border px-2.5 py-1 font-mono text-[10px] sm:inline">
+          {/* <span className="border-line text-faint hidden rounded-full border px-2.5 py-1 font-mono text-[10px] sm:inline">
             {site.version} · SALEM, IN
-          </span>
+          </span> */}
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
