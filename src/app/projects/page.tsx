@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Artifacts',
   description:
-    'The artifact scanner: products, research papers, public datasets, professional work, and experiments by Obuli Sai Naren — honestly labelled and open for inspection.',
+    'The artifact scanner: products, research papers, public datasets, professional work, experiments, and early web projects by Obuli Sai Naren — honestly labelled and open for inspection.',
 };
 
 export default function ProjectsPage() {

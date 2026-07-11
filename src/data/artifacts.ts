@@ -1,6 +1,18 @@
-export type ArtifactType = 'product' | 'research' | 'dataset' | 'publication' | 'work' | 'experiment';
+export type ArtifactType = 'product' | 'research' | 'dataset' | 'publication' | 'work' | 'experiment' | 'archive';
 
-export type ArtifactVisual = 'route' | 'flames' | 'fire' | 'retina' | 'cancer' | 'commerce' | 'toolchain' | 'lab';
+export type ArtifactVisual =
+  | 'route'
+  | 'flames'
+  | 'fire'
+  | 'retina'
+  | 'cancer'
+  | 'commerce'
+  | 'toolchain'
+  | 'lab'
+  | 'chat'
+  | 'weather'
+  | 'numerology'
+  | 'timer';
 
 export interface ArtifactLink {
   label: string;
@@ -39,6 +51,7 @@ export const artifactFilters = [
   { key: 'publication', label: 'Publications' },
   { key: 'work', label: 'Work' },
   { key: 'experiment', label: 'Experiments' },
+  { key: 'archive', label: 'Archive' },
 ] as const;
 
 export type ArtifactFilterKey = (typeof artifactFilters)[number]['key'];
@@ -281,6 +294,85 @@ export const artifacts: Artifact[] = [
     links: [{ label: 'Open the Lab', href: '/lab', primary: true }],
     visual: 'lab',
     keywords: ['studies', 'prototypes', 'motion'],
+  },
+  {
+    id: 'OSN-014',
+    slug: 'chatter',
+    name: 'Chatter',
+    type: 'archive',
+    typeLabel: 'Intern assignment',
+    status: 'Source available',
+    statusTone: 'muted',
+    year: '2021',
+    problem: 'Learning real-time events by building them',
+    summary:
+      'A compact group-chat assignment built during internship training. Socket.io broadcasts messages, presence changes, and typing activity through a small Express server and a browser client.',
+    tags: ['Socket.io', 'Node.js', 'Express', 'JavaScript'],
+    links: [{ label: 'View source', href: 'https://github.com/osnaren/Chatter', external: true, primary: true }],
+    visual: 'chat',
+    keywords: ['chat', 'realtime', 'webtips', 'internship', 'assignment'],
+  },
+  {
+    id: 'OSN-015',
+    slug: 'weather-app',
+    name: 'WeatherApp',
+    type: 'archive',
+    typeLabel: 'Training project',
+    status: '● Live archive',
+    statusTone: 'ok',
+    year: '2021',
+    problem: 'One weather view across cities and continents',
+    summary:
+      'A responsive training project that moves from a selected city to worldwide and continent-level conditions. It combines a Node and Express data layer with a highly visual, weather-aware browser interface.',
+    tags: ['JavaScript', 'Node.js', 'Express', 'Responsive UI'],
+    links: [
+      { label: 'Open archive', href: 'https://osnaren.github.io/WeatherApp/', external: true, primary: true },
+      { label: 'View source', href: 'https://github.com/osnaren/WeatherApp', external: true },
+    ],
+    visual: 'weather',
+    keywords: ['weather', 'forecast', 'cities', 'continents', 'webtips', 'assignment'],
+  },
+  {
+    id: 'OSN-016',
+    slug: 'numerology-calculator',
+    name: 'Numerology Calculator',
+    type: 'archive',
+    typeLabel: 'Fun prototype',
+    status: '◐ Usable skeleton',
+    statusTone: 'accent',
+    year: '2023',
+    problem: 'Turning a name into a single-number reading',
+    summary:
+      'A small curiosity built to test the underlying calculation before designing the interface. It maps letters to values, reduces the total to one digit, pairs it with a planet, and keeps a session history.',
+    tags: ['Vanilla JavaScript', 'Prototype', 'Numerology', 'Tamil labels'],
+    links: [
+      {
+        label: 'Try prototype',
+        href: 'https://osnaren.github.io/numerology-calculator/',
+        external: true,
+        primary: true,
+      },
+      { label: 'View source', href: 'https://github.com/osnaren/numerology-calculator', external: true },
+    ],
+    visual: 'numerology',
+    keywords: ['name', 'number', 'planet', 'calculator', 'skeleton', 'experiment'],
+  },
+  {
+    id: 'OSN-017',
+    slug: 'timer-app',
+    name: 'TimerApp',
+    type: 'archive',
+    typeLabel: 'Intern assignment',
+    status: 'Rehost pending',
+    statusTone: 'amber',
+    year: '2021',
+    problem: 'Tracking focused time against real tasks',
+    summary:
+      'An internship SDLC assignment that grew beyond a stopwatch: account creation, encrypted passwords, task timers, resumable logs, editing, and CSV import and export. The original Glitch deployment is retired; the source remains public.',
+    tags: ['Node.js', 'Express', 'Task timer', 'CSV import/export'],
+    links: [{ label: 'View source', href: 'https://github.com/osnaren/TimerApp', external: true, primary: true }],
+    visual: 'timer',
+    keywords: ['time tracking', 'tasks', 'bcrypt', 'webtips', 'internship', 'assignment'],
   },
 ];
 

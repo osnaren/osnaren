@@ -17,6 +17,7 @@ export function ProjectsIntro() {
     `${byType('dataset')} public datasets`,
     `${byType('work')} work studies`,
     `${byType('experiment')} experiment`,
+    `${byType('archive')} early projects`,
   ];
 
   const enter = (delay: number) => ({
@@ -44,8 +45,8 @@ export function ProjectsIntro() {
           The artifact index.
         </motion.h1>
         <motion.p {...enter(0.16)} className="text-muted mt-4 max-w-xl text-[15px] leading-relaxed sm:text-[16px]">
-          Products, research, datasets, professional systems, and experiments — honestly labelled and open for
-          inspection.
+          Products, research, datasets, professional systems, experiments, and early work — honestly labelled and open
+          for inspection.
         </motion.p>
 
         <motion.ul
