@@ -87,12 +87,9 @@ export function HomeHero() {
             Bench powered on — choose a module
           </motion.p>
 
-          <motion.h1
-            {...enter(0.16)}
-            className="mt-4 max-w-2xl text-[42px] leading-[1.02] font-semibold tracking-normal text-balance sm:text-[54px] lg:text-[48px] lg:text-wrap 2xl:text-[58px]"
-          >
+          <h1 className="mt-4 max-w-2xl text-[42px] leading-[1.02] font-semibold tracking-normal text-balance sm:text-[54px] lg:text-[48px] lg:text-wrap 2xl:text-[58px]">
             I turn everyday problems into useful web products.
-          </motion.h1>
+          </h1>
 
           <motion.p
             {...enter(0.24)}
@@ -105,7 +102,7 @@ export function HomeHero() {
           <motion.div {...enter(0.32)} className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/projects"
-              className="bg-accent hover:bg-accent-press inline-flex min-h-12 items-center gap-2 rounded-md px-5 font-mono text-[12px] font-medium tracking-[0.04em] text-white uppercase shadow-[0_3px_0_var(--accent-press)] transition-colors"
+              className="bg-ink text-paper hover:bg-ink/85 inline-flex min-h-12 items-center gap-2 rounded-md px-5 font-mono text-[12px] font-medium tracking-[0.04em] uppercase shadow-[0_3px_0_var(--line-strong)] transition-colors"
             >
               Explore Work <ArrowRight className="size-4" aria-hidden="true" />
             </Link>

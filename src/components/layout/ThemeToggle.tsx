@@ -43,7 +43,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="border-line hover:border-line-strong flex items-center rounded-full border p-0.5 transition-colors"
+      className="border-line hover:border-line-strong flex min-h-11 items-center rounded-full border p-0.5 transition-colors"
     >
       <span
         aria-hidden="true"

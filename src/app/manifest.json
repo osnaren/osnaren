@@ -3,19 +3,23 @@
   "short_name": "osn",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png",
+      "src": "/favicon/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
-      "src": "/web-app-manifest-512x512.png",
+      "src": "/favicon/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "description": "Portfolio of Obuli Sai Naren, a frontend engineer building useful web products, research tools, and accessible interfaces.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en-IN",
+  "theme_color": "#f7f6f2",
+  "background_color": "#f7f6f2",
   "display": "standalone"
 }

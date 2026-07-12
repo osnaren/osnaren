@@ -342,7 +342,7 @@ export function SignalComposer() {
                 aria-invalid={!!nameError}
                 aria-describedby={nameError ? `${nameId}-err` : undefined}
                 className={`w-full rounded-lg border bg-surface px-3.5 py-2.5 text-[14px] outline-none transition-colors focus:border-accent ${nameError ? 'border-(--color-destructive)' : 'border-line-strong'}`}
-                placeholder="Ada Lovelace"
+                placeholder="Ada Lovelace…"
               />
               {nameError && (
                 <p id={`${nameId}-err`} className="mt-1.5 font-mono text-[10.5px] text-(--color-destructive)">
@@ -373,7 +373,7 @@ export function SignalComposer() {
                 aria-invalid={!!emailError}
                 aria-describedby={emailError ? `${emailId}-err` : undefined}
                 className={`w-full rounded-lg border bg-surface px-3.5 py-2.5 text-[14px] outline-none transition-colors focus:border-accent ${emailError ? 'border-(--color-destructive)' : 'border-line-strong'}`}
-                placeholder="ada@example.com"
+                placeholder="ada@example.com…"
               />
               {emailError && (
                 <p id={`${emailId}-err`} className="mt-1.5 font-mono text-[10.5px] text-(--color-destructive)">

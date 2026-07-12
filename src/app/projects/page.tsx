@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Artifacts',
   description:
     'The artifact scanner: products, research papers, public datasets, professional work, experiments, and early web projects by Obuli Sai Naren — honestly labelled and open for inspection.',
+  alternates: { canonical: '/projects' },
 };
 
 export default function ProjectsPage() {

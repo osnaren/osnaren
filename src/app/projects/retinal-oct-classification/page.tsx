@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Retinal OCT Classification — Research',
   description:
     'IEEE ICCCI 2022 conference paper on classifying retinal OCT images with deep learning. Co-authored by Obuli Sai Naren.',
+  alternates: { canonical: '/projects/retinal-oct-classification' },
 };
 
 const chapters: CaseChapter[] = [

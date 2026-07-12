@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Multi Cancer Dataset — Dataset',
   description:
     'A 130,000-image Kaggle dataset covering 8 cancer types across 26 subclasses, published by Obuli Sai Naren under CC BY-NC-SA 4.0.',
+  alternates: { canonical: '/projects/multi-cancer-dataset' },
 };
 
 const chapters: CaseChapter[] = [

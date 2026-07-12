@@ -49,7 +49,6 @@ export function ModuleCard({
               active ? 'border-ink/60 dark:border-ink/45' : 'border-line-strong'
             }`
       }`}
-      aria-label={`${module.name} — ${module.copy}`}
     >
       <div
         className={`flex gap-1 font-mono font-medium tracking-widest uppercase ${

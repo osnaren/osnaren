@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: 'Resume',
   description:
     'Resume: Obuli Sai Naren — Frontend Engineer at Victoria’s Secret & Co., previously Soliton Technologies. React, TypeScript, UX, accessibility, ecommerce.',
+  alternates: { canonical: '/resume' },
 };
 
 const contactLinks = [

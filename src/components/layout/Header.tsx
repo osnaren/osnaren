@@ -25,7 +25,7 @@ export function Header() {
   return (
     <header className="border-line bg-paper/90 sticky top-0 z-40 border-b backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label="osnaren.lab — home">
+        <Link href="/" className="flex min-h-11 items-center gap-3">
           <OrbitalBadge size={48} className="shrink-0" />
           <span className="font-mono text-[13px] font-semibold tracking-[0.08em]">
             OSN<span className="text-accent">aren</span>
@@ -41,7 +41,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? 'page' : undefined}
-              className={`font-mono text-xs font-medium tracking-[0.06em] uppercase transition-colors ${
+              className={`inline-flex min-h-11 items-center font-mono text-xs font-medium tracking-[0.06em] uppercase transition-colors ${
                 isActive(item.href) ? 'text-accent' : 'text-muted hover:text-ink'
               }`}
             >
@@ -50,7 +50,7 @@ export function Header() {
           ))}
           <Link
             href="/contact"
-            className="bg-ink text-paper hover:bg-accent rounded-md px-4 py-2 font-mono text-xs font-medium tracking-[0.06em] uppercase transition-colors"
+            className="bg-ink text-paper hover:bg-accent inline-flex min-h-11 items-center rounded-md px-4 py-2 font-mono text-xs font-medium tracking-[0.06em] uppercase transition-colors"
           >
             Contact
           </Link>
@@ -65,9 +65,9 @@ export function Header() {
             aria-controls="mobile-nav"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((open) => !open)}
-            className="border-line grid size-8 place-items-center rounded-md border font-mono text-sm"
+            className="border-line grid size-11 place-items-center rounded-md border font-mono text-sm"
           >
-            {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            {menuOpen ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
           </button>
         </div>
       </div>

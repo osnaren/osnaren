@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'TheFlames — Project',
   description:
     'TheFlames: a long-unfinished hobby idea turned into a polished web version of the classic schoolyard FLAMES game, with auto and manual modes.',
+  alternates: { canonical: '/projects/theflames' },
 };
 
 const chapters: CaseChapter[] = [

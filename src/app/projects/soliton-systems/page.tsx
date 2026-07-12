@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: 'Soliton Product UI & Tools — Work',
   description:
     'High-level case study of Obuli Sai Naren’s frontend and tooling work at Soliton Technologies: dark theme, drag-and-drop scheduling, CLI tooling, and Python services.',
+  alternates: { canonical: '/projects/soliton-systems' },
 };
 
 const chapters: CaseChapter[] = [

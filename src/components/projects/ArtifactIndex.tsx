@@ -95,7 +95,7 @@ function ArtifactRow({
         }`}
       />
 
-      <h3 id={headingId} className="m-0">
+      <h2 id={headingId} className="m-0">
         <button
           type="button"
           onClick={onToggle}
@@ -126,7 +126,7 @@ function ArtifactRow({
             </span>
           </span>
         </button>
-      </h3>
+      </h2>
 
       <AnimatePresence initial={false}>
         {open && (

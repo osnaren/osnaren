@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Retinal OCT-C8 — Dataset',
   description:
     'A 24,000-image Kaggle dataset of retinal OCT scans across 8 retinal conditions with balanced train/validation/test folds, published by Obuli Sai Naren.',
+  alternates: { canonical: '/projects/retinal-oct-c8' },
 };
 
 const chapters: CaseChapter[] = [

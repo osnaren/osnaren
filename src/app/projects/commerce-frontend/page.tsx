@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: 'Commerce Frontend Systems — Work',
   description:
     'High-level capability case study of Obuli Sai Naren’s frontend work on customer-facing ecommerce product experiences at Victoria’s Secret & Co.',
+  alternates: { canonical: '/projects/commerce-frontend' },
 };
 
 const chapters: CaseChapter[] = [

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Multi-Cancer Classification — Research',
   description:
     'IEEE Access journal article classifying eight cancer types from CT/MRI images using Bayesian-optimised CNNs and Learning without Forgetting. Co-authored by Obuli Sai Naren.',
+  alternates: { canonical: '/projects/multi-cancer-classification' },
 };
 
 const chapters: CaseChapter[] = [

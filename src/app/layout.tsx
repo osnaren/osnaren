@@ -2,8 +2,8 @@ import { Coda, IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
-import { OrbitalPreloader } from '@/components/layout/OrbitalPreloader';
 import { site } from '@/data/site';
+import { JsonLd } from '@/lib/seo';
 
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     template: '%s · osnaren',
   },
   description: site.description,
+  alternates: { canonical: site.domain },
   keywords: [
     'Obuli Sai Naren',
     'osnaren',
@@ -47,10 +48,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: site.domain,
-    siteName: 'osnaren.lab',
+    siteName: site.handle,
     title: 'Obuli Sai Naren — Frontend Engineer',
     description: site.description,
-    locale: 'en_US',
+    locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -87,14 +88,53 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <meta name="apple-mobile-web-app-title" content="OS" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
         className={`${spaceGrotesk.variable} ${plexMono.variable} ${coda.variable} bg-well text-ink min-h-screen font-sans antialiased`}
       >
-        <OrbitalPreloader />
+        <JsonLd
+          data={[
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ProfilePage',
+              '@id': `${site.domain}/#profile`,
+              url: site.domain,
+              name: `${site.name} — Frontend Engineer`,
+              description: site.description,
+              mainEntity: { '@id': `${site.domain}/#person` },
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              '@id': `${site.domain}/#person`,
+              name: site.name,
+              alternateName: site.handle,
+              url: site.domain,
+              jobTitle: site.role,
+              homeLocation: { '@type': 'Place', name: site.location },
+              sameAs: Object.values(site.links),
+              knowsAbout: [
+                'Frontend engineering',
+                'React',
+                'TypeScript',
+                'Web accessibility',
+                'User experience',
+                'Ecommerce',
+              ],
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': `${site.domain}/#website`,
+              url: site.domain,
+              name: site.handle,
+              description: site.description,
+              inLanguage: 'en-IN',
+              publisher: { '@id': `${site.domain}/#person` },
+            },
+          ]}
+        />
         <a
           href="#content"
           className="bg-ink text-paper focus:outline-accent sr-only z-50 rounded-md px-4 py-2 font-mono text-xs focus:not-sr-only focus:fixed focus:top-3 focus:left-3"

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: 'Forest Fire & Smoke Detection — Research',
   description:
     'Peer-reviewed Fire Ecology research on forest fire and smoke detection, later evolved into a public TensorFlow.js classifier demo by Obuli Sai Naren.',
+  alternates: { canonical: '/projects/forest-fire-detection' },
 };
 
 const chapters: CaseChapter[] = [

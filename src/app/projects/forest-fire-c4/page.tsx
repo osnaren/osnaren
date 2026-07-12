@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Forest Fire Image Classification Dataset — Dataset',
   description:
     'The 4,823-image Forest Fire C4 dataset behind Obuli Sai Naren’s Fire Ecology paper and public TensorFlow.js classifier demo.',
+  alternates: { canonical: '/projects/forest-fire-c4' },
 };
 
 const chapters: CaseChapter[] = [

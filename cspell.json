@@ -18,6 +18,7 @@
     "*.png",
     "*.jpg",
     "*.ico",
+    "tsconfig.tsbuildinfo",
     ".cspell/project-words.txt"
   ],
   "languageSettings": [

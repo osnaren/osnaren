@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Open a direct channel to Obuli Sai Naren — frontend roles, product engineering, useful web tools, and research collaboration. Email, GitHub, LinkedIn, Kaggle, and X.',
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: 'ShadySide — Case Study',
   description:
     'How ShadySide grew from one sun-baked Tamil Nadu bus ride into a v1.5 travel utility that recommends the cooler side of a bus, train, or car.',
+  alternates: { canonical: '/projects/shadyside' },
 };
 
 const chapters: CaseChapter[] = [
