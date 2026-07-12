@@ -233,6 +233,7 @@ export function LabBench() {
 
   const eventTimer = useRef<number | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const labRef = useRef<HTMLDivElement>(null);
   const benchRef = useRef<HTMLDivElement>(null);
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -353,6 +354,12 @@ export function LabBench() {
   };
 
   const handleFilterChange = (key: FilterKey) => {
+    if (key === filter) return;
+    const lab = labRef.current;
+    if (lab) {
+      const top = window.scrollY + lab.getBoundingClientRect().top - 64;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    }
     setFilter(key);
     pushFilterToUrl(key);
   };
@@ -367,7 +374,7 @@ export function LabBench() {
   const rest = featured ? visible.filter((e) => e.id !== featured.id) : visible;
 
   return (
-    <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
+    <div ref={labRef} className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
       {/* control rail: filters + lab status — sticky beneath site header */}
       <div className="bg-paper/95 border-line sticky top-16 z-30 -mx-5 border-b px-5 py-3 backdrop-blur-sm sm:mx-0 sm:border-b sm:px-0">
         <div className="-mx-5 overflow-x-auto p-5 pt-0 sm:mx-0 sm:overflow-visible sm:px-0">
@@ -384,7 +391,7 @@ export function LabBench() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => handleFilterChange(category.key)}
-                  className={`relative rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
+                  className={`relative min-h-11 rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
                     active ? 'border-ink text-paper' : 'border-line text-muted hover:border-line-strong hover:text-ink'
                   }`}
                 >

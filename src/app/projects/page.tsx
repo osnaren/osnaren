@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { ArtifactIndex } from '@/components/projects/ArtifactIndex';
 import { ProjectsIntro } from '@/components/projects/ProjectsIntro';
 
@@ -15,7 +17,16 @@ export default function ProjectsPage() {
     <div>
       <ProjectsIntro />
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
-        <ArtifactIndex />
+        <Suspense
+          fallback={
+            <div
+              className="border-line min-h-96 animate-pulse border-t motion-reduce:animate-none"
+              aria-label="Loading artifact index"
+            />
+          }
+        >
+          <ArtifactIndex />
+        </Suspense>
       </div>
     </div>
   );

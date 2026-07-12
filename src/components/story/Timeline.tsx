@@ -295,7 +295,7 @@ export function Timeline() {
                 type="button"
                 aria-pressed={activeTrack}
                 onClick={() => setTrack(t.key)}
-                className={`relative rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
+                className={`relative min-h-11 rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
                   activeTrack
                     ? 'border-ink text-paper'
                     : 'border-line text-muted hover:border-line-strong hover:text-ink'

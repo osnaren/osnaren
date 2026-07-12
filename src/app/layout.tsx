@@ -2,6 +2,7 @@ import { Coda, IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { RouteExperience } from '@/components/layout/RouteExperience';
 import { site } from '@/data/site';
 import { JsonLd } from '@/lib/seo';
 
@@ -135,6 +136,7 @@ export default function RootLayout({
             },
           ]}
         />
+        <RouteExperience />
         <a
           href="#content"
           className="bg-ink text-paper focus:outline-accent sr-only z-50 rounded-md px-4 py-2 font-mono text-xs focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
@@ -146,6 +148,7 @@ export default function RootLayout({
             reads as a subsurface layer revealed by the page lifting away */}
         <main
           id="content"
+          tabIndex={-1}
           className="bg-paper relative z-10 min-h-screen pb-20 shadow-[0_30px_54px_-22px_rgb(0_0_0/0.42)]"
         >
           {children}

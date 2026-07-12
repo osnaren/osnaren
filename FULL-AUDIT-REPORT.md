@@ -36,6 +36,9 @@ Google does not guarantee first position for any implementation. Ranking also de
 
 ## Accessibility, UI & copy
 
+- Added deterministic top-of-page scrolling and main-content focus for forward route navigation while preserving browser Back/Forward restoration.
+- Removed hydration-time project filter changes that could collapse the page around an old scroll position; project and lab filters now anchor their control surface before changing result height.
+- Project filter URLs now update in place and Back/Forward restores the matching filter state.
 - Corrected primary CTA contrast and link accessible-name mismatches.
 - Corrected project heading order and ensured one H1 per route.
 - Enlarged navigation, theme, and mobile menu controls to 44 px minimum targets.
@@ -71,6 +74,7 @@ Lab results are synthetic and can vary between runs. Field Core Web Vitals shoul
 - Canonical check: pass, 16/16 routes
 - Heading check: pass, exactly one H1 on 16/16 routes
 - Browser console: pass, 0 warnings / 0 errors
+- Navigation and filter scroll paths: pass for homepage credibility links, project filters, browser Back, footer navigation, and lab filters
 
 ## Environment limitations
 

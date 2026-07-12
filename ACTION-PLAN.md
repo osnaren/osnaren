@@ -11,6 +11,7 @@
 - [x] Fix the `/lab` static-build blocker with a Suspense boundary.
 - [x] Fix confirmed contrast, accessible-name, heading-order, and touch-target defects.
 - [x] Make the homepage LCP headline immediately renderable.
+- [x] Make route navigation, project filters, lab filters, focus movement, and browser history scroll behavior deterministic.
 - [x] Pass lint, types, spelling, production build, route crawl, mobile overflow, and Lighthouse checks.
 
 ## Required after deployment

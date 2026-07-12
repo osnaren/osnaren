@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'framer-motion';
 
@@ -175,20 +176,25 @@ function ArtifactRow({
   );
 }
 
+function filterFromParams(params: URLSearchParams | ReadonlyURLSearchParams): ArtifactFilterKey {
+  const requested = params.get('filter');
+  return artifactFilters.some((item) => item.key === requested) ? (requested as ArtifactFilterKey) : 'all';
+}
+
+interface ReadonlyURLSearchParams {
+  get(name: string): string | null;
+}
+
 export function ArtifactIndex() {
   const reduceMotion = useReducedMotion();
-  const [filter, setFilter] = useState<ArtifactFilterKey>('all');
+  const searchParams = useSearchParams();
+  const [filter, setFilter] = useState<ArtifactFilterKey>(() => filterFromParams(searchParams));
   const [query, setQuery] = useState('');
   const [openSlug, setOpenSlug] = useState<string | null>('shadyside');
   const [activeSlug, setActiveSlug] = useState('shadyside');
 
-  useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get('filter');
-    if (artifactFilters.some((item) => item.key === requested)) setFilter(requested as ArtifactFilterKey);
-  }, []);
-
+  const indexRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<Record<string, HTMLElement | null>>({});
-  const listRef = useRef<HTMLOListElement>(null);
   const registerRef = useCallback((slug: string, el: HTMLElement | null) => {
     rowRefs.current[slug] = el;
   }, []);
@@ -240,10 +246,34 @@ export function ArtifactIndex() {
     }
   }, [visible, activeSlug]);
 
-  // scroll to top of list when filter or query changes
-  useEffect(() => {
-    listRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-  }, [filter, query, reduceMotion]);
+  useEffect(() => setFilter(filterFromParams(searchParams)), [searchParams]);
+
+  const moveToIndexStart = () => {
+    const index = indexRef.current;
+    if (!index) return;
+    const top = window.scrollY + index.getBoundingClientRect().top - 64;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+  };
+
+  const updateFilterUrl = (nextFilter: ArtifactFilterKey) => {
+    const url = new URL(window.location.href);
+    if (nextFilter === 'all') url.searchParams.delete('filter');
+    else url.searchParams.set('filter', nextFilter);
+    window.history.pushState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  };
+
+  const changeFilter = (nextFilter: ArtifactFilterKey) => {
+    if (nextFilter === filter) return;
+    moveToIndexStart();
+    setFilter(nextFilter);
+    updateFilterUrl(nextFilter);
+  };
+
+  const changeQuery = (nextQuery: string) => {
+    if (nextQuery === query) return;
+    moveToIndexStart();
+    setQuery(nextQuery);
+  };
 
   // live refs so the keyboard navigator never reads stale state
   const navRef = useRef({ visible, activeSlug });
@@ -296,12 +326,14 @@ export function ArtifactIndex() {
       : `${visible.length} ${visible.length === 1 ? 'result' : 'results'} · Filter: ${activeFilterLabel}`;
 
   const resetIndex = () => {
+    moveToIndexStart();
     setQuery('');
     setFilter('all');
+    updateFilterUrl('all');
   };
 
   return (
-    <div>
+    <div ref={indexRef}>
       {/* control rail — sticky beneath the site header */}
       <div className="bg-paper/95 border-line sticky top-16 z-30 -mx-5 border-b px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -314,8 +346,8 @@ export function ArtifactIndex() {
                     key={f.key}
                     type="button"
                     aria-pressed={isActive}
-                    onClick={() => setFilter(f.key)}
-                    className={`relative rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
+                    onClick={() => changeFilter(f.key)}
+                    className={`relative min-h-11 rounded-full border px-3.5 py-2 font-mono text-[10.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
                       isActive
                         ? 'border-ink text-paper'
                         : 'border-line text-muted hover:border-line-strong hover:text-ink'
@@ -343,9 +375,11 @@ export function ArtifactIndex() {
             </label>
             <input
               id="artifact-search"
+              name="artifact-search"
               type="search"
+              autoComplete="off"
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => changeQuery(event.target.value)}
               placeholder="Search artifacts…"
               className="border-line bg-surface focus:border-accent placeholder:text-faint w-full rounded-md border py-2.5 pr-3 pl-9 font-mono text-[12px] outline-none"
             />
@@ -383,7 +417,7 @@ export function ArtifactIndex() {
       <div className="grid gap-8 pt-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10">
         <div className="min-h-75">
           <LayoutGroup>
-            <ol ref={listRef} className="border-line list-none border-t">
+            <ol className="border-line list-none border-t">
               <AnimatePresence mode="popLayout" initial={false}>
                 {visible.map((artifact) => (
                   <ArtifactRow
