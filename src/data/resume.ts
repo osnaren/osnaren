@@ -54,7 +54,7 @@ export const experience: ResumeBlock[] = [
         period: 'Jun 2022 — Nov 2023',
         bullets: [
           'Modernized the frontend codebase toward modular, maintainable component architecture.',
-          'Built Python services for MongoDB and Minio alongside frontend work.',
+          'Built Python services backed by MongoDB alongside frontend work.',
           'Mentored engineers on HTML, CSS, JavaScript, and Node.js.',
         ],
       },
@@ -85,9 +85,16 @@ export const education = [
 ] as const;
 
 export const skills = {
-  core: ['React', 'TypeScript', 'JavaScript', 'Next.js', 'React Native', 'HTML', 'CSS'],
-  practice: ['UX', 'Accessibility', 'Performance', 'Frontend architecture', 'A/B testing', 'Analytics integration'],
-  alsoSpeaks: ['Node.js', 'Python', 'MongoDB', 'Minio'],
+  frontend: ['React', 'TypeScript', 'JavaScript', 'Next.js', 'React Native', 'HTML', 'CSS', 'Tailwind CSS'],
+  engineering: [
+    'Accessibility',
+    'Web performance',
+    'Frontend architecture',
+    'Responsive design',
+    'Design systems',
+    'Analytics integration',
+  ],
+  supporting: ['Node.js', 'Python', 'MongoDB', 'Git'],
 } as const;
 
 export const publications: ReadonlyArray<{ title: string; venue: string; href?: string }> = [

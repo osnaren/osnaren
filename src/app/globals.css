@@ -211,8 +211,13 @@ main:has(> .home-launcher) {
 }
 
 @media print {
-  header,
-  footer,
+  @page {
+    size: A4;
+    margin: 7mm 10mm;
+  }
+
+  body > header,
+  body > footer,
   .print-hidden {
     display: none !important;
   }
@@ -222,11 +227,72 @@ main:has(> .home-launcher) {
   }
   main {
     padding: 0 !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
   }
   .module-card,
   .print-flat {
     box-shadow: none !important;
     border-color: #ccc !important;
     break-inside: avoid;
+  }
+
+  .resume-document {
+    width: 100%;
+    max-width: none !important;
+    padding: 0 !important;
+    font-size: 10pt;
+  }
+  .resume-header {
+    display: block !important;
+    padding-bottom: 3mm !important;
+    break-inside: avoid;
+  }
+  .resume-header h1 {
+    font-size: 25pt !important;
+  }
+  .resume-contact-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 4mm !important;
+    row-gap: 1mm !important;
+    font-size: 7.4pt !important;
+  }
+  .resume-panel {
+    border-color: #bbb !important;
+    border-radius: 3mm !important;
+    padding: 3.5mm !important;
+    break-inside: avoid;
+  }
+  .resume-experience {
+    margin-top: 5mm !important;
+  }
+  .resume-experience > div {
+    gap: 3mm !important;
+  }
+  .resume-experience .resume-panel > div:last-child {
+    margin-top: 3mm !important;
+    gap: 3mm !important;
+  }
+  .resume-experience ul {
+    margin-top: 1mm !important;
+    gap: 0.5mm !important;
+    line-height: 1.45 !important;
+  }
+  .resume-role {
+    grid-template-columns: minmax(0, 1fr) 28mm !important;
+    break-inside: avoid;
+  }
+  .resume-two-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 4mm !important;
+    margin-top: 4mm !important;
+  }
+  .resume-section-heading {
+    margin-bottom: 2.5mm !important;
+    padding-bottom: 2mm !important;
+  }
+  .resume-document a {
+    color: #000 !important;
+    text-decoration: none !important;
   }
 }
