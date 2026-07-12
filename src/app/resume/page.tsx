@@ -1,4 +1,4 @@
-import { Github, Kaggle, Linkedin, Orcid } from '@thesvg/react';
+import { Github, Kaggle, Linkedin, Orcid, Gmail2026 } from '@thesvg/react';
 import {
   BookOpen,
   BriefcaseBusiness,
@@ -8,7 +8,6 @@ import {
   Globe2,
   GraduationCap,
   Languages as LanguagesIcon,
-  Mail,
   type LucideIcon,
   Users,
 } from 'lucide-react';
@@ -27,8 +26,8 @@ export const metadata: Metadata = {
 };
 
 const contactLinks = [
-  { label: 'Email', href: `mailto:${site.email}`, text: site.email, icon: <Mail aria-hidden="true" /> },
-  { label: 'Website', href: site.domain, text: 'osnaren.com', icon: <Globe2 aria-hidden="true" /> },
+  { label: 'Email', href: `mailto:${site.email}`, text: site.email, icon: <Gmail2026 aria-hidden="true" /> },
+  { label: 'Website', href: site.domain, text: 'osnaren.com', icon: <Globe2 size={17} aria-hidden="true" /> },
   {
     label: 'LinkedIn',
     href: site.links.linkedin,
@@ -76,8 +75,8 @@ function SectionHeading({ id, icon: Icon, children }: { id: string; icon: Lucide
 
 export default function ResumePage() {
   return (
-    <article className="resume-document mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
-      <header className="resume-header border-line relative border-b pb-7">
+    <article className="resume-document mx-auto max-w-5xl py-10 sm:py-14">
+      <header className="resume-header relative py-7 px-5 sm:px-8">
         <div className="absolute top-0 right-0 print:hidden">
           <PrintButton />
         </div>
@@ -110,7 +109,11 @@ export default function ResumePage() {
         </address>
       </header>
 
-      <section id="experience" aria-labelledby="experience-heading" className="resume-experience mt-8 scroll-mt-24">
+      <section
+        id="experience"
+        aria-labelledby="experience-heading"
+        className="resume-experience mt-8 scroll-mt-24 px-5 sm:px-8"
+      >
         <SectionHeading id="experience-heading" icon={BriefcaseBusiness}>
           Experience
         </SectionHeading>
@@ -141,7 +144,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      <div className="resume-two-column mt-6 grid gap-5 md:grid-cols-2">
+      <div className="resume-two-column mt-6 grid gap-5 md:grid-cols-2 px-5 sm:px-8">
         <section aria-labelledby="education-heading" className="resume-panel border-line rounded-xl border p-5">
           <SectionHeading id="education-heading" icon={GraduationCap}>
             Education
@@ -184,7 +187,7 @@ export default function ResumePage() {
         </section>
       </div>
 
-      <div className="resume-two-column mt-5 grid gap-5 md:grid-cols-2">
+      <div className="resume-two-column mt-5 grid gap-5 md:grid-cols-2 px-5 sm:px-8">
         <section aria-labelledby="publications-heading" className="resume-panel border-line rounded-xl border p-5">
           <SectionHeading id="publications-heading" icon={BookOpen}>
             Publications
@@ -222,7 +225,10 @@ export default function ResumePage() {
         </section>
       </div>
 
-      <section aria-labelledby="leadership-heading" className="resume-panel border-line mt-5 rounded-xl border p-5">
+      <section
+        aria-labelledby="leadership-heading"
+        className="resume-panel border-line mt-5 rounded-xl border p-5 mx-5 sm:mx-8"
+      >
         <SectionHeading id="leadership-heading" icon={Users}>
           Leadership &amp; service
         </SectionHeading>

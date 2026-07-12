@@ -251,7 +251,7 @@ export function ArtifactIndex() {
   const moveToIndexStart = () => {
     const index = indexRef.current;
     if (!index) return;
-    const top = window.scrollY + index.getBoundingClientRect().top - 64;
+    const top = window.scrollY + index.getBoundingClientRect().top - 164;
     window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
   };
 
@@ -264,7 +264,7 @@ export function ArtifactIndex() {
 
   const changeFilter = (nextFilter: ArtifactFilterKey) => {
     if (nextFilter === filter) return;
-    moveToIndexStart();
+    // moveToIndexStart();
     setFilter(nextFilter);
     updateFilterUrl(nextFilter);
   };

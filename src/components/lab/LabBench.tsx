@@ -234,7 +234,6 @@ export function LabBench() {
   const eventTimer = useRef<number | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const labRef = useRef<HTMLDivElement>(null);
-  const benchRef = useRef<HTMLDivElement>(null);
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const categories = useMemo(() => availableCategories(), []);
@@ -309,7 +308,7 @@ export function LabBench() {
       // two rAFs: first lets React commit, second lets layout settle
       // requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        benchRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        labRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
         // });
       });
     }
@@ -355,11 +354,6 @@ export function LabBench() {
 
   const handleFilterChange = (key: FilterKey) => {
     if (key === filter) return;
-    const lab = labRef.current;
-    if (lab) {
-      const top = window.scrollY + lab.getBoundingClientRect().top - 64;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
-    }
     setFilter(key);
     pushFilterToUrl(key);
   };
@@ -414,7 +408,7 @@ export function LabBench() {
       </div>
 
       {/* index ↔ open bench */}
-      <div ref={benchRef} className="pt-8">
+      <div className="pt-8">
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
             <motion.div key="bench">
