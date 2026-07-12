@@ -76,13 +76,11 @@ export function HomeHero() {
               className="bg-ok relative size-1.5 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--ok)_15%,transparent)]"
               aria-hidden="true"
             >
-              {!reduceMotion && (
-                <motion.span
-                  className="bg-ok/50 absolute inset-0 rounded-full"
-                  animate={{ scale: [1, 2.6], opacity: [0.6, 0] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }}
-                />
-              )}
+              <motion.span
+                className="bg-ok/50 absolute inset-0 rounded-full motion-reduce:hidden"
+                animate={{ scale: [1, 2.6], opacity: [0.6, 0] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }}
+              />
             </span>
             Bench powered on — choose a module
           </motion.p>
@@ -169,12 +167,29 @@ export function HomeHero() {
         </nav>
       </div>
 
+      {/* signal conduit: the workbench hands one live pulse into the subsurface grid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-[58%] bottom-0 left-[70%] z-20 w-px overflow-hidden max-lg:hidden"
+      >
+        <motion.span
+          className="from-accent/0 via-accent/60 to-accent/0 absolute inset-0 origin-top bg-linear-to-b"
+          initial={reduceMotion ? false : { scaleY: 0, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 0.72 }}
+          transition={{ duration: 0.8, delay: reduceMotion ? 0 : 0.68, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <motion.span
+          className="bg-accent absolute -left-0.75 size-1.75 rounded-full shadow-[0_0_12px_3px_color-mix(in_srgb,var(--accent)_38%,transparent)] motion-reduce:hidden"
+          animate={{ y: ['-8%', '105%'], opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 2.2, delay: 1.25, repeat: Infinity, repeatDelay: 0.7, ease: 'linear' }}
+        />
+      </div>
       <motion.span
         aria-hidden="true"
-        className="from-accent pointer-events-none absolute bottom-0 left-[70%] h-24 w-px origin-top bg-linear-to-b to-transparent max-lg:hidden"
-        initial={reduceMotion ? false : { scaleY: 0, opacity: 0 }}
-        animate={{ scaleY: 1, opacity: 0.8 }}
-        transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.8, ease: 'easeOut' }}
+        className="bg-accent pointer-events-none absolute bottom-0 left-[70%] z-20 size-1.5 -translate-x-0.75 rounded-full shadow-[0_0_16px_5px_color-mix(in_srgb,var(--accent)_30%,transparent)] max-lg:hidden"
+        initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.9 }}
+        transition={{ duration: 0.3, delay: reduceMotion ? 0 : 1.42, ease: [0.22, 1, 0.36, 1] }}
       />
     </section>
   );

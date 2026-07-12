@@ -48,6 +48,8 @@ Google does not guarantee first position for any implementation. Ranking also de
 
 ## Performance & motion
 
+- Reworked the home-to-footer handoff into one scroll-linked sequence: workbench signal conduit, grid impact, horizon sweep, particle word mark assembly, substrate reveal, and command-rail arrival.
+- Kept the cinematic signal treatment desktop-only, paused the particle engine until reveal, and verified a static reduced-motion presentation with decorative pulses hidden.
 - Removed the full-screen preloader that hid usable content for at least 800 ms.
 - Removed redundant Google Fonts preconnects because `next/font` self-hosts the font assets.
 - Made the LCP headline immediately visible instead of gating it behind a delayed entrance animation.
