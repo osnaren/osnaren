@@ -1,6 +1,5 @@
 export interface ResumeRole {
   title: string;
-  period: string;
   bullets: string[];
 }
 
@@ -23,7 +22,6 @@ export const experience: ResumeBlock[] = [
     roles: [
       {
         title: 'Front End Web Developer',
-        period: 'Apr 2026 — Present',
         bullets: [
           'Lead development of high-impact ecommerce features from technical discovery to production, partnering with Product, UX, QA, Backend, and Analytics.',
           'Build and refine React product-page experiences that improve product discovery and purchase confidence — availability, sizing, and fulfillment interactions.',
@@ -33,7 +31,6 @@ export const experience: ResumeBlock[] = [
       },
       {
         title: 'Associate Front End Web Developer',
-        period: 'Dec 2023 — Mar 2026',
         bullets: [
           'Built customer-facing, React-based product detail experiences used across digital commerce journeys.',
           'Owned frontend implementation of complex features — UI behavior, state handling, edge cases, accessibility, production readiness.',
@@ -51,7 +48,6 @@ export const experience: ResumeBlock[] = [
     roles: [
       {
         title: 'Project Engineer',
-        period: 'Jun 2022 — Nov 2023',
         bullets: [
           'Modernized the frontend codebase toward modular, maintainable component architecture.',
           'Built Python services backed by MongoDB alongside frontend work.',
@@ -60,7 +56,6 @@ export const experience: ResumeBlock[] = [
       },
       {
         title: 'Project Intern',
-        period: 'Jul 2021 — May 2022',
         bullets: [
           'Shipped a responsive dark theme and a drag-and-drop scheduling UX.',
           'Built a CLI tool for multi-device support, real-time data retrieval, and performance monitoring.',
@@ -134,13 +129,6 @@ export const datasets: ReadonlyArray<{ title: string; meta: string; href: string
     href: 'https://www.kaggle.com/datasets/obulisainaren/forest-fire-c4',
   },
 ];
-
-export const certifications = [
-  'Kaizen IoT Workshop',
-  'Fundamentals of Information Security',
-  'Build a Face Recognition Application using Python',
-  'Dakshina Bharat Hindi Prachar Sabha — 8 examinations from Prathamic through Praveen Uttarardh, First Class',
-] as const;
 
 export const languages = ['Tamil', 'English', 'Kannada', 'Hindi'] as const;
 

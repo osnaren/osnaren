@@ -253,9 +253,28 @@ main:has(> .home-launcher) {
   }
   .resume-contact-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    display: grid !important;
     column-gap: 4mm !important;
     row-gap: 1mm !important;
     font-size: 7.4pt !important;
+  }
+  .resume-contact-link {
+    display: flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 1.5mm !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  .resume-contact-icon {
+    width: 3mm !important;
+    height: 3mm !important;
+  }
+  .resume-contact-icon > svg {
+    width: 100% !important;
+    height: 100% !important;
   }
   .resume-panel {
     border-color: #bbb !important;
@@ -279,7 +298,6 @@ main:has(> .home-launcher) {
     line-height: 1.45 !important;
   }
   .resume-role {
-    grid-template-columns: minmax(0, 1fr) 28mm !important;
     break-inside: avoid;
   }
   .resume-two-column {

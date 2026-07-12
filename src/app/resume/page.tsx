@@ -1,26 +1,20 @@
+import { Github, Kaggle, Linkedin, Orcid } from '@thesvg/react';
 import {
   BookOpen,
   BriefcaseBusiness,
   Code2,
   Database,
   Gauge,
+  Globe2,
   GraduationCap,
   Languages as LanguagesIcon,
+  Mail,
   type LucideIcon,
   Users,
 } from 'lucide-react';
 
 import { PrintButton } from '@/components/resume/PrintButton';
-import {
-  certifications,
-  datasets,
-  education,
-  experience,
-  languages,
-  leadership,
-  publications,
-  skills,
-} from '@/data/resume';
+import { datasets, education, experience, languages, leadership, publications, skills } from '@/data/resume';
 import { site } from '@/data/site';
 
 import type { Metadata } from 'next';
@@ -33,12 +27,32 @@ export const metadata: Metadata = {
 };
 
 const contactLinks = [
-  { label: 'Email', href: `mailto:${site.email}`, text: site.email },
-  { label: 'Web', href: site.domain, text: 'osnaren.com' },
-  { label: 'LinkedIn', href: site.links.linkedin, text: 'linkedin.com/in/osnaren' },
-  { label: 'GitHub', href: site.links.github, text: 'github.com/osnaren' },
-  { label: 'Kaggle', href: site.links.kaggle, text: 'kaggle.com/obulisainaren' },
-  { label: 'ORCID', href: site.links.orcid, text: '0000-0002-6656-9617' },
+  { label: 'Email', href: `mailto:${site.email}`, text: site.email, icon: <Mail aria-hidden="true" /> },
+  { label: 'Website', href: site.domain, text: 'osnaren.com', icon: <Globe2 aria-hidden="true" /> },
+  {
+    label: 'LinkedIn',
+    href: site.links.linkedin,
+    text: 'linkedin.com/in/osnaren',
+    icon: <Linkedin aria-hidden="true" />,
+  },
+  {
+    label: 'GitHub',
+    href: site.links.github,
+    text: 'github.com/osnaren',
+    icon: <Github variant="mono" aria-hidden="true" />,
+  },
+  {
+    label: 'Kaggle',
+    href: site.links.kaggle,
+    text: 'kaggle.com/obulisainaren',
+    icon: <Kaggle variant="mono" aria-hidden="true" />,
+  },
+  {
+    label: 'ORCID',
+    href: site.links.orcid,
+    text: '0000-0002-6656-9617',
+    icon: <Orcid variant="mono" aria-hidden="true" />,
+  },
 ] as const;
 
 const skillGroups: ReadonlyArray<{ label: string; items: readonly string[]; icon: LucideIcon }> = [
@@ -78,15 +92,17 @@ export default function ResumePage() {
           computer-vision projects.
         </p>
         <address className="mt-4 not-italic">
-          <ul className="resume-contact-grid grid gap-x-5 gap-y-1.5 font-mono text-[10.5px] sm:grid-cols-2 lg:grid-cols-3">
-            {contactLinks.map((link) => (
-              <li key={link.label} className="min-w-0">
-                <span className="text-faint mr-1.5 uppercase">{link.label}</span>
+          <ul className="resume-contact-grid grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {contactLinks.map(({ label, href, text, icon }) => (
+              <li key={label}>
                 <a
-                  href={link.href}
-                  className="text-muted hover:text-accent break-all underline-offset-4 hover:underline"
+                  href={href}
+                  aria-label={`${label}: ${text}`}
+                  title={label}
+                  className="resume-contact-link border-line text-muted hover:border-accent hover:text-accent flex min-h-11 min-w-0 items-center gap-2.5 rounded-lg border px-3 font-mono text-[10.5px] transition-colors"
                 >
-                  {link.text}
+                  <span className="resume-contact-icon grid size-4.25 shrink-0 place-items-center">{icon}</span>
+                  <span className="resume-contact-copy min-w-0 break-all">{text}</span>
                 </a>
               </li>
             ))}
@@ -110,16 +126,13 @@ export default function ResumePage() {
               </div>
               <div className="mt-4 flex flex-col gap-4">
                 {block.roles.map((role) => (
-                  <div key={role.title} className="resume-role grid gap-2 sm:grid-cols-[minmax(0,1fr)_130px]">
-                    <div>
-                      <h4 className="text-[13.5px] font-semibold">{role.title}</h4>
-                      <ul className="text-muted mt-1.5 flex list-disc flex-col gap-1.5 pl-5 text-[13px] leading-relaxed">
-                        {role.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <p className="text-faint font-mono text-[10px] leading-relaxed sm:text-right">{role.period}</p>
+                  <div key={role.title} className="resume-role">
+                    <h4 className="text-[13.5px] font-semibold">{role.title}</h4>
+                    <ul className="text-muted mt-1.5 flex list-disc flex-col gap-1.5 pl-5 text-[13px] leading-relaxed">
+                      {role.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -143,6 +156,13 @@ export default function ResumePage() {
                 </p>
               </div>
             ))}
+          </div>
+          <div className="border-line mt-4 border-t pt-3.5">
+            <div className="flex items-center gap-2">
+              <LanguagesIcon className="text-accent size-4" aria-hidden="true" />
+              <h3 className="text-faint font-mono text-[9.5px] font-medium tracking-[0.08em] uppercase">Languages</h3>
+            </div>
+            <p className="text-muted mt-1.5 text-[12.5px] leading-relaxed">{languages.join(' · ')}</p>
           </div>
         </section>
 
@@ -202,36 +222,22 @@ export default function ResumePage() {
         </section>
       </div>
 
-      <div className="resume-two-column mt-5 grid gap-5 md:grid-cols-2">
-        <section aria-labelledby="credentials-heading" className="resume-panel border-line rounded-xl border p-5">
-          <SectionHeading id="credentials-heading" icon={LanguagesIcon}>
-            Credentials &amp; languages
-          </SectionHeading>
-          <ul className="text-muted flex list-disc flex-col gap-1.5 pl-4.5 text-[12.5px] leading-relaxed">
-            {certifications.map((certification) => (
-              <li key={certification}>{certification}</li>
-            ))}
-          </ul>
-          <p className="text-faint mt-3 font-mono text-[9.5px] tracking-wider uppercase">{languages.join(' · ')}</p>
-        </section>
-
-        <section aria-labelledby="leadership-heading" className="resume-panel border-line rounded-xl border p-5">
-          <SectionHeading id="leadership-heading" icon={Users}>
-            Leadership &amp; service
-          </SectionHeading>
-          <div className="flex flex-col gap-3.5">
-            {leadership.map((entry) => (
-              <div key={entry.role}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
-                  <h3 className="text-[12.5px] leading-snug font-semibold">{entry.role}</h3>
-                  <p className="text-faint font-mono text-[9px] uppercase">{entry.period}</p>
-                </div>
-                <p className="text-muted mt-1 text-[12px] leading-relaxed">{entry.detail}</p>
+      <section aria-labelledby="leadership-heading" className="resume-panel border-line mt-5 rounded-xl border p-5">
+        <SectionHeading id="leadership-heading" icon={Users}>
+          Leadership &amp; service
+        </SectionHeading>
+        <div className="grid gap-3.5 md:grid-cols-2">
+          {leadership.map((entry) => (
+            <div key={entry.role}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+                <h3 className="text-[12.5px] leading-snug font-semibold">{entry.role}</h3>
+                <p className="text-faint font-mono text-[9px] uppercase">{entry.period}</p>
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
+              <p className="text-muted mt-1 text-[12px] leading-relaxed">{entry.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <p className="text-faint mt-7 text-center font-mono text-[10px] tracking-[0.06em] uppercase print:hidden">
         Print-ready · Save a clean PDF using the button above
