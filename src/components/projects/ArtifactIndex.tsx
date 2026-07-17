@@ -314,7 +314,7 @@ export function ArtifactIndex() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [navigate]);
 
-  const activeArtifact = visible.find((a) => a.slug === activeSlug) ?? visible[0] ?? artifacts[0];
+  const activeArtifact = visible.find((a) => a.slug === activeSlug) ?? visible[0];
   const activeIndex = visible.findIndex((a) => a.slug === activeArtifact?.slug);
 
   const activeFilterLabel = artifactFilters.find((f) => f.key === filter)?.label ?? 'All';

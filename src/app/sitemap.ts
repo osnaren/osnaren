@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticRoutes, ...caseStudies].map((route) => ({
     url: `${site.domain}${route}`,
-    lastModified: new Date('2026-07-12'),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
     priority: route === '' ? 1 : route.startsWith('/projects/') ? 0.8 : 0.7,
   }));
