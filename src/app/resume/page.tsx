@@ -12,7 +12,7 @@ import {
   Users,
 } from 'lucide-react';
 
-import { PrintButton } from '@/components/resume/PrintButton';
+import { ResumeDownloadButton } from '@/components/resume/ResumeDownloadButton';
 import { datasets, education, experience, languages, leadership, publications, skills } from '@/data/resume';
 import { site } from '@/data/site';
 
@@ -78,7 +78,7 @@ export default function ResumePage() {
     <article className="resume-document mx-auto max-w-5xl py-10 sm:py-14">
       <header className="resume-header relative py-7 px-5 sm:px-8">
         <div className="absolute top-0 right-0 print:hidden">
-          <PrintButton />
+          <ResumeDownloadButton />
         </div>
         <p className="label-mono text-accent pr-42 print:pr-0">Resume · Frontend engineering</p>
         <h1 className="mt-2 text-[2.15rem] leading-none font-semibold tracking-tight sm:text-[2.75rem]">{site.name}</h1>
@@ -246,7 +246,7 @@ export default function ResumePage() {
       </section>
 
       <p className="text-faint mt-7 text-center font-mono text-[10px] tracking-[0.06em] uppercase print:hidden">
-        Print-ready · Save a clean PDF using the button above
+        Download the PDF using the button above
       </p>
     </article>
   );
