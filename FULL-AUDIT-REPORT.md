@@ -1,8 +1,22 @@
 # Launch Readiness & SEO Audit
 
-Audit date: 12 July 2026
+Audit date: 17 July 2026
 
-Status: Ready to deploy
+Status: Code ready; production promotion pending
+
+## Final launch recheck — 17 July 2026
+
+- Replaced the placeholder profile README with a recruiter-friendly personal-brand profile grounded in shipped products, professional frontend work, peer-reviewed research, and public datasets.
+- Verified the README with GitHub's Markdown renderer: 6 headings, 19 badge images, and 31 links render successfully.
+- Checked every README badge and destination. Shields, GitHub, DOI, ORCID, Kaggle, ShadySide, and TheFlames resolve; LinkedIn blocks automated checks but the public profile URL is valid.
+- Re-ran ESLint, TypeScript, CSpell, and the production build. All pass, and Next.js emits 26 static routes.
+- Ran a production dependency audit: no known vulnerabilities.
+- Confirmed no environment files are tracked and a common secret-pattern scan returns no matches.
+- Confirmed the public GitHub repository is correctly named `osnaren`, is public, and has `main` as its default branch.
+
+### Remaining deployment gate
+
+The finished application and README are on `develop`, while GitHub and the live deployment still use `main`. The current production site returns 404 for `/resume`, `/story`, the new project pages, filtered project URLs, and `/opengraph-image`. Promote the reviewed branch and deploy it before treating the public launch as complete. After deployment, repeat the live URL, metadata, and social-preview checks below.
 
 ## Executive summary
 

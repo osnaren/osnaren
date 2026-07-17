@@ -13,6 +13,16 @@
 - [x] Make the homepage LCP headline immediately renderable.
 - [x] Make route navigation, project filters, lab filters, focus movement, and browser history scroll behavior deterministic.
 - [x] Pass lint, types, spelling, production build, route crawl, mobile overflow, and Lighthouse checks.
+- [x] Replace the placeholder GitHub profile README with evidence-led personal-brand content, verified links, and restrained badges.
+- [x] Confirm no production dependency vulnerabilities, tracked environment files, or common committed-secret patterns.
+
+## Required before public launch
+
+1. Merge or promote the reviewed `develop` branch to the default `main` branch. GitHub only displays the profile README from the default branch.
+2. Deploy the promoted revision to `osnaren.com` and confirm `/resume`, `/story`, `/projects`, all case studies, filtered project URLs, and `/opengraph-image` return HTTP 200.
+3. Update the GitHub repository homepage from `https://osnaren.vercel.app` to `https://osnaren.com` and replace the generic repository description.
+4. Refresh the public GitHub bio, company, and location copy so it matches the portfolio's current positioning.
+5. Revisit pinned repositories. Prioritize current work and strongest proof over older training projects.
 
 ## Required after deployment
 
