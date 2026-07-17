@@ -91,6 +91,7 @@ Vidya
 vmax
 vmin
 weakref
+WCAG
 Xception
 Xplore
 Anaya

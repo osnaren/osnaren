@@ -9,10 +9,7 @@ export interface JourneyStep {
   states?: string[];
 }
 
-/**
- * A sanitized customer-journey / system state map for work case studies. Uses
- * generic system blocks only — never a recreation of a private company UI.
- */
+/** A public-safe customer-journey map built from generic system states. */
 export function JourneyMap({ steps, kicker = 'Customer journey' }: { steps: JourneyStep[]; kicker?: string }) {
   const [active, setActive] = useState(0);
   const current = steps[active];

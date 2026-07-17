@@ -264,7 +264,6 @@ export function ArtifactIndex() {
 
   const changeFilter = (nextFilter: ArtifactFilterKey) => {
     if (nextFilter === filter) return;
-    // moveToIndexStart();
     setFilter(nextFilter);
     updateFilterUrl(nextFilter);
   };

@@ -4,7 +4,7 @@
 
 **Frontend engineer building accessible commerce experiences, useful products, and open research artifacts.**
 
-React · TypeScript · Product UX · Accessibility · Performance
+`React` · `TypeScript` · `Product UX` · `Accessibility` · `Performance`
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-osnaren.com-D96E30?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://osnaren.com)
 [![Resume](https://img.shields.io/badge/Resume-View_online-17191E?style=for-the-badge&logo=readdotcv&logoColor=white)](https://osnaren.com/resume)
@@ -13,11 +13,11 @@ React · TypeScript · Product UX · Accessibility · Performance
 
 </div>
 
-## What I work on
+## Engineering with evidence
 
 I build customer-facing ecommerce interfaces at **Victoria's Secret & Co.**, with a focus on React, accessibility, performance, experimentation, and dependable product UX.
 
-Outside work, I turn everyday questions into products and research:
+Outside work, I turn everyday questions into products, open-source projects, and research:
 
 - **Product engineering:** practical web tools with clear interaction models and production-ready details.
 - **Frontend systems:** reusable React and TypeScript patterns that hold up across devices, edge cases, and real customer journeys.
@@ -25,14 +25,56 @@ Outside work, I turn everyday questions into products and research:
 
 ## Selected work
 
-| Work                                | Why it exists                                                                                                                 | Explore                                                                                                           |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **ShadySide**                       | Compares a route, departure time, sun position, and weather context to recommend the cooler side of a journey.                | [Live product](https://shadyside.app) · [Case study](https://osnaren.com/projects/shadyside)                      |
-| **TheFlames**                       | Brings the familiar paper-and-pencil FLAMES game online with automatic and manual play, global charts, and shareable results. | [Live product](https://theflames.app) · [Source](https://github.com/osnaren/the-flames)                           |
-| **Forest Fire & Smoke Detection**   | Applies Learning without Forgetting so a classifier can learn new imagery without discarding earlier knowledge.               | [Paper](https://doi.org/10.1186/s42408-022-00165-0) · [Source](https://github.com/osnaren/forest-fire)            |
-| **Public medical-imaging datasets** | Makes balanced cancer and retinal OCT image collections available for reproducible research and learning.                     | [Kaggle](https://www.kaggle.com/obulisainaren) · [Research archive](https://osnaren.com/projects?filter=research) |
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### ☀️ ShadySide
+
+Compares a route, departure time, sun position, and weather context to recommend the cooler side of a journey.
+
+[![Live product](https://img.shields.io/badge/Live_product-Visit-D96E30?style=flat-square&logo=safari&logoColor=white)](https://shadyside.app)
+[![Case study](https://img.shields.io/badge/Case_study-Read-17191E?style=flat-square&logo=readme&logoColor=white)](https://osnaren.com/projects/shadyside)
+
+</td>
+<td width="50%" valign="top">
+
+### 🔥 TheFlames
+
+Brings the familiar paper-and-pencil FLAMES game online with automatic and manual play, global charts, and shareable results.
+
+[![Live product](https://img.shields.io/badge/Live_product-Visit-D96E30?style=flat-square&logo=safari&logoColor=white)](https://theflames.app)
+[![Source](https://img.shields.io/badge/Source-Explore-17191E?style=flat-square&logo=github&logoColor=white)](https://github.com/osnaren/the-flames)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🌲 Forest fire detection
+
+Applies Learning without Forgetting so a classifier can learn new imagery without discarding earlier knowledge.
+
+[![Paper](https://img.shields.io/badge/Peer--reviewed_paper-Read-4285F4?style=flat-square&logo=googlescholar&logoColor=white)](https://doi.org/10.1186/s42408-022-00165-0)
+[![Source](https://img.shields.io/badge/Source-Explore-17191E?style=flat-square&logo=github&logoColor=white)](https://github.com/osnaren/forest-fire)
+
+</td>
+<td width="50%" valign="top">
+
+### 🔬 Medical-imaging datasets
+
+Makes balanced cancer and retinal OCT image collections available for reproducible research and learning.
+
+[![Kaggle](https://img.shields.io/badge/Open_data-Explore-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://www.kaggle.com/obulisainaren)
+[![Research archive](https://img.shields.io/badge/Research_archive-View-17191E?style=flat-square&logo=readme&logoColor=white)](https://osnaren.com/projects?filter=research)
+
+</td>
+</tr>
+</table>
 
 ## Working toolkit
+
+**Core product engineering**
 
 ![React](https://img.shields.io/badge/React-17191E?style=flat-square&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-17191E?style=flat-square&logo=typescript&logoColor=3178C6)
@@ -40,6 +82,9 @@ Outside work, I turn everyday questions into products and research:
 ![React Native](https://img.shields.io/badge/React_Native-17191E?style=flat-square&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-17191E?style=flat-square&logo=tailwindcss&logoColor=06B6D4)
 ![Node.js](https://img.shields.io/badge/Node.js-17191E?style=flat-square&logo=nodedotjs&logoColor=5FA04E)
+
+**Quality, data, and delivery**
+
 ![Python](https://img.shields.io/badge/Python-17191E?style=flat-square&logo=python&logoColor=FFD43B)
 ![MongoDB](https://img.shields.io/badge/MongoDB-17191E?style=flat-square&logo=mongodb&logoColor=47A248)
 ![Accessibility](https://img.shields.io/badge/Accessibility-17191E?style=flat-square&logo=accessibility&logoColor=D96E30)

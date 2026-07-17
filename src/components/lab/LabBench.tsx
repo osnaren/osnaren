@@ -305,11 +305,8 @@ export function LabBench() {
   // scroll bench panel into view after React renders it
   useEffect(() => {
     if (open) {
-      // two rAFs: first lets React commit, second lets layout settle
-      // requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         labRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-        // });
       });
     }
   }, [open, reduceMotion]);

@@ -54,11 +54,7 @@ const previewComponents: Record<PreviewKey, ComponentType> = {
   campus: CampusPreview,
 };
 
-/**
- * Artifact previews. Real, public-safe media is used where it exists (only the
- * ShadySide premise illustration in this repo); everything else is a designed
- * schematic — never a fabricated photograph, certificate, or workplace screen.
- */
+/** Artifact previews use verified media or purpose-built schematic illustrations. */
 export function StoryPreview({ preview, media }: { preview: PreviewKey; media?: NoteMedia }) {
   if (media) {
     return (

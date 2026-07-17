@@ -102,11 +102,7 @@ export const noteChapter: Record<string, StoryChapterKey> = {
   'FN-014': 'lab',
 };
 
-/**
- * Real, public-safe media for a note. Only ShadySide has a designed premise
- * illustration in the repo; everything else uses schematic artifacts so no fake
- * photographs, certificates, or workplace screenshots are ever fabricated.
- */
+/** Public-safe note media using either verified assets or schematic illustrations. */
 export interface NoteMedia {
   src: string;
   alt: string;

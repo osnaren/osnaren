@@ -17,9 +17,9 @@ export interface LabExperiment {
   interactionModel: string;
   updated: string;
   featured?: boolean;
-  /** verified internal/related link, never a fabricated source */
+  /** Related project or case-study link. */
   related?: { label: string; href: string };
-  /** honest note when the study is not the production calculation / not live data */
+  /** Context when a study differs from the production calculation or live data. */
   disclaimer?: string;
   observation: {
     input: string;
