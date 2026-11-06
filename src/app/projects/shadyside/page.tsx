@@ -119,6 +119,7 @@ export default function ShadySidePage() {
       <CaseScaffold
         chapters={chapters}
         artifactId="OSN-001"
+        prev={{ label: 'Prev: OSN-018 Vertlas', href: '/projects/vertlas' }}
         next={{ label: 'Next: OSN-002 TheFlames', href: '/projects/theflames' }}
       >
         <Chapter id="premise" index="01" title="Premise">
@@ -225,6 +226,7 @@ export default function ShadySidePage() {
             { label: 'Open the live app', href: 'https://shadyside.app', external: true, primary: true },
             { label: 'Train shade guide', href: 'https://shadyside.app/train-shade', external: true },
           ]}
+          prev={{ label: 'Prev: OSN-018 Vertlas', href: '/projects/vertlas' }}
           next={{ label: 'Next: OSN-002 TheFlames', href: '/projects/theflames' }}
         />
       </CaseScaffold>

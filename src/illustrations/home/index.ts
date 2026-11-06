@@ -1,3 +1,4 @@
+export { HomeVertlasVisual } from './HomeVertlasVisual';
 export { HomeRouteVisual } from './HomeRouteVisual';
 export { HomeFlamesVisual } from './HomeFlamesVisual';
 export { HomeCommerceVisual } from './HomeCommerceVisual';

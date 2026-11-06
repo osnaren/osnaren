@@ -125,3 +125,7 @@ Vikram
 preconnects
 renderable
 unclipped
+pgvector
+romanised
+trgm
+vertlas

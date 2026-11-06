@@ -62,7 +62,7 @@ export default function OpengraphImage() {
       </div>
 
       <div style={{ display: 'flex', gap: 14 }}>
-        {['OSN-001 SHADYSIDE', 'OSN-002 THEFLAMES', 'OSN-011 LAB', 'OSN-013 RESUME'].map((chip) => (
+        {['OSN-018 VERTLAS', 'OSN-001 SHADYSIDE', 'OSN-002 THEFLAMES', 'OSN-013 RESUME'].map((chip) => (
           <div
             key={chip}
             style={{

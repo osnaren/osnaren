@@ -1,4 +1,5 @@
 import {
+  VertlasVisual,
   RouteVisual,
   FlamesVisual,
   FireVisual,
@@ -17,6 +18,7 @@ import type { ArtifactVisual as VisualKey } from '@/data/artifacts';
 import type { ComponentType } from 'react';
 
 const visualComponents: Record<VisualKey, ComponentType> = {
+  vertlas: VertlasVisual,
   route: RouteVisual,
   flames: FlamesVisual,
   fire: FireVisual,

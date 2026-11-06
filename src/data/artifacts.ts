@@ -1,6 +1,7 @@
 export type ArtifactType = 'product' | 'research' | 'dataset' | 'publication' | 'work' | 'experiment' | 'archive';
 
 export type ArtifactVisual =
+  | 'vertlas'
   | 'route'
   | 'flames'
   | 'fire'
@@ -67,6 +68,41 @@ export function matchesFilter(artifact: Artifact, filter: ArtifactFilterKey): bo
 }
 
 export const artifacts: Artifact[] = [
+  {
+    id: 'OSN-018',
+    slug: 'vertlas',
+    name: 'Vertlas',
+    type: 'product',
+    typeLabel: 'Product',
+    status: '● Live · Beta',
+    statusTone: 'ok',
+    year: '2026 →',
+    problem: 'One drama, a dozen titles',
+    summary:
+      'A discovery, tracking, and metadata companion for vertical short dramas, built after asking Reddit how fans keep track. Search by any title, actor, or half-remembered plot, then track, rate, and find what to watch next.',
+    tags: ['Next.js 16', 'Hono API', 'PostgreSQL + pgvector', 'Cloudflare Workers', 'Public beta'],
+    links: [
+      { label: 'Case study', href: '/projects/vertlas', primary: true },
+      { label: 'Live app', href: 'https://vertlas.com', external: true },
+      {
+        label: 'Launch post',
+        href: 'https://www.reddit.com/r/CShortHaven/comments/1x40y8m/i_asked_how_you_all_track_short_dramas_i_finally/',
+        external: true,
+      },
+    ],
+    visual: 'vertlas',
+    caseStudy: '/projects/vertlas',
+    keywords: [
+      'short drama',
+      'cdrama',
+      'vertical drama',
+      'tracker',
+      'watchlist',
+      'reddit',
+      'search',
+      'recommendations',
+    ],
+  },
   {
     id: 'OSN-001',
     slug: 'shadyside',

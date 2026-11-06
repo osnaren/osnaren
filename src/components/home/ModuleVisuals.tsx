@@ -1,4 +1,5 @@
 import {
+  HomeVertlasVisual,
   HomeRouteVisual,
   HomeFlamesVisual,
   HomeCommerceVisual,
@@ -11,6 +12,7 @@ import type { ModuleVisual } from '@/data/modules';
 import type { ComponentType } from 'react';
 
 const visuals: Record<ModuleVisual, ComponentType> = {
+  vertlas: HomeVertlasVisual,
   route: HomeRouteVisual,
   flames: HomeFlamesVisual,
   commerce: HomeCommerceVisual,
