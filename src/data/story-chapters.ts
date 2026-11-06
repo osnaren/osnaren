@@ -100,6 +100,7 @@ export const noteChapter: Record<string, StoryChapterKey> = {
   'FN-011': 'lab',
   'FN-012': 'lab',
   'FN-014': 'lab',
+  'FN-015': 'lab',
 };
 
 /** Public-safe note media using either verified assets or schematic illustrations. */

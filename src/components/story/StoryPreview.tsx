@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import {
+  VertlasPreview,
   RoutePreview,
   FlamesPreview,
   CommercePreview,
@@ -31,6 +32,7 @@ import type { ComponentType } from 'react';
 type PreviewKey = FieldNote['preview'];
 
 const previewComponents: Record<PreviewKey, ComponentType> = {
+  vertlas: VertlasPreview,
   route: RoutePreview,
   flames: FlamesPreview,
   commerce: CommercePreview,

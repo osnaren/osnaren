@@ -1,3 +1,4 @@
+export { VertlasPreview } from './VertlasPreview';
 export { RoutePreview } from './RoutePreview';
 export { FlamesPreview } from './FlamesPreview';
 export { CommercePreview } from './CommercePreview';
