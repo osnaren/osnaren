@@ -11,7 +11,7 @@ import { Workbench } from '@/components/home/Workbench';
 import { artifacts } from '@/data/artifacts';
 import { benchModules } from '@/data/modules';
 
-const DEFAULT_MODULE_ID = 'OSN-001';
+const DEFAULT_MODULE_ID = 'OSN-018';
 
 const credibilityItems = [
   { label: 'Frontend commerce', href: '/projects?filter=work', tone: 'bg-ok' },

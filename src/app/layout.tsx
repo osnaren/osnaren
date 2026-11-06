@@ -43,6 +43,7 @@ export const metadata: Metadata = {
     'ecommerce',
     'accessibility',
     'ShadySide',
+    'Vertlas',
   ],
   authors: [{ name: site.name, url: site.domain }],
   creator: site.name,

@@ -1,7 +1,7 @@
 /** Story — dated field-note pins. */
 export function HomeStoryVisual() {
   const notes = [
-    { year: '2026 — the lab opens', active: true },
+    { year: '2026 — launched vertlas', active: true },
     { year: '2025 — shipped shadyside', active: false },
     { year: '2021 — first prod deploy', active: false },
   ];

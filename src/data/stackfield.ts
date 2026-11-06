@@ -24,9 +24,9 @@ export const categoryLabel: Record<StackCategory, string> = {
  * they match the lab's label language and cost zero kilobytes.
  */
 export const stackItems: StackItem[] = [
-  { label: 'React', glyph: '⚛', category: 'frontend', usedIn: 'ShadySide · Portfolio' },
+  { label: 'React', glyph: '⚛', category: 'frontend', usedIn: 'Vertlas · ShadySide · Portfolio' },
   { label: 'TypeScript', glyph: 'TS', category: 'frontend', usedIn: 'Everything shipped since 2021' },
-  { label: 'Next.js', glyph: '▲', category: 'frontend', usedIn: 'TheFlames · Portfolio' },
+  { label: 'Next.js', glyph: '▲', category: 'frontend', usedIn: 'Vertlas · TheFlames · Portfolio' },
   { label: 'Tailwind', glyph: '~w', category: 'frontend', usedIn: 'Portfolio' },
   { label: 'Framer Motion', glyph: '◇', category: 'frontend', usedIn: 'This footer' },
   { label: 'GSAP', glyph: '⟿', category: 'frontend' },

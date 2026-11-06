@@ -190,8 +190,8 @@ export function ArtifactIndex() {
   const searchParams = useSearchParams();
   const [filter, setFilter] = useState<ArtifactFilterKey>(() => filterFromParams(searchParams));
   const [query, setQuery] = useState('');
-  const [openSlug, setOpenSlug] = useState<string | null>('shadyside');
-  const [activeSlug, setActiveSlug] = useState('shadyside');
+  const [openSlug, setOpenSlug] = useState<string | null>('vertlas');
+  const [activeSlug, setActiveSlug] = useState('vertlas');
 
   const indexRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<Record<string, HTMLElement | null>>({});

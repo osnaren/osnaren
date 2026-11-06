@@ -8,15 +8,18 @@ import { CommandStrip } from '@/components/home/CommandStrip';
 import { ModuleCard } from '@/components/home/ModuleCard';
 import { benchModules } from '@/data/modules';
 
-/** Desktop instrument-field placement. The primary artifact (OSN-001) dominates
- *  the centre; the five service modules orbit it at varying depth and overlap. */
+/** Desktop instrument-field placement. The primary artifact dominates the
+ *  centre and slightly overlaps two staggered columns of supporting modules. */
+const PRIMARY_MODULE_ID = 'OSN-018';
+
 const positions: Record<string, string> = {
-  'OSN-001': 'left-[30%] top-[19%] z-30 h-[45%] w-[40%]',
-  'OSN-002': 'left-[2%] top-[6%] z-10 h-[29%] w-[28%]',
-  'OSN-009': 'left-[2%] top-[57%] z-10 h-[28%] w-[28%]',
-  'OSN-011': 'right-[2%] top-[6%] z-10 h-[29%] w-[28%]',
-  'OSN-012': 'right-[2%] top-[57%] z-10 h-[28%] w-[28%]',
-  'OSN-013': 'left-[38%] top-[64%] z-20 h-[27%] w-[24%]',
+  'OSN-018': 'left-[29%] top-[11%] z-30 h-[66%] w-[42%]',
+  'OSN-001': 'left-[2%] top-[3%] z-20 h-[29%] w-[28%]',
+  'OSN-002': 'left-[2%] top-[36%] z-10 h-[28%] w-[28%]',
+  'OSN-009': 'left-[2%] top-[68%] z-10 h-[28%] w-[28%]',
+  'OSN-011': 'right-[2%] top-[6%] z-10 h-[28%] w-[28%]',
+  'OSN-012': 'right-[2%] top-[38%] z-10 h-[28%] w-[28%]',
+  'OSN-013': 'right-[2%] top-[70%] z-20 h-[27%] w-[28%]',
 };
 
 export function Workbench({
@@ -190,7 +193,7 @@ export function Workbench({
                 module={module}
                 index={index}
                 active={activeId === module.id}
-                primary={module.id === 'OSN-001'}
+                primary={module.id === PRIMARY_MODULE_ID}
                 dimmed={activeId !== module.id}
                 onActive={onActive}
               />
@@ -198,7 +201,7 @@ export function Workbench({
           ))}
         </motion.div>
 
-        {/* command strip — 1–6 shortcuts + click nav, docked in the field */}
+        {/* command strip — numbered shortcuts + click nav, docked in the field */}
         <div className="absolute right-3 bottom-3 left-7">
           <CommandStrip activeId={activeId} onSelect={onActive} />
         </div>

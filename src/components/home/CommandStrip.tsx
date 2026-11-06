@@ -17,7 +17,7 @@ function isInteractiveTarget(target: EventTarget | null) {
 
 /**
  * The command strip replaces the drag-dock from the prototype: it documents
- * the 1–6 keyboard shortcuts and doubles as click/tap navigation.
+ * the numbered keyboard shortcuts and doubles as click/tap navigation.
  */
 export function CommandStrip({ activeId, onSelect }: { activeId: string; onSelect: (id: string) => void }) {
   const router = useRouter();

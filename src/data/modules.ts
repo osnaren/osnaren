@@ -1,4 +1,4 @@
-export type ModuleVisual = 'route' | 'flames' | 'commerce' | 'lab' | 'story' | 'resume';
+export type ModuleVisual = 'vertlas' | 'route' | 'flames' | 'commerce' | 'lab' | 'story' | 'resume';
 
 export interface BenchModule {
   id: string;
@@ -18,8 +18,21 @@ export interface BenchModule {
 
 export const benchModules: BenchModule[] = [
   {
-    id: 'OSN-001',
+    // the flagship product leads the bench; ids match the artifact index
+    id: 'OSN-018',
     key: 1,
+    name: 'Vertlas',
+    status: '● Live · Beta',
+    statusTone: 'ok',
+    copy: 'Every short drama, by any name it goes by.',
+    href: '/projects/vertlas',
+    visual: 'vertlas',
+    contextTitle: 'VERTLAS · LIVE PRODUCT',
+    contextDetail: 'SHORT-DRAMA DISCOVERY / SEARCH / TRACKING',
+  },
+  {
+    id: 'OSN-001',
+    key: 2,
     name: 'ShadySide',
     status: '● Shipped · Live',
     statusTone: 'ok',
@@ -31,7 +44,7 @@ export const benchModules: BenchModule[] = [
   },
   {
     id: 'OSN-002',
-    key: 2,
+    key: 3,
     name: 'TheFlames',
     status: '● Live · Experiment',
     statusTone: 'ok',
@@ -44,7 +57,7 @@ export const benchModules: BenchModule[] = [
   {
     // ids match the artifact index (OSN-009 = Commerce Frontend Systems)
     id: 'OSN-009',
-    key: 3,
+    key: 4,
     name: 'Work',
     status: 'Experience',
     statusTone: 'muted',
@@ -56,7 +69,7 @@ export const benchModules: BenchModule[] = [
   },
   {
     id: 'OSN-011',
-    key: 4,
+    key: 5,
     name: 'Lab',
     status: 'Experiments',
     statusTone: 'accent',
@@ -67,9 +80,9 @@ export const benchModules: BenchModule[] = [
     contextDetail: 'MOTION / PROTOTYPES / SMALL TESTS',
   },
   {
-    // 012/013 are reserved for site modules — the artifact index tops out at 011
+    // 012/013 are reserved for site modules; the artifact index skips them
     id: 'OSN-012',
-    key: 5,
+    key: 6,
     name: 'Story',
     status: 'Field Notes',
     statusTone: 'accent',
@@ -81,7 +94,7 @@ export const benchModules: BenchModule[] = [
   },
   {
     id: 'OSN-013',
-    key: 6,
+    key: 7,
     name: 'Resume',
     status: 'Spec Sheet',
     statusTone: 'muted',

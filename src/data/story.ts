@@ -12,6 +12,7 @@ export interface FieldNote {
   lesson: string;
   /** schematic rendered in the sticky preview panel */
   preview:
+    | 'vertlas'
     | 'route'
     | 'flames'
     | 'commerce'
@@ -56,6 +57,20 @@ export const trackLabel: Record<NoteTrack, string> = {
 
 /** Newest first. Each entry: one artifact, one caption, one lesson. */
 export const fieldNotes: FieldNote[] = [
+  {
+    id: 'FN-015',
+    year: '2026',
+    date: '2026',
+    track: 'product',
+    title: 'Vertlas launches',
+    artifact: 'vertlas.com',
+    caption:
+      'Asked short-drama fans on Reddit how they keep track, read every workaround, then built the catalog they were missing and launched it back to the same community.',
+    lesson: 'Ask before building. The replies were the spec.',
+    preview: 'vertlas',
+    link: { label: 'Read the case study', href: '/projects/vertlas' },
+    accent: true,
+  },
   {
     id: 'FN-014',
     year: '2026',

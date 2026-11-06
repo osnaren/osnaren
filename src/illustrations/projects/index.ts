@@ -1,3 +1,4 @@
+export { VertlasVisual } from './VertlasVisual';
 export { RouteVisual } from './RouteVisual';
 export { FlamesVisual } from './FlamesVisual';
 export { FireVisual } from './FireVisual';

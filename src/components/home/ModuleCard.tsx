@@ -16,7 +16,7 @@ const statusColor = {
 
 /**
  * A workbench module stays a plain link. The surrounding instrument field owns
- * the pointer depth so six cards do not each run a pointer loop.
+ * the pointer depth so the cards do not each run a pointer loop.
  */
 export function ModuleCard({
   module,

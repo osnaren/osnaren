@@ -27,6 +27,18 @@ Outside work, I turn everyday questions into products, open-source projects, and
 
 <table>
 <tr>
+<td colspan="2" valign="top">
+
+### 🎬 Vertlas
+
+A discovery, tracking, and metadata companion for vertical short dramas. Find a drama by any title, actor, or half-remembered plot, then track, rate, and discover what to watch next. Built after asking short-drama fans on Reddit how they keep track.
+
+[![Live product](https://img.shields.io/badge/Live_product-Visit-D96E30?style=flat-square&logo=safari&logoColor=white)](https://vertlas.com)
+[![Case study](https://img.shields.io/badge/Case_study-Read-17191E?style=flat-square&logo=readme&logoColor=white)](https://osnaren.com/projects/vertlas)
+
+</td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 ### ☀️ ShadySide
