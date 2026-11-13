@@ -3,6 +3,7 @@ import { Coda, IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { RouteExperience } from '@/components/layout/RouteExperience';
+import { SiteAnalytics } from '@/components/layout/SiteAnalytics';
 import { site } from '@/data/site';
 import { JsonLd } from '@/lib/seo';
 
@@ -155,6 +156,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <SiteAnalytics />
       </body>
     </html>
   );

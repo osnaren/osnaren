@@ -1,22 +1,13 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
 import tseslint from 'typescript-eslint';
+import prettierConfig from 'eslint-config-prettier/flat';
 import importXPlugin from 'eslint-plugin-import-x';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 import refreshPlugin from 'eslint-plugin-react-refresh';
 import globals from 'globals';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
 
 const eslintConfig = tseslint.config(
   js.configs.recommended,
@@ -127,7 +118,7 @@ const eslintConfig = tseslint.config(
       },
     },
   },
-  ...compat.extends('prettier'),
+  prettierConfig,
   {
     ignores: ['node_modules', '.next', 'out', 'public', '**/components/ui/**', '**/components/magicui/**', 'types'],
   }
